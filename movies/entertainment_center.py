@@ -7,14 +7,14 @@ Lilo = media.Movie("Lilo and Stitch",
                     "85 minutes",
                     "Artificially created space alien escapes captivity and crashes into Earth.",
                     "https://upload.wikimedia.org/wikipedia/en/c/c6/LiloandStitchmovieposter.jpg",
-                    "https://www.youtube.com/watch?v=KYz2wyBy3kc")
+                    "https://www.youtube.com/watch?v=hu9bERy7XGY")
 
 blade_runner = media.Movie("Blade Runner",
                         "1982",
                         "117 minutes",
                         "Classic cyberpunk movie, with neo-noir aesthetic, and eerie electronic soundscapes.",
                         "https://upload.wikimedia.org/wikipedia/en/5/53/Blade_Runner_poster.jpg",
-                        "https://www.youtube.com/watch?v=hu9bERy7XGY")
+                        "https://www.youtube.com/watch?v=eogpIG53Cis&t=2s")
 
 Drive = media.Movie("Drive",
                     "2011",
