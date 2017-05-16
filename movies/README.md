@@ -1,4 +1,4 @@
-### Author: ampour | Version: 1.0.0 | Last Modified: 5/15/2017
+#### Author: ampour | Version: 1.0.0 | Last Modified: 5/15/2017
 
 # Project 1 — Movies 
 Python code designed to produce a webpage with a catalogue of movie, linking the movie's trailer if clicked.
