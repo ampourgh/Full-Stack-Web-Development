@@ -1,6 +1,8 @@
 import fresh_tomatoes
 import media
 
+# Below is the movies that turn into a list, formatted based on the Movie class in media.py
+
 Lilo = media.Movie("Lilo and Stitch",
                     "2002",
                     "85 minutes",
@@ -43,5 +45,9 @@ Howls = media.Movie("Howl's Moving Castle",
                     "https://upload.wikimedia.org/wikipedia/en/a/a0/Howls-moving-castleposter.jpg",
                     "https://www.youtube.com/watch?v=iwROgK94zcM")
 
+# the movies are then placed into a list
 movies = [Lilo, blade_runner, Drive, Ex_Machina, Cuckoo, Howls]
+# The list is processed in the function named open_movies_page within fresh_tomatoes.py
 fresh_tomatoes.open_movies_page(movies)
+
+
