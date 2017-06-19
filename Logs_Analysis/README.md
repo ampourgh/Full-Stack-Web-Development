@@ -1,4 +1,4 @@
-#### Author: ampour | Version: 1.0.0 | Last Modified: 6/10/2017
+#### Author: ampour | Version: 1.0.1 | Last Modified: 6/10/2017
 
 # Project 3 — Logs Analysis
 Python code running postgreSQL to query news database, returning the top 3 ranking of the most viewed articles and authors, and day in which error rates exceeded 2%.
@@ -60,6 +60,9 @@ str(round(decimal.Decimal(row[1]), 2))
 ```
 
 To sample the third query, the goal of the query was to catch the days where the percentage of 404 HTTP status from clicking the articles url were greater than 2%.
+
+### Creating Views for Query
+
 Two views were made for aggregating the errors and totals grouped by their date. The substring is used on the time column to reduce the information gathered to only YEAR-MM-DD, instead of capturing the specific hour and second, which is then given the nickname 'date'. The numbers are then grouped by the day, and the errors view uses a where to specifcally count the strings '404 NOT FOUND', while the totals counts all the status codes including 2XX.
 
 Bellow are the two created views used in the project: Error and Total. Both views have the same function of selecting the time and counting the number of status codes, where the former has a where function that only selects for a status code equal to 404.
@@ -86,6 +89,25 @@ The views are then brought together to select for the days and their percentage 
 ```sql
 select a.date, a.errors/b.totals*100
 from Error a, total b
+where a.errors/b.totals*100 > 2 and a.date = b.date2
+order by a.date desc;
+```
+
+### Alternative to views: subqueries
+
+An alternative to the same function as above is creating subqueries within the queries, to replace the 2 views from before. The names of the subqueries are after the parenthesis; named a and b. 
+
+```sql
+select a.date, a.errors/b.totals*100
+from (select substring(CAST (time AS text) from 1 for 10) as date, cast(count(status) as float) as errors
+        from log
+        where status = '404 NOT FOUND'
+        group by date
+        order by date desc) a
+    , (select substring(CAST (time AS text) from 1 for 10) as date2, cast(count(status) as float) as totals
+        from log
+        group by date2
+        order by date2 desc) b
 where a.errors/b.totals*100 > 2 and a.date = b.date2
 order by a.date desc;
 ```
