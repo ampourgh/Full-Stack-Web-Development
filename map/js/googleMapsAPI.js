@@ -158,20 +158,6 @@ function initMap() {
 
     // Push the marker to our array of markers.
     markers.push(marker);
-
-    // Create an onclick event to open the large infowindow at each marker.
-    marker.addListener('click', function() {
-      populateInfoWindow(this, largeInfowindow);
-      shortAnimation(this);
-    });
-    // Two event listeners - one for mouseover, one for mouseout,
-    // to change the colors back and forth.
-    marker.addListener('mouseover', function() {
-      this.setIcon(iconSymbolHighlighted);
-    });
-    marker.addListener('mouseout', function() {
-      this.setIcon(iconSymbol);
-    });
   }
   showListings();
 
@@ -196,7 +182,7 @@ function initMap() {
     // in the view, the refresh filter content appears
     // when there's no items in the array after filtering
     self.resetFilter = ko.pureComputed(function() {
-      return self.items().length == 0;
+      return self.items().length === 0;
     }, self);
 
     // used when no filter results are found
@@ -265,12 +251,12 @@ function initMap() {
 
             // for searching existing items in array
             // even when filter has already filtered out the item previously
-            // if function is passed if the static and dynamic array are equal
+            // if function is passed if the static and dynamic array aren't equal
             if (i === 0 && arrayLength !== arrayLength2) {
               self.items.removeAll();
-              locations.forEach(function(thisItem){
-                self.items.push( new info(thisItem));
-              });
+              for (var ln = 0; ln < locations.length; ln++) {
+                self.items.push( new info(locations[ln]));
+              }
             }
 
             // before plotting down filtered markers, markers are hidden
@@ -387,6 +373,20 @@ function hideListings() {
     markers[i].setMap(null);
   }
 }
+
+// Create an onclick event to open the large infowindow at each marker.
+marker.addListener('click', function() {
+  populateInfoWindow(this, largeInfowindow);
+  shortAnimation(this);
+});
+// Two event listeners - one for mouseover, one for mouseout,
+// to change the colors back and forth.
+marker.addListener('mouseover', function() {
+  this.setIcon(iconSymbolHighlighted);
+});
+marker.addListener('mouseout', function() {
+  this.setIcon(iconSymbol);
+});
 
 // This function will make the specified marker bounce
 function shortAnimation(thisMarker) {
