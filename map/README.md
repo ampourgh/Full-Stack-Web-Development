@@ -21,6 +21,8 @@ OR
 
 Directly download the folder.
 
+### Folder Content Breakdown
+
 #### knockout.js with Google Maps API
 The map project uses the MVVM structure, index.html's view, googleMapsAPI.js' model and viewModel. The view consists of 3 components binded to the viewModel:
 * The filterItems input filters through the locations present in the model
@@ -33,7 +35,7 @@ The viewModel contains the functionality for the information that goes on the vi
 * Lines 231 - 333 goes through the process of filtering the input, with lines 196 - 213 for when the list is empty
 * lines 215 - 229 connects the list item to its respective map marker when clicked
 
-### Google Maps API
+#### Google Maps API
 
 Key features added to Google maps:
 * On the beginning of line 8, the map style 'night mode' added as a stylistic choice
