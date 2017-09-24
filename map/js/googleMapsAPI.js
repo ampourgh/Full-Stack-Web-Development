@@ -155,10 +155,29 @@ function initMap() {
       icon: iconSymbol,
       address: address
     });
+    
+    markerListener(marker);
 
     // Push the marker to our array of markers.
     markers.push(marker);
   }
+
+  function markerListener(marker){
+    // Create an onclick event to open the large infowindow at each marker.
+    marker.addListener('click', function() {
+      populateInfoWindow(this, largeInfowindow);
+      shortAnimation(this);
+    });
+    // Two event listeners - one for mouseover, one for mouseout,
+    // to change the colors back and forth.
+    marker.addListener('mouseover', function() {
+      this.setIcon(iconSymbolHighlighted);
+    });
+    marker.addListener('mouseout', function() {
+      this.setIcon(iconSymbol);
+    });
+  }
+
   showListings();
 
   // viewModel holding listed locations
@@ -373,20 +392,6 @@ function hideListings() {
     markers[i].setMap(null);
   }
 }
-
-// Create an onclick event to open the large infowindow at each marker.
-marker.addListener('click', function() {
-  populateInfoWindow(this, largeInfowindow);
-  shortAnimation(this);
-});
-// Two event listeners - one for mouseover, one for mouseout,
-// to change the colors back and forth.
-marker.addListener('mouseover', function() {
-  this.setIcon(iconSymbolHighlighted);
-});
-marker.addListener('mouseout', function() {
-  this.setIcon(iconSymbol);
-});
 
 // This function will make the specified marker bounce
 function shortAnimation(thisMarker) {
