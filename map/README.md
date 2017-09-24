@@ -16,6 +16,10 @@ All the files included in the map/ file, including:
 1. Fork the catalog folder
 2. Copy the link of the fork
 3. In Git, use the clone command as so: git clone <forked url> <folder name>
+  
+OR
+
+Directly download the folder.
 
 #### knockout.js with Google Maps API
 The map project uses the MVVM structure, index.html's view, googleMapsAPI.js' model and viewModel. The view consists of 3 components binded to the viewModel:
@@ -27,7 +31,7 @@ In googleMapsAPI.js, the model is the locations variable, with each variable in 
 
 The viewModel contains the functionality for the information that goes on the view; taking the locations array and establishing how the information is seen on index.html. 
 * Lines 231 - 333 goes through the process of filtering the input, with lines 196 - 213 for when the list is empty
-* :ines 215 - 229 connects the list item to its respective map marker when clicked
+* lines 215 - 229 connects the list item to its respective map marker when clicked
 
 ### Google Maps API
 
@@ -38,6 +42,15 @@ Key features added to Google maps:
 * Lines 421 - 429 is the function for the bounce animation, which includes a setTimeout so that the marker bounces no more than once. The function is executed through the marker listener at line 162, along with the viewModel list-to-model click at line 215.
 
 #### Wikipedia API
+
+The Wikipedia API uses Jquery and a AJAX GET request to place wikipedia information on the location onto the dropdown of the mobile page. 
+wikiAPI consists of the:
+* locations - on lines 8 - 19, the locations includes the name of the location, along with the Wikipedia name for the location for search purposes
+* enter and click search function - on lines 21 - 31, the search function directs to the getWikiInfo() function, which consists of the following two functions below
+* content filter - lines 35 - 52, much like the filter used for filtering the list for Google Map purposes, the Wiki API functions the same way, making a GET request for the first location from a filter
+* AJAX request - lines 55 - 84, the GET request itself, appending the Wiki page content and url right below the view's list
+* error handler - lines 87 - 89, the error comes up the same location the Google Maps filter appears
+
 
 ### Acknowledgments
 * Udacity's google maps, cat clicker and wikipedia/NYTimes articles tutorials for the initial structure of the map layout, the MVVM template and two APIs used on the project
