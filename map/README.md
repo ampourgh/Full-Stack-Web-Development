@@ -26,8 +26,8 @@ Directly download the folder.
 #### knockout.js with Google Maps API
 The map project uses the MVVM structure, index.html's view, googleMapsAPI.js' model and viewModel. The view consists of 3 components binded to the viewModel:
 * The filterItems input filters through the locations present in the model
-* The items lists the titles of the locations and directs to the specific its respective marker on the map
-* the resetFilter binding turns visible when there's no items displayed after filtering, and the refreshListing binding resets the items lists back to its original state
+* The items lists the titles of the locations and directs it to its respective marker on the map
+* the resetFilter binding turns visible when there's no items displayed after filtering the list, and the refreshListing binding resets the items list back to its original state
 
 In googleMapsAPI.js, the model is the locations variable, with each variable in the array containing 3 members: title, location and address. The location is used for the marker's location on the map, the title and location are used for the infoWindow, and the title is also used for the view's list.
 
@@ -37,21 +37,22 @@ The viewModel contains the functionality for the information that goes on the vi
 
 #### Google Maps API
 
-Key features added to Google maps:
+Key additions to Google maps:
 * On the beginning of line 8, the map style 'night mode' added as a stylistic choice
-* Between lines 89 - 99 are the map features and specifications, which includes the original placement and zoom. A fullscreen options control was included so that the map would encompass the entire of screen.
-* Lines 121 - 138 are the icon symbols, which were changed to a circle with the insides filled in, with the fillColor matching the strokeColor
+* Between lines 89 - 99 are the map features and specifications, which includes the original placement and zoom. A fullscreen options control was included so that the map would encompass the entirety of the screen
+* Lines 121 - 138 are the marker symbols, which were changed to a circle with the insides filled in, with the fillColor matching the strokeColor
 * Lines 421 - 429 is the function for the bounce animation, which includes a setTimeout so that the marker bounces no more than once. The function is executed through the marker listener at line 162, along with the viewModel list-to-model click at line 215.
 
 #### Wikipedia API
 
 The Wikipedia API uses Jquery and a AJAX GET request to place wikipedia information on the location onto the dropdown of the mobile page. 
+
 wikiAPI consists of the:
 * locations - on lines 8 - 19, the locations includes the name of the location, along with the Wikipedia name for the location for search purposes
 * enter and click search function - on lines 21 - 31, the search function directs to the getWikiInfo() function, which consists of the following two functions below
-* content filter - lines 35 - 52, much like the filter used for filtering the list for Google Map purposes, the Wiki API functions the same way, making a GET request for the first location from a filter
+* content filter - lines 35 - 52, much like the filter function used to filter the list for Google Map purposes, the Wiki API functions the same way, making a GET request for the first location from a filter
 * AJAX request - lines 55 - 84, the GET request itself, appending the Wiki page content and url right below the view's list
-* error handler - lines 87 - 89, the error comes up the same location the Google Maps filter appears
+* error handler - lines 87 - 89, the error pops up the same location the Google Maps filter appears
 
 
 ### Acknowledgments
