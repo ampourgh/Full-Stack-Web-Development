@@ -210,7 +210,7 @@ function initMap() {
       self.filteredItem("");
       hideListings();
       showListings();
-    }
+    };
 
     // linking array items to their respective marker on Google map
     self.itemToMarker = function(clickedItem) {
@@ -219,7 +219,7 @@ function initMap() {
         // unwrapObservable allows the observable to be inspected
         if (ko.utils.unwrapObservable(
             clickedItem.title) == locations[i].title) {
-          markers[i].setMap(map)
+          markers[i].setMap(map);
           populateInfoWindow(markers[i], largeInfowindow);
 
           // gives the marker icon a short bounce
@@ -232,7 +232,7 @@ function initMap() {
     self.filteredItem = ko.observable("");
 
     // calculate static length of locations array
-    var arrayLength = self.items().length
+    var arrayLength = self.items().length;
 
     // function for filtering the filteredItem
     self.filterItems = function() {
@@ -240,7 +240,7 @@ function initMap() {
         // if there's an attempt to search a nonexisting item again
         // automatically refreshes filter
         // without need to click resetFilter's content
-        if (self.filteredItem() != "" && self.items().length == 0) {
+        if (self.filteredItem() !== "" && self.items().length === 0) {
           locations.forEach(function(thisItem){
             self.items.push( new info(thisItem));
           });
@@ -249,10 +249,10 @@ function initMap() {
           showListings();
 
           // else if there are filterable items left to filter
-        } else if (self.filteredItem() != "") {
+        } else if (self.filteredItem() !== "") {
 
           // lower cased filter item for letter comparison
-          var filteredItem2 = self.filteredItem().toLowerCase()
+          var filteredItem2 = self.filteredItem().toLowerCase();
 
           // used later on for maintaining and removing items
           var g = 0;
@@ -261,12 +261,12 @@ function initMap() {
           for (var i = 0; i < arrayLength; i++) {
 
             // calculate dynamic length of array
-            var arrayLength2 = self.items().length
+            var arrayLength2 = self.items().length;
 
             // for searching existing items in array
             // even when filter has already filtered out the item previously
             // if function is passed if the static and dynamic array are equal
-            if (i == 0 && arrayLength != arrayLength2) {
+            if (i === 0 && arrayLength !== arrayLength2) {
               self.items.removeAll();
               locations.forEach(function(thisItem){
                 self.items.push( new info(thisItem));
@@ -274,9 +274,9 @@ function initMap() {
             }
 
             // before plotting down filtered markers, markers are hidden
-            if (i == 0) {
+            if (i === 0) {
               hideListings();
-            };
+            }
 
             // if lower cased item in listing shares letters with filter
             if (ko.utils.unwrapObservable(
@@ -305,30 +305,30 @@ function initMap() {
               // delete the current item from the array
               self.items.splice(self.items.indexOf(
                 ko.utils.unwrapObservable(self.items()[g])), 1);
-            };
+            }
 
             // if the static loop with the original items is at the end
             if (i == (arrayLength - 1)) {
 
               // set markers on the map
-              for (var k = 0, l = 0; l < self.items().length; k++) {
+              for (var m = 0, n = 0; n < self.items().length; m++) {
                 if (ko.utils.unwrapObservable(
-                    self.items()[l].title) == locations[k].title) {
-                  markers[k].setMap(map);
-                  l++;
+                    self.items()[n].title) == locations[m].title) {
+                  markers[m].setMap(map);
+                  n++;
 
                   // if filter result is an item
                   // then the info window is automatically populated
                   // without the necessity to click
                   if (arrayLength2 == 2 || arrayLength2 == 1) {
-                    markers[k].setMap(map)
-                    populateInfoWindow(markers[k], largeInfowindow);
-                    shortAnimation(markers[k]);
+                    markers[m].setMap(map);
+                    populateInfoWindow(markers[m], largeInfowindow);
+                    shortAnimation(markers[m]);
                   }
                 }
               }
             }
-          };
+          }
 
           // if filtered without information in the input
           // revert the list and markers back to their original state
@@ -341,11 +341,11 @@ function initMap() {
           showListings();
         }
     }.bind(self);  // Ensure that "this" is always this view model
-  }
+  };
 
   var info = function (data) {
     this.title = ko.observable(data.title);
-  }
+  };
 
   // bindings apply to viewModel
   ko.applyBindings (new viewModel());
@@ -359,44 +359,14 @@ function initMap() {
 function populateInfoWindow(marker, infowindow) {
   // Check to make sure the infowindow is not already opened on this marker.
   if (infowindow.marker != marker) {
-    // Clear the infowindow content to give the streetview time to load.
-    infowindow.setContent('');
     infowindow.marker = marker;
+    infowindow.setContent('<div class="color-000">' + marker.title + '</div>' +
+      '<div class="color-000">' + marker.address + '</div>');
+    infowindow.open(map, marker);
     // Make sure the marker property is cleared if the infowindow is closed.
     infowindow.addListener('closeclick', function() {
       infowindow.marker = null;
     });
-    var streetViewService = new google.maps.StreetViewService();
-    var radius = 50;
-    // In case the status is OK, which means the pano was found, compute the
-    // position of the streetview image, then calculate the heading, then get a
-    // panorama from that and set the options
-    function getStreetView(data, status) {
-      if (status == google.maps.StreetViewStatus.OK) {
-        var nearStreetViewLocation = data.location.latLng;
-        var heading = google.maps.geometry.spherical.computeHeading(
-          nearStreetViewLocation, marker.position);
-
-          infowindow.setContent('<div class="color-000"><h2>' + marker.title + '</h2><br>' + marker.address + '</div><div id="pano"></div>');
-          var panoramaOptions = {
-            position: nearStreetViewLocation,
-            pov: {
-              heading: heading,
-              pitch: 30
-            }
-          };
-        var panorama = new google.maps.StreetViewPanorama(
-          document.getElementById('pano'), panoramaOptions);
-      } else {
-        infowindow.setContent('<div class="color-000">' + marker.title + '</div>' +
-          '<div class="color-000">' + data.formatted_address + '</div>');
-      }
-    }
-    // Use streetview service to get the closest streetview image within
-    // 50 meters of the markers position
-    streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
-    // Open the infowindow on the correct marker.
-    infowindow.open(map, marker);
   }
 }
 
@@ -459,5 +429,5 @@ function populatesecondInfoWindow(marker, infowindow) {
 window.onerror = function errorHandler(error) {
   document.getElementById('errorMessage').innerHTML += '<b>ERROR!</b></br>';
   document.getElementById('errorMessage').innerHTML += 'Trouble connecting to Google Maps:</br>';
-  document.getElementById('errorMessage').innerHTML += '<br>' + error
-}
+  document.getElementById('errorMessage').innerHTML += '<br>' + error;
+};
