@@ -1,6 +1,6 @@
 #### Author: ampourgh | Version: 1.0.0 | Last Modified: 9/22/2017
 
-# Project 5 — Map
+# Project 5 — Map with jquery for mobile site
 
 ## Getting Started
 
