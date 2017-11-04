@@ -5,26 +5,39 @@ var markers = [];
   function initMap() {
   function stylesContent() {
     $.getJSON( "js/contentStyle.json", function(data) {
-      var styles = [];
-      returnStyles(data);
+       var styles = data.stylesData;
+
+      // Constructor creates a new map - only center and zoom are required.
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 29.496698, lng: -95.38426199999999},
+        zoom:  10,
+        styles: styles,
+        mapTypeControl: false,
+        fullscreenControl: true,
+        fullscreenControlOptions: {
+          position: google.maps.ControlPosition.LEFT_BOTTOM
+        },
+
+      });
+
+      // This function will loop through the markers array and display them all.
+      function showListings() {
+        var bounds = new google.maps.LatLngBounds();
+        // Extend the boundaries of the map for each marker and display the marker
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+          bounds.extend(markers[i].position);
+        }
+        map.fitBounds(bounds);
+      }
+      showListings()
     });
-    function returnStyles(data) {
-      styles.push(data.stylesData);
-    }
-    return styles;
+    // function returnStyles(data) {
+    // }
+    // return styles;
   }
 
-  // Constructor creates a new map - only center and zoom are required.
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 29.496698, lng: -95.38426199999999},
-    zoom:  10,
-    styles: stylesContent(),
-    mapTypeControl: false,
-    fullscreenControl: true,
-    fullscreenControlOptions: {
-        position: google.maps.ControlPosition.LEFT_BOTTOM
-    },
-  });
+  stylesContent()
 
   // These are the listings that will be shown to the user.
   // Normally we'd have these in a database instead.
@@ -113,7 +126,7 @@ var markers = [];
     });
   }
 
-  showListings();
+
 
   // viewModel holding listed locations
   // listed locations are linked to it's respective map marker
@@ -149,7 +162,7 @@ var markers = [];
       });
       self.filteredItem("");
       hideListings();
-      showListings();
+      stylesContent();
     };
 
     // linking array items to their respective marker on Google map
@@ -186,7 +199,7 @@ var markers = [];
           });
           self.filteredItem("");
           hideListings();
-          showListings();
+          stylesContent();
 
           // else if there are filterable items left to filter
         } else if (self.filteredItem() !== "") {
@@ -278,7 +291,7 @@ var markers = [];
             self.items.push( new info(thisItem));
           });
           hideListings();
-          showListings();
+          stylesContent();
         }
     }.bind(self);  // Ensure that "this" is always this view model
   };
@@ -342,16 +355,7 @@ function populateInfoWindow(marker, infowindow) {
   }
 }
 
-// This function will loop through the markers array and display them all.
-function showListings() {
-  var bounds = new google.maps.LatLngBounds();
-  // Extend the boundaries of the map for each marker and display the marker
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(map);
-    bounds.extend(markers[i].position);
-  }
-  map.fitBounds(bounds);
-}
+
 
 // This function will loop through the listings and hide them all.
 function hideListings() {
