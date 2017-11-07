@@ -4,6 +4,7 @@ var map;
 var markers = [];
   function initMap() {
   function stylesContent() {
+    // Importing contentStyle.json for the Map's Skin
     $.getJSON( "js/contentStyle.json", function(data) {
        var styles = data.stylesData;
 
