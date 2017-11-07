@@ -163,10 +163,11 @@ hr {
    color: #000;
  }
 
-@media only screen and (max-width: 800px) {
-  body {
-    margin-top: -5%;
-  }
+
+ @media only screen
+   and (max-width: 1024px)
+   and (max-height: 1366px)
+   and (orientation: portrait) {
 
   .filter {
     visibility: hidden;
@@ -190,7 +191,6 @@ hr {
   .dropdown span {
     visibility: visible;
   }
-
   .dropdown span img {
     height: 17px;
     width: auto;
@@ -247,8 +247,8 @@ hr {
       display: none;
       position: absolute;
       background: linear-gradient(rgba(0, 0, 0, 1.0), rgba(0, 0, 0, 0.5));
-      width: 800px;
-      height: 1200px;
+      width: 1024px;
+      height: 1366px;
       z-index: 2;
   }
 
@@ -280,7 +280,26 @@ hr {
   }
 }
 
+@media only screen
+  and (max-width: 642px)
+  and (max-height: 700px) {
+
+  body {
+    margin-top: -5%;
+  }
+
+  .options-box {
+    height: 25%;
+  }
+
+  #map {
+    height: 75%;
+  }
+
+}
+
 @media only screen and (max-width: 375px) {
+
   body {
     margin-top: -10%;
   }
