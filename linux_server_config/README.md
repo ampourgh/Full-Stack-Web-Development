@@ -16,3 +16,9 @@ VIM cookbook:
 ```
 ssh ubuntu@18.216.162.202 -p 2200 -i LightsailPrivateKey.pem
 ```
+
+### To SSH as the grader
+```
+ssh grader@18.216.162.202 -p 2200 -i LightsailPrivateKey.pem
+```
+Password is grader.
