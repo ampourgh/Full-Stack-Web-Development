@@ -26,3 +26,16 @@ Password is grader.
 Sudo UFW (Ubuntu Firewall) is currenlt active, and allows for SSH port 2200, HTTP/www port 80 and  NTP port 123. To check the status and active ports on the server, use the command 'sudo ufw status'.
 
 For enabling the site on Apache2, the command 'sudo a2ensite 000-default.conf' was used, which contains the route to /var/www/html that port 80 is listening to.
+
+### Changing Webpages showing up on the IP address
+
+After getting Apache2 installed, /etc/apache2/ has the folders related to putting the webpages on port 80. The folders include sites-available and sites enabled. Currently, there are two files available that boots up different pages. 000-default.conf connects the default ubuntu page, and FlaskApp.conf boots up the items catalog page.
+
+In order to connect a site to a port, use the following command:
+sudo a2ensite <insert virtual host file name>
+
+To disconnect the site:
+sudo a2dissite <insert virtual host file name>
+
+After connecting or disconnecting, Apache2 will need to be reloaded in order to update the service:
+sudo service apache2 reload
