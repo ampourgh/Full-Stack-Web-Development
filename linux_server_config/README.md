@@ -39,3 +39,15 @@ sudo a2dissite <insert virtual host file name>
 
 After connecting or disconnecting, Apache2 will need to be reloaded in order to update the service:
 sudo service apache2 reload
+
+### Flask App's wsgi File
+
+From the previously discussed FlaskApp.conf files, the WSGIScriptAlias is connected to 'flaskapp.wsgi'. This file gives the basic configuration to run the flask app. Below is the code for the modifiable sections of the wsgi that connects it between one app to another, along with the place for were Lightsail's secret key is inserted. 
+
+```python
+// from /var/www/FlaskApp/FlaskApp/__init__.py
+// import app = Flask(__name__)
+from FlaskApp import app as application
+// requires quotation marks for multlined private key
+application.secret_key = """<insert LightsailPrivateKey here>"""
+```
