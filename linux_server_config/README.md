@@ -45,6 +45,18 @@ sudo service apache2 reload
 From the previously discussed FlaskApp.conf files, the WSGIScriptAlias is connected to 'flaskapp.wsgi'. This file gives the basic configuration to run the flask app. Below is the code for the modifiable sections of the wsgi that connects it between one app to another, along with the place for were Lightsail's secret key is inserted. 
 
 ```python
+#!/usr/bin/python
+import sys
+import logging
+
+// According to Flask's doc:
+// "This sets up the load paths according to the settings of the virtual environment."
+activate_this = '/var/www/FlaskApp/FlaskApp/venv/bin/activate_this.py'
+exec(compile(open(activate_this, "rb").read(), activate_this, 'exec'), dict(__file__=activate_this))
+
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0,"/var/www/FlaskApp/")
+
 // from /var/www/FlaskApp/FlaskApp/__init__.py
 // import app = Flask(__name__)
 from FlaskApp import app as application
