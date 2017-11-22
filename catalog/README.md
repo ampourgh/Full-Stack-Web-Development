@@ -21,18 +21,31 @@ Project functions with the following:
 * templates - contains the html templates, which function with Jinja2 to do basic Python loops and conditions, along with connecting with project.py
 
 ### Installing
-1. Fork the catalog folder
-2. Copy the link of the fork
+1. Fork the catalog folder.
+2. Copy the link of the fork.
 3. In Git, use the clone command as so: git clone <forked url> <folder name>
 
 ### Running tests
-1. Through Git Bash, navigate to the Vagrantfile which is inside what the forked folder was called
-2. Vagrant Up to get VM VirtualBox running
-3. Vagrant SSH to log in.
+1. Through Git Bash, navigate to the Vagrantfile which is inside what the forked folder was called.
+2. 'Vagrant Up' to get VM VirtualBox running.
+3. 'Vagrant SSH' to log in.
 4. Use the command 'cd /vagrant' to move out of home/vagrant to the vagrant folder that holds the files
-6. Make sure to pip install all the imported frameworks and libraries in project.py and database_setup.py, which includes Flask
-7. Run python database_setup.py to set up archive.db, which contains all the database information
-8. Run python project.py to get webpage running (which can be found at localhost:5000)
+5. Install pip in order to install the requirements of the Catalog app.
+```
+sudo apt-get -y install python3-pip python3-
+```
+7. Pip install all the imported frameworks and libraries in project.py and database_setup.p. Requirements.txt includes Flask, SQLAlchemy, psycopg2, requests, oauth2client and httplib2.
+```
+sudo pip3 install -r requirements.tx
+```
+8. Compile database_setup.py to set up archive.db, which contains the database information.
+```
+python database_setup.py 
+```
+9. Compile project.py to get webpage running (which can be found at localhost:5000)
+```
+python project.py
+```
 
 #### How to modify database_setup.py
 
