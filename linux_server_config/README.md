@@ -8,9 +8,13 @@ To Change the SSH Port from a Linux Server
 * locate this line: Port 2200
 * Restart the sshd service by running the following command: service sshd restart
 
-VIM cookbook:
-* 'i' to add text
-* ':' followed by 'wq' to save and quit
+###Vim cookbook:
+* View file in Vim: vi <insert file>
+* Modify text: 'i' 
+* Save and quit:':' followed by 'wq' 
+* Quit without editing: ':q!'
+* Scroll Faster: press and hold either shift or use the number while pressing the up/down arrow key pad.
+Additional commands for Vim can be found [here](https://vim.rtorr.com).
 
 ### To SSH from Git to Amazon Lightsail
 ```
