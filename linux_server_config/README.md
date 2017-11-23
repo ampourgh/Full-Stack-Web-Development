@@ -2,14 +2,41 @@ Using Ubuntu-ampourgh Ubuntu server, located: Ohio, Zone A (us-east-2a)
 
 Firewall TCP and in-browser port changed to 2200.
 
-To Change the SSH Port from a Linux Server
-* sudo su -
-* vi /etc/ssh/sshd_config
-* locate this line: Port 2200
-* Restart the sshd service by running the following command: service sshd restart
+## Steps taken to deploy webpage:
 
-###Vim cookbook:
-* View file in Vim: vi <insert file>
+### To Change the SSH Port from a Linux Server
+* Connect to instances' browser terminal
+* Use command 'sudo su -' to change to the root user.
+* vi /etc/ssh/sshd_config to view the SSH configuration, and click 'i' to be able to modify the page's information.
+* locate the line 'Port 22' and change the port to 2200.
+* Exit the browser terminal.
+* Click to manage the instance and delete the SSH port, add custom ports 2200 and 123.
+
+#### Connecting remotely and copying files over to Apache2:
+* First, I added the flaskapp.wsgi file in the folder where my app is, for convenience. Information on the contents of the .wsgi file can be lower later in this readme.
+* Change directories to where your SecretKey.pem file is located.
+* Use the command below to transfer the file over to your account's folder. The breakdown of this command includes the scp to copy the file, -i PrivateKey.pem to access as the user, -P 2200 to specify the port, and /c/path/to/folder/ to copy the desired folder. The last section includes your username@public.port.number:/folder/you/want/to/copy/the/files/to.
+```
+scp -i LightsailPrivateKey.pem -P 2200 -r /c/path/to/folder/ ubuntu@52.14.27.203:/home/ubuntu
+```
+* The following command is for logging into the page:
+```
+ssh ubuntu@52.14.27.203 -p 2200 -i LightsailPrivateKey.pem
+```
+* To install Apache2, the server needs to be up to date so that the www folder is created for storing the webpage's contents. After the Linux server is updated, install Apache2.
+```
+apt-get update
+sudo apt-get install apache2
+```
+* Created a directory will house the FlaskApp in /www, move the webpage's folder there, followed by moving the .wsgi outside the webpage folder.
+```
+mkdir /var/www/FlaskApp
+mv /home/ubuntu/FlaskApp /var/www/FlaskApp
+mv ./flaskapp.wsig ../
+```
+
+### Vim cookbook:
+* View file in Vim: vi insert-filename
 * Modify text: 'i' 
 * Save and quit:':' followed by 'wq' 
 * Quit without editing: ':q!'
