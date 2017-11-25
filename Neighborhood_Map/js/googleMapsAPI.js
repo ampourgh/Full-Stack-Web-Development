@@ -32,11 +32,11 @@ var markers = [];
         }
         map.fitBounds(bounds);
       }
-      showListings()
+      showListings();
     });
   }
 
-  stylesContent()
+  stylesContent();
 
   // These are the listings that will be shown to the user.
   // Normally we'd have these in a database instead.
@@ -319,7 +319,7 @@ function populateInfoWindow(marker, infowindow) {
 
     // search the location's wiki title
     var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search="
-      + marker.wikiTitle +"&format=json&callback=wikiCallback";
+              + marker.wikiTitle +"&format=json&callback=wikiCallback";
 
     $.ajax({
       url: url,
@@ -336,16 +336,16 @@ function populateInfoWindow(marker, infowindow) {
       success: function(data, status, jqXHR) {
 
         // appends wiki introductory content and url img at the end
-        if (marker.wikiTitle != '') {
+        if (marker.wikiTitle !== '') {
           infowindow.setContent('<div class="color-000"><b>' + data[1]
-          + '</b></div>' +  '<div class="color-000">' + marker.address + '</div>'
-          + "<div class='color-000'><br>" + data[2]
-          + " " + "<a href=" + data[3] + " target='_blank'>"
-          + "<img src='img/external.gif' alt='to wikipedia' class='external-img'></img>"
-          + "</a></div>");
+            + '</b></div>' +  '<div class="color-000">' + marker.address + '</div>'
+            + "<div class='color-000'><br>" + data[2]
+            + " " + "<a href=" + data[3] + " target='_blank'>"
+            + "<img src='img/external.gif' alt='to wikipedia' class='external-img'></img>"
+            + "</a></div>");
         }
       }
-    })
+    });
     infowindow.open(map, marker);
     // Make sure the marker property is cleared if the infowindow is closed.
     infowindow.addListener('closeclick', function() {
@@ -404,4 +404,4 @@ function populatesecondInfoWindow(marker, infowindow) {
 function googleError(error) {
   document.getElementById('errorMessage').innerHTML += 'Trouble connecting to Google Maps:</br>';
   document.getElementById('errorMessage').innerHTML += '<br>' + error;
-};
+}
