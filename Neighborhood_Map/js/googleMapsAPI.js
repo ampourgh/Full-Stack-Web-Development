@@ -318,8 +318,8 @@ function populateInfoWindow(marker, infowindow) {
     infowindow.marker = marker;
 
     // search the location's wiki title
-    var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search="
-             + marker.wikiTitle +"&format=json&callback=wikiCallback";
+    var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" 
+                + marker.wikiTitle +"&format=json&callback=wikiCallback";
 
     $.ajax({
       url: url,
@@ -337,12 +337,12 @@ function populateInfoWindow(marker, infowindow) {
 
         // appends wiki introductory content and url img at the end
         if (marker.wikiTitle !== '') {
-          infowindow.setContent('<div class="color-000"><b>' + data[1]
+          infowindow.setContent('<div class="color-000"><b>' + data[1] 
                                 + '</b></div>' +  '<div class="color-000">' 
-                                + marker.address + '</div>'
-                                + "<div class='color-000'><br>" + data[2]
-                                + " " + "<a href=" + data[3] + " target='_blank'>"
-                                + "<img src='img/external.gif' alt='to wikipedia' class='external-img'></img>"
+                                + marker.address + '</div>' 
+                                + "<div class='color-000'><br>" + data[2] 
+                                + " " + "<a href=" + data[3] + " target='_blank'>" 
+                                + "<img src='img/external.gif' alt='to wikipedia' class='external-img'></img>" 
                                 + "</a></div>");
         }
       }
