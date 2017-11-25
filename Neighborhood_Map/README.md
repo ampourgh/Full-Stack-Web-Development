@@ -43,8 +43,10 @@ serving at port 8000, access the page at: http://localhost:8000"
 As such, navigate to the following address on a browser: http://localhost:8000
 
 ### Neighborhood_Maps Knockout.js' MVVM Breakdown
-
 The project uses Knockout.js' MVVM model, with the model, view and view model. Index.html includes the veiw, with how the information is embeded and displayed page. This includes the list of locations, the search filter that changes what information is displayed in the list, and the refresh display when the filter runs out of items to display. The model is located within js/googleMapsAPI.js' file under the variable locations. Each item in the locations' array is the property of a marker in the map, which are pushed to display the their respctive markers and for the usage of the view model. The view model is located lower down the same JavaScript file, and gives all the functionality that is visually depicted by the view.
+
+### Wikipedia API
+Within js/googleMapsAPI.js, each marker property has a Wiki title which is based on what the Wikipedia's title is. Occasionally the title between the Wikipedia and the name of the location are the same, but there are times where the title and Wiki title are different, causing the AJAX  request not to return the Wiki content. Within the populateInfoWindow function, the Ajax request is made to retrieve the introductory information of the Wiki page and a link to the Wiki page.
 
 ### Acknowledgments
 * https://www.shareicon.net for icons used for the project
