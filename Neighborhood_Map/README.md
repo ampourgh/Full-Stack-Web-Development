@@ -31,11 +31,16 @@ OR
 Directly download the folder.
 
 ### Booting up webpage on localhost
-Navigate to where your folder is for Neighborhood_Map, click on the folder and use the command ls to make sure SimpleHTTPServer.py is present. From there, use the following command to start server port 8000:
+Boot up Git Bash and navigate to where the Neighborhood_Map folder is, click on the folder and use the command ls to make sure SimpleHTTPServer.py is present. From there, use the following command to start server port 8000:
 ```git
 python SimpleHTTPServer.py
 ```
-On a browser navigate to the following address: http://localhost:8000
+If the following message appears, the webpage is connected onto localhost.
+
+"SUCCESSFULLY CONNECTED!
+serving at port 8000, access the page at: http://localhost:8000"
+
+As such, navigate to the following address on a browser: http://localhost:8000
 
 ### Acknowledgments
 * https://www.shareicon.net for icons used for the project
