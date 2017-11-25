@@ -48,6 +48,15 @@ The project uses Knockout.js' MVVM model, with the model, view and view model. I
 ### Wikipedia API
 Within js/googleMapsAPI.js, each marker property has a Wiki title which is based on what the Wikipedia's title is. Occasionally the title between the Wikipedia and the name of the location are the same, but there are times where the title and Wiki title are different, causing the AJAX  request not to return the Wiki content. Within the populateInfoWindow function, the Ajax request is made to retrieve the introductory information of the Wiki page and a link to the Wiki page.
 
+### Marker Icon and Animation
+The marker's icon is set to be a colored dot instead of the standard marker icon that accompanies Google Maps. The marker has an animation when clicked that lasts for a short period of time. 
+
+### Importing Map's Color Template
+Near the top of js/googleMapsAPI.js, there's a getJSON jquery request to import the the json style sheet for the use of the map's colors. This information is then sent to the styles property of the Maps variable.
+
+### Google Error
+If the the page cannot access the Google Maps API, the google error display will show up on the page, notifying the trouble of accessing Google Maps. The error is binded on the Google Maps API key on Index.html, and the error's function can be found at the end of js/googleMapsAPI.js.
+
 ### Acknowledgments
 * https://www.shareicon.net for icons used for the project
 * Udacity's google maps, cat clicker and wikipedia/NYTimes articles tutorials for the initial structure of the map layout, the MVVM template and two APIs used on the project
