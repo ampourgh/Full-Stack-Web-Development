@@ -48,17 +48,17 @@ mv ./flaskapp.wsig ../
 
 ### Installing wsgi and the virtual environment, and activating the virtual environment.
 
-*Now use the command to install mod-wsgi-p3, the '-p3' extension added for Python 3+.  
+* Now use the command to install mod-wsgi-p3, the '-p3' extension added for Python 3+.  
 ```
 sudo apt-get install libapache2-mod-wsgi-py3
 ```
 
-*Go to Apache2's folder for seeing what sites are enabled for viewing on the ip. 
+* Go to Apache2's folder for seeing what sites are enabled for viewing on the ip. 
 ```
 cd /etc/apache2/sites-enabled/
 ```
 
-*If you see 000-default.conf enabled, or anything outside of FlaskApp.conf, use the following commands to switch what site port 80 is connected to.
+* If you see 000-default.conf enabled, or anything outside of FlaskApp.conf, use the following commands to switch what site port 80 is connected to.
 ```
 sudo a2dissite 000-default.conf
 sudo a2ensite FlaskApp.conf
@@ -66,30 +66,30 @@ service apache2 reload
 sudo service apache2 restart
 ```
 
-*Next, use the built in install command to install pip.
+* Next, use the built in install command to install pip.
 ```
 sudo apt-get install python-pip 
 ```
 
-*Switch back to the Flask app folder to install and activate a virtual environment.
+* Switch back to the Flask app folder to install and activate a virtual environment.
 ```
 cd /var/www/FlaskApp/FlaskApp
 apt-get install python3-venv
 source venv/bin/activate 
 ```
 
-*Install the following libraries/toolsets so that __init__.py can run with the imports.
+* Install the following libraries/toolsets so that __init__.py can run with the imports.
 ```
 pip install Flask SQLAlchemy psycopg2 requests oauth2client httplib2
 ```
 
-*At the end pip will mention that the version it's running is not the latest version. Update 
+* At the end pip will mention that the version it's running is not the latest version. Update 
 ```
 >You are using pip version 8.1.1, however version 9.0.1 is available.
 pip install --upgrade pip
 ```
 
-*See if the webpage is served within the virtual environment.
+* See if the webpage is served within the virtual environment.
 ```
 python __init__.py
 *Deactivate the virtual environment.
