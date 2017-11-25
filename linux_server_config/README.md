@@ -1,6 +1,11 @@
-Using Ubuntu-ampourgh Ubuntu server, located: Ohio, Zone A (us-east-2a)
+#### Author: ampourgh | Version: 2.0.0 | Last Modified: 9/17/2017
 
-Firewall TCP and in-browser port changed to 2200.
+# Project 5 — Ubuntu-ampourgh Ubuntu server
+### located: Ohio, Zone A (us-east-2a)
+
+###Table of Contents
+#### I. Steps taken to Deploy Webpage
+#### II. Lightsail server & Information
 
 ## Steps taken to deploy webpage:
 
@@ -12,7 +17,7 @@ Firewall TCP and in-browser port changed to 2200.
 * Exit the browser terminal.
 * Click to manage the instance and delete the SSH port, add custom ports 2200 and 123.
 
-#### Connecting remotely and copying files over to Apache2:
+### Connecting remotely and copying files over to Apache2:
 * First, I added the flaskapp.wsgi file in the folder where my app is, for convenience. Information on the contents of the .wsgi file can be lower later in this readme.
 * Change directories to where your SecretKey.pem file is located.
 * Use the command below to transfer the file over to your account's folder. The breakdown of this command includes the scp to copy the file, -i PrivateKey.pem to access as the user, -P 2200 to specify the port, and /c/path/to/folder/ to copy the desired folder. The last section includes your username@public.port.number:/folder/you/want/to/copy/the/files/to.
@@ -35,7 +40,7 @@ mv /home/ubuntu/FlaskApp /var/www/FlaskApp
 mv ./flaskapp.wsig ../
 ```
 
-## Installing wsgi and the virtual environment, and activating the virtual environment.
+### Installing wsgi and the virtual environment, and activating the virtual environment.
 
 *Now use the command to install mod-wsgi-p3, the '-p3' extension added for Python 3+.  
 ```
@@ -85,6 +90,8 @@ python __init__.py
 deactivate
 ```
 
+## Lightsail server & Information
+
 ### Vim cookbook:
 * View file in Vim: vi insert-filename
 * Modify text: 'i' 
@@ -95,18 +102,18 @@ Additional commands for Vim can be found [here](https://vim.rtorr.com).
 
 ### To SSH from Git to Amazon Lightsail
 ```
-ssh ubuntu@18.216.162.202 -p 2200 -i LightsailPrivateKey.pem
+ssh ubuntu@52.14.27.203 -p 2200 -i LightsailPrivateKey.pem
 ```
 
 ### To SSH as the grader
 ```
-ssh grader@18.216.162.202 -p 2200 -i LightsailPrivateKey.pem
+ssh grader@52.14.27.203 -p 2200 -i LightsailPrivateKey.pem
 ```
 Password is grader.
 
-Sudo UFW (Ubuntu Firewall) is currenlt active, and allows for SSH port 2200, HTTP/www port 80 and  NTP port 123. To check the status and active ports on the server, use the command 'sudo ufw status'.
+### Ubuntu Firewall ports
 
-For enabling the site on Apache2, the command 'sudo a2ensite 000-default.conf' was used, which contains the route to /var/www/html that port 80 is listening to.
+Sudo UFW (Ubuntu Firewall) is currently active, and allows for SSH port 2200, HTTP/www port 80 and  NTP port 123. To check the status and active ports on the server, use the command 'sudo ufw status'.
 
 ### Changing Webpages showing up on the IP address
 
@@ -130,11 +137,6 @@ From the previously discussed FlaskApp.conf files, the WSGIScriptAlias is connec
 import sys
 import logging
 
-// According to Flask's doc:
-// "This sets up the load paths according to the settings of the virtual environment."
-activate_this = '/var/www/FlaskApp/FlaskApp/venv/bin/activate_this.py'
-exec(compile(open(activate_this, "rb").read(), activate_this, 'exec'), dict(__file__=activate_this))
-
 logging.basicConfig(stream=sys.stderr)
 sys.path.insert(0,"/var/www/FlaskApp/")
 
@@ -143,4 +145,10 @@ sys.path.insert(0,"/var/www/FlaskApp/")
 from FlaskApp import app as application
 // requires quotation marks for multlined private key
 application.secret_key = """<insert LightsailPrivateKey here>"""
+```
+
+For Python 2 or lower, According to Flask's doc: "This sets up the load paths according to the settings of the virtual environment."
+```python
+activate_this = '/var/www/FlaskApp/FlaskApp/venv/bin/activate_this.py'
+exec(compile(open(activate_this, "rb").read(), activate_this, 'exec'), dict(__file__=activate_this))
 ```
