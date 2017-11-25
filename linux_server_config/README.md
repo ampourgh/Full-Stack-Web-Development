@@ -3,9 +3,9 @@
 # Project 5 — flaskapp-server Ubuntu server
 ### located: Ohio, Zone A (us-east-2a)
 
-###Table of Contents
+### Table of Contents
 #### I. Steps taken to Deploy Webpage
-#### II. Lightsail server & Information
+#### II. Lightsail server & Git Information
 
 ## Steps taken to deploy webpage:
 
@@ -96,7 +96,7 @@ python __init__.py
 deactivate
 ```
 
-## Lightsail server & Information
+## Lightsail server & Git Information
 
 ### Vim cookbook:
 * View file in Vim: vi insert-filename
