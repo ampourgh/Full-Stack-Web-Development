@@ -1,6 +1,6 @@
 #### Author: ampourgh | Version: 2.0.0 | Last Modified: 9/17/2017
 
-# Project 5 — Ubuntu-ampourgh Ubuntu server
+# Project 5 — flaskapp-server Ubuntu server
 ### located: Ohio, Zone A (us-east-2a)
 
 ###Table of Contents
@@ -8,6 +8,12 @@
 #### II. Lightsail server & Information
 
 ## Steps taken to deploy webpage:
+
+### Registering for an account at Lightsail
+* Head to lightsail.aws.amazon.com
+* Click to create an instance, choose the choice for a Linux platform, with an OS only of Ubuntu.
+* Create and download the secret key for logging onto the server, transferring content, and for connecting websites. The name of the secret key in this project is called 'LightsailSecretKey.pem'.
+* Choose a payment plan and give your instance a name.
 
 ### To Change the SSH Port from a Linux Server
 * Connect to instances' browser terminal
