@@ -96,6 +96,46 @@ python __init__.py
 deactivate
 ```
 
+### Creating Grader user and SSH keygen
+
+To create a user, use the following command and give the user a password and other information.
+
+```
+sudo adduser grader
+```
+
+Once in /home/grader, create an .ssh directory followed by a autorized key file.
+
+```
+mkdir .ssh
+source .ssh/authorized_keys
+```
+
+Outside of the server, change directory to /c/users/YourDesktopName/ and type 'ssh key-gen', follow by the directory the key-gen will be placed. The SSH passphrase for grader has been kept empty.
+
+```
+ssh-keygen
+> Enter file in which to save the key (/c/Users/Jamshid/.ssh/id_rsa): /c/Usersshid/.ssh/graderKeygen
+> Enter passphrase (empty for no passphrase):
+> Enter same passphrase again:
+> Your identification has been saved in /c/Users/Jamshid/.ssh/graderKeygen.
+> Your public key has been saved in /c/Users/Jamshid/.ssh/graderKeygen.pub.
+```
+
+As the ubuntu/root user, switch over as grader, and copy the pub file contents into /home/grader/.ssh/authorized_keys. 
+
+```
+su - grader
+pwd
+>/home/grader
+vi .ssh/authorized_keys
+```
+Now login as the grader from /c/users/YourDesktopName/:
+
+```
+ssh grader@52.14.27.203 -p 2200 -i ~/.ssh/graderKeygen
+```
+
 ## Lightsail server & Git Information
 
 ### Vim cookbook:
@@ -106,16 +146,16 @@ deactivate
 * Scroll Faster: press and hold either shift or use the number while pressing the up/down arrow key pad.
 Additional commands for Vim can be found [here](https://vim.rtorr.com).
 
-### To SSH from Git to Amazon Lightsail
+### To SSH as ubuntu to Amazon Lightsail
 ```
 ssh ubuntu@52.14.27.203 -p 2200 -i LightsailPrivateKey.pem
 ```
 
-### To SSH as the grader
+### To SSH as the grader using a keygen
 ```
-ssh grader@52.14.27.203 -p 2200 -i LightsailPrivateKey.pem
+ssh grader@52.14.27.203 -p 2200 -i ~/.ssh/graderKeygen
 ```
-Password is grader.
+There is no pass phrase for the keygen, however the server password for the grader is grader.
 
 ### Ubuntu Firewall ports
 
