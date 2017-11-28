@@ -255,3 +255,11 @@ ssh grader@52.14.27.203 -p 2200 -i ~/.ssh/graderKeygen
 * Quit without editing: ':q!'
 * Scroll Faster: press and hold either shift or use the number while pressing the up/down arrow key pad.
 Additional commands for Vim can be found [here](https://vim.rtorr.com).
+
+## Acknowledgements 
+1. [SQLAlchemy documentation using various endgines.](http://docs.sqlalchemy.org/en/latest/core/engines.html)
+2. [How to deploy a flask app on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)
+3. [How to install postgresql on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)
+4. [UFW Essential common firewall rules](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
+5. [Configuring a SSH key](https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-freebsd-server)
+6. [postgresql create role documentation](https://www.postgresql.org/docs/8.2/static/sql-createrole.html)
