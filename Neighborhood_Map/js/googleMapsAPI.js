@@ -33,7 +33,9 @@ var markers = [];
         map.fitBounds(bounds);
       }
       showListings();
-    });
+    }).fail(function() {
+      document.getElementById('errorMessage').innerHTML += "Error loading the Map's stylesheet.";
+    });;
   }
 
   stylesContent();
