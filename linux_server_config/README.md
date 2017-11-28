@@ -218,6 +218,48 @@ The changes within client_secrets.json include the following:
     "javascript_origins":["http://ec2-52-14-27-203.us-east-2.compute.amazonaws.com"]
 ```
 
+### Postgresql setup
+
+The following steps were taken to set up postgresql database:
+
+```
+# first, install the database onto Ubuntu
+sudo apt-get install postgresql postgresql-contrib
+
+# create the catalog user within the database, giving them limited administrative capabilities
+sudo -u postgres createuser --interactivn
+>Enter name of role to add: sammy
+>Shall the new role be a superuser? (y/n) n
+
+# now create the user for Ubuntu
+sudo adduser catalog
+
+# Create the database as well
+createdb catalog
+
+# access postgresql with the command psql, but here we want to specifiy that it's with the catalog user
+sudo -u catalog psql
+
+# change the password for catalog for the engine requirement
+\password
+>Enter new password: catalog
+>Enter it again: catalog
+
+#quit psql
+\q
+```
+
+Now with both database_setup.py and __init__.py, you will specify the the information the engine will use, including the user, password and the database name. 
+
+```
+# login to postgresql by user catalog : pass catalog, changed form sqlite from earlier project
+engine = create_engine('postgresql://catalog:catalog@localhost/catalog')
+Base.metadata.create_all(engine)
+```
+
+Once done, use the command python database_setup.py to apply the tables into the database. You can now use psql command from before to log onto the database and use either command \d or \dt to display the contents on the database.
+
+
 ### Creating Grader user and SSH keygen
 
 To create a user, use the following command and give the user a password and other information.
