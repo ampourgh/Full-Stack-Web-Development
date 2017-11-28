@@ -208,6 +208,16 @@ python __init__.py
 deactivate
 ```
 
+### Google Oauth2 API Credentials
+With the transition from localhost to AWS, the oauth2 credentials need to both be updated, this includes withinn client_secrets and within [Google APIs' dashboard](https://console.developers.google.com/apis/credentials?project=archive-173500).
+
+The changes within client_secrets.json include the following:
+
+```json
+    "redirect_uris":["http://ec2-52-14-27-203.us-east-2.compute.amazonaws.com/callback","https://ec2-52-14-27-203.us-east-2.compute.amazonaws.com/callback"],
+    "javascript_origins":["http://ec2-52-14-27-203.us-east-2.compute.amazonaws.com"]
+```
+
 ### Creating Grader user and SSH keygen
 
 To create a user, use the following command and give the user a password and other information.
