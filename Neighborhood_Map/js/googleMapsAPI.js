@@ -405,7 +405,6 @@ function populatesecondInfoWindow(marker, infowindow) {
 }
 
 // error message for when Google maps fails to laod
-function googleError(error) {
-  document.getElementById('errorMessage').innerHTML += 'Trouble connecting to Google Maps:</br>';
-  document.getElementById('errorMessage').innerHTML += '<br>' + error;
+function googleError() {
+  document.getElementById('errorMessage').innerHTML += 'Trouble connecting to Google Maps.</br>';
 }
