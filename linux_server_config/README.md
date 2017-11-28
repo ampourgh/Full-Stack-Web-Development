@@ -273,7 +273,16 @@ Once in /home/grader, create an .ssh directory followed by a autorized key file.
 ```
 mkdir .ssh
 source .ssh/authorized_keys
+ch
 ```
+
+Give the user the authorization to login. 
+```
+chmod 700 /home/grader/.ssh
+chmod 600 /home/grader/.ssh/authorized_keys
+chown -R grader:grader .ssh
+```
+
 
 Outside of the server, change directory to /c/users/YourDesktopName/ and type 'ssh key-gen', follow by the directory the key-gen will be placed. The SSH passphrase for grader has been kept empty.
 
