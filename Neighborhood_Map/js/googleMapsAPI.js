@@ -354,7 +354,7 @@ function populateInfoWindow(marker, infowindow) {
                               '</b></div>' +  '<div class="color-000">'+
                               marker.address + '</div>' +
                               "<div class='color-000'><br>" +
-                              '\nCould not load Wikipedia content.</div>')
+                              '\nCould not load Wikipedia content.</div>');
       },
     });
     infowindow.open(map, marker);
