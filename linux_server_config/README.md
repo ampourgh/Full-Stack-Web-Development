@@ -40,8 +40,8 @@ There is no pass phrase for the keygen, however the server password for the grad
 
 ### I.II. URL to Hosted Web Application
 
-http://ec2-52-14-27-203.us-east-2.compute.amazonaws.com
-
+URL to webpage: http://ec2-52-14-27-203.us-east-2.compute.amazonaws.com
+URL to AWS account page: https://lightsail.aws.amazon.com/ls/webapp/home/instances
 
 ### I.III. Summary of Software Installed and Configuration Changes Made
 
