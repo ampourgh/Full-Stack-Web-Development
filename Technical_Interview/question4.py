@@ -1,6 +1,19 @@
 """
 Question 4
-Find the least common ancestor between two nodes on a binary search tree. The least common ancestor is the farthest node from the root that is an ancestor of both nodes. For example, the root is a common ancestor of all nodes on the tree, but if both nodes are descendents of the root's left child, then that left child might be the lowest common ancestor. You can assume that both nodes are in the tree, and the tree itself adheres to all BST properties. The function definition should look like question4(T, r, n1, n2), where T is the tree represented as a matrix, where the index of the list is equal to the integer stored in that node and a 1 represents a child node, r is a non-negative integer representing the root, and n1 and n2 are non-negative integers representing the two nodes in no particular order. For example, one test case might be
+Find the least common ancestor between two nodes on a binary search tree.
+The least common ancestor is the farthest node from the root that is an ancestor of both nodes.
+For example,
+the root is a common ancestor of all nodes on the tree,
+but if both nodes are descendents of the root's left child,
+then that left child might be the lowest common ancestor.
+You can assume that both nodes are in the tree,
+and the tree itself adheres to all BST properties.
+The function definition should look like question4(T, r, n1, n2),
+where T is the tree represented as a matrix,
+where the index of the list is equal to the integer stored in that node and a 1 represents a child node,
+r is a non-negative integer representing the root,
+and n1 and n2 are non-negative integers representing the two nodes in no particular order.
+For example, one test case might be
 
 question4([[0, 1, 0, 0, 0],
            [0, 0, 0, 0, 0],
@@ -38,25 +51,49 @@ class BST(object):
             else:
                 current.left = Node(new_val)
 
-    def search(self, find_val):
-        parent_node = None
-        return self.search_helper(self.root, find_val, parent_node)
+    def search(self, node1, node2):
+        node1_found = None
+        node1_ancestry = []
+        node2_ancestry = []
+        return self.search_helper(self.root, node1, node2, node1_found, node1_ancestry, node2_ancestry)
 
-    def search_helper(self, current, find_val, parent_node):
+    def search_helper(self, current, node1, node2, node1_found, node1_ancestry, node2_ancestry):
+
         if current:
-            if current.value == find_val and parent_node != None:
-                return parent_node
-            elif current.value == find_val:
-                return current.value
-            elif current.value < find_val:
-                parent_node = current.value
-                return self.search_helper(current.right, find_val, parent_node)
+            if current.value == node1 or node1 == node1_found:
+                if current.value == node1:
+                    node1_ancestry.append(current.value)
+                    node1_found = node1_ancestry[-1]
+                    current = self.root
+
+                if current.value == node2:
+                    counter = 0
+                    for i in node1_ancestry:
+                        if len(node1_ancestry) == counter or len(node2_ancestry) == counter:
+                            return node2_ancestry[counter - 1]
+                        elif node1_ancestry[counter] != node2_ancestry[counter]:
+                            return node2_ancestry[counter - 1]
+                        else:
+                            counter += 1
+
+                elif current.value < n2:
+                    node2_ancestry.append(current.value)
+                    return self.search_helper(current.right, node1, node2, node1_found, node1_ancestry, node2_ancestry)
+                else:
+                    node2_ancestry.append(current.value)
+                    return self.search_helper(current.left, node1, node2, node1_found, node1_ancestry, node2_ancestry)
+
+            elif current.value < n1:
+                node1_found = current.value
+                node1_ancestry.append(current.value)
+                return self.search_helper(current.right, node1, node2, node1_found, node1_ancestry, node2_ancestry)
             else:
-                parent_node = current.value
-                return self.search_helper(current.left, find_val, parent_node)
+                node1_found = current.value
+                node1_ancestry.append(current.value)
+                return self.search_helper(current.left, node1, node2, node1_found, node1_ancestry, node2_ancestry)
         return 'Not found.'
 
-def Nodes_Linked(matrix, root_value):
+def Nodes_Linked(matrix, root_value, node1, node2):
     # Set up tree
     tree = BST(root_value)
     print('\nroot:')
@@ -103,17 +140,16 @@ def Nodes_Linked(matrix, root_value):
 
     # Should be found
     print('\nParent node for input:')
-    print(tree.search(4))
-    print(tree.search(1))
-    # Should be 'Not found.'
-    print(tree.search(6))
+    print(tree.search(node1, node2))
+
 
 T = [[0, 1, 0, 0, 0],
      [0, 0, 0, 0, 0],
      [0, 0, 0, 0, 0],
      [1, 0, 0, 0, 1],
      [0, 0, 0, 0, 0]]
-
 r = 3
+n1 = 1
+n2 = 4
 
-Nodes_Linked(T, r)
+Nodes_Linked(T, r, n1, n2)
