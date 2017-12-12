@@ -8,3 +8,17 @@ Given an undirected graph G, find the minimum spanning tree within G. A minimum 
 Vertices are represented as unique strings. The function definition should be question3(G)
 """
 
+class Node(object):
+    def __init__(self, value):
+        self.value = value
+        self.edges = []
+        self.visited = False
+
+class Edge(object):
+    def __init__(self, value, node_from, node_to):
+        self.value = value
+        self.node_from = node_from
+        self.node_to = node_to
+
+def question3(G):
+ pass
