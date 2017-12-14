@@ -11,9 +11,6 @@ Vertices are represented as unique strings.
 The function definition should be question3(G)
 """ 
 
-import pprint
-pp = pprint.PrettyPrinter(indent=2)
-
 class Node(object):
     def __init__(self, value):
         self.value = value
@@ -64,19 +61,75 @@ class Graph(object):
         node_to.edges.append(new_edge)
         self.edges.append(new_edge)
 
+
     def get_edge_list(self):
         """Return a list of triples that looks like this:
         (Edge Value, From Node, To Node)"""
         return [(e.value, e.node_from.value, e.node_to.value)
                 for e in self.edges]
 
+
+    def kruskal(self):
+        edge_values = []
+        for edge in self.edges:
+            edge_values.append(edge.value)
+        
+        edge_values = sorted(edge_values)
+
+        for num, ind in enumerate(edge_values):
+            counter = 1
+            while counter + 1 < len(edge_values):
+                if ind == edge_values[counter]:
+                    edge_values.remove(edge_values[counter])
+                counter += 1
+                
+        adjacency_list = {}
+
+        previous_adj = []
+        counter = -1
+        for unique_edges in edge_values:
+            counter += 1
+            for edge in self.edges:
+                from_value, to_value = edge.node_from.value, edge.node_to.value
+                if edge.value == edge_values[counter] and previous_adj != self.node_names[to_value]:
+                
+                    adjacency_list[self.node_names[from_value]] = []
+                
+                    adjacency_list[self.node_names[from_value]].append((self.node_names[to_value], edge.value))
+
+                    previous_adj = self.node_names[from_value]
+             
+            
+        print adjacency_list      
+                
+
     def get_edge_list_names(self):
         """Return a list of triples that looks like this:
         (Edge Value, From Node Name, To Node Name)"""
-        return [(edge.value,
-                 self.node_names[edge.node_from.value],
-                 self.node_names[edge.node_to.value])
-                for edge in self.edges]
+        max_index = self.find_max_index()
+        #adjacency_list = [[] for _ in range(max_index)]
+        adjacency_list = {}
+        for edge in self.edges:
+            if edge.node_from.value not in adjacency_list:
+                from_value, to_value = edge.node_from.value, edge.node_to.value
+
+                adjacency_list[self.node_names[from_value]] = []
+                adjacency_list[self.node_names[from_value]].append((self.node_names[to_value], edge.value))
+                
+        return adjacency_list
+            
+    def find_max_index(self):
+        """Return the highest found node number
+        Or the length of the node names if set with set_node_names()."""
+        if len(self.node_names) > 0:
+            return len(self.node_names)
+        max_index = -1
+        if len(self.nodes):
+            for node in self.nodes:
+                if node.value > max_index:
+                    max_index = node.value
+        return max_index
+
 
 def question3(G):
     graph = Graph()
@@ -99,8 +152,7 @@ def question3(G):
 
             array_counter = 0
             for item_in_array in g_array:
-                #print t[0]
-                #print item_in_array
+
                 if t[0] == item_in_array:
                     key2_counter = array_counter
                     
@@ -117,8 +169,13 @@ def question3(G):
 
         
            
-    print "Edge List:"
-    pp.pprint(graph.get_edge_list_names())
+    print "\nAdjacency List:"
+    print graph.get_edge_list_names()
+
+    print "\nKruskal:"
+    graph.kruskal()
+
+
     
 
 G = {'A': [('B', 2)],
