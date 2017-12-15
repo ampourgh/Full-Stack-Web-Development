@@ -9,6 +9,8 @@ question1(s, t) and return a boolean True or False.
 """
 
 def question1(s, t):
+
+    # Put all shared letters between s and t in var below
     new_string_s = ""
     for s_letter in s:
         t_count = 1
@@ -19,10 +21,14 @@ def question1(s, t):
                 return False
             else:
                 t_count += 1
-                
+
+    # If s and the new var are the same,
+    # then all letters in s are in t
     if new_string_s == s:
         return True
     else:
         return False
 
+# check if each letter in the first string
+# is the same as the letters in the second string
 question1('ad', 'udacity')
