@@ -23,7 +23,6 @@ class Edge(object):
         self.node_from = node_from
         self.node_to = node_to
 
-
 class Graph(object):
     def __init__(self, nodes=None, edges=None):
         self.nodes = nodes or []
@@ -61,16 +60,11 @@ class Graph(object):
         node_to.edges.append(new_edge)
         self.edges.append(new_edge)
 
-
-    def get_edge_list(self):
-        """Return a list of triples that looks like this:
-        (Edge Value, From Node, To Node)"""
-        return [(e.value, e.node_from.value, e.node_to.value)
-                for e in self.edges]
-
-
     def kruskal(self):
+
+        # Get sorted list of unique edge values
         edge_values = []
+        
         for edge in self.edges:
             edge_values.append(edge.value)
         
@@ -82,72 +76,70 @@ class Graph(object):
                 if ind == edge_values[counter]:
                     edge_values.remove(edge_values[counter])
                 counter += 1
-                
+
+        # Create the dictionary for new adjacency list
         adjacency_list = {}
 
-        previous_adj = []
+        # If the edge was printed, adj will be used to compare to the following one
+        previous_edge = []
         counter = -1
+
+        # Goes through each sorted unique edge
         for unique_edges in edge_values:
             counter += 1
+
+            # If the edge matches the smallest edge in the list
+            # and 
             for edge in self.edges:
                 from_value, to_value = edge.node_from.value, edge.node_to.value
-                if edge.value == edge_values[counter] and previous_adj != self.node_names[to_value]:
-                
-                    adjacency_list[self.node_names[from_value]] = []
-                
-                    adjacency_list[self.node_names[from_value]].append((self.node_names[to_value], edge.value))
 
-                    previous_adj = self.node_names[from_value]
+                if edge.value == edge_values[counter]:
+
+                    if len(previous_edge) == 0:
+                        adjacency_list[self.node_names[from_value]] = []
+                
+                        adjacency_list[self.node_names[from_value]].append((self.node_names[to_value], edge.value))
+
+                        append_edge = [self.node_names[from_value], self.node_names[to_value]]
+                        previous_edge.append(append_edge)
+                        
+                    else:
+                        last_edge = []
+                        for connection in previous_edge:        
+                            if (connection[0] != self.node_names[to_value] and
+                                connection[1] != self.node_names[from_value] and
+                                previous_edge != last_edge):
+                
+                                adjacency_list[self.node_names[from_value]] = []
+                
+                                adjacency_list[self.node_names[from_value]].append((self.node_names[to_value], edge.value))
+
+                                append_edge = [self.node_names[from_value], self.node_names[to_value]]
+                                previous_edge.append(append_edge)
+                                last_edge = previous_edge
              
-            
+
+        # after all the edges are inserted into the dictionary, print
         print adjacency_list      
-                
 
-    def get_edge_list_names(self):
-        """Return a list of triples that looks like this:
-        (Edge Value, From Node Name, To Node Name)"""
-        max_index = self.find_max_index()
-        #adjacency_list = [[] for _ in range(max_index)]
-        adjacency_list = {}
-        for edge in self.edges:
-            if edge.node_from.value not in adjacency_list:
-                from_value, to_value = edge.node_from.value, edge.node_to.value
-
-                adjacency_list[self.node_names[from_value]] = []
-                adjacency_list[self.node_names[from_value]].append((self.node_names[to_value], edge.value))
-                
-        return adjacency_list
             
-    def find_max_index(self):
-        """Return the highest found node number
-        Or the length of the node names if set with set_node_names()."""
-        if len(self.node_names) > 0:
-            return len(self.node_names)
-        max_index = -1
-        if len(self.nodes):
-            for node in self.nodes:
-                if node.value > max_index:
-                    max_index = node.value
-        return max_index
-
-
 def question3(G):
+    # Initializing graph class and putting it in a variable
     graph = Graph()
 
+    # Setting the nodes for each point
     g_array = []
 
     for key in G:
-        #print key
         g_array.append(key)
 
     graph.set_node_names(g_array)
 
-    #print g_array
 
+    # Setting the edge values 
     key_counter = 0
     for key in G:
 
-        # for each individual item in key's values
         for t in G[key]:
 
             array_counter = 0
@@ -166,20 +158,17 @@ def question3(G):
             graph.insert_edge(t[1], key_counter, key2_counter)
             
         key_counter += 1
-
         
-           
-    print "\nAdjacency List:"
-    print graph.get_edge_list_names()
-
+    # Run graph content through Kruskal
     print "\nKruskal:"
     graph.kruskal()
 
-
-    
-
+# Initial adjacency list
 G = {'A': [('B', 2)],
      'B': [('A', 2), ('C', 5)], 
      'C': [('B', 5)]}
+print "\nInitial ajacency list:"
+print G
 
-print question3(G)
+# Inputting the list in question3 function
+question3(G)
