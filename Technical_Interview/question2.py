@@ -19,7 +19,7 @@ def question2(a):
 
             # If range of letters are the same forward and backwards
             # Change the initial string
-            if new_word == new_word[::-1]:
+            if new_word.lower() == new_word[::-1].lower():
                 if len(new_word) > len(initial_string):
                     initial_string = new_word
                     
@@ -28,3 +28,5 @@ def question2(a):
 # Try the string 'racecara',
 # which should return all the letters besides the last a
 question2('racecara')
+question2('a Tacocat')
+question2('How are you, mom?')
