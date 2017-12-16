@@ -1,3 +1,5 @@
+# GO-TO LINE ---- alt + G
+
 """
 Question 5
 Find the element in a singly linked list that's m elements from the end.
@@ -8,11 +10,13 @@ You should copy/paste the Node class below to use as a representation of a node 
 Return the value of the node at that position.
 """
 
+# Create linked list Node class
 class Node(object):
   def __init__(self, data):
     self.data = data
     self.next = None
 
+# Get full length of LL for comparison to m
 def get_full_length():
     counter = 1
     current = Node1
@@ -32,10 +36,15 @@ def get_full_length():
             if current.next == None:
                 return counter
 
+# Get the item mth place from the end of the list
 def get_m_position(m):
     if m > 0 and type(m) == int:
+
+        # Use the function above for comparison
         length = get_full_length()
         m_location = length - (m - 1)
+
+        # Now find the mth item value
         current = Node1
         counter = 1
         while current.next != None:
@@ -49,10 +58,13 @@ def get_m_position(m):
         print 'm needs to be an integer.'
         return False
 
+
 def question5(ll, m):
 
     m_result = get_m_position(m)
-    
+
+
+    # See whether ll is the first node in the list
     if ll != Node1:
         print str(ll.data) + ' is not the first node.'
     
@@ -65,7 +77,8 @@ def question5(ll, m):
         print (str(ll) + ' is the first node in the linked list and ' +
               str(m_result) + ' is the element ' + str(m) +
               ' elements away from the end of the list.')
-    
+
+# Insert Nodes and link them together
 Node1 = Node(1)
 Node2 = Node(2)
 Node3 = Node(3)
@@ -80,5 +93,4 @@ Node3.next = Node4
 Node2.next = Node3
 Node1.next = Node2
 
-
-question5(Node1, 6)
+question5(Node1, 3)
