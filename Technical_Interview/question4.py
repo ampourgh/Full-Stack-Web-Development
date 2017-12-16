@@ -14,7 +14,6 @@ where the index of the list is equal to the integer stored in that node and a 1 
 r is a non-negative integer representing the root,
 and n1 and n2 are non-negative integers representing the two nodes in no particular order.
 For example, one test case might be
-
 question4([[0, 1, 0, 0, 0],
            [0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0],
@@ -26,6 +25,7 @@ question4([[0, 1, 0, 0, 0],
 and the answer would be 3.
 """
 
+# The node tree class
 class Node(object):
     def __init__(self, value):
         self.value = value
@@ -36,6 +36,8 @@ class BST(object):
     def __init__(self, root):
         self.root = Node(root)
 
+    # Insert funnctiion which takes everything from matrix
+    # and inserts it into the tree
     def insert(self, new_val):
         self.insert_helper(self.root, new_val)
 
@@ -51,6 +53,9 @@ class BST(object):
             else:
                 current.left = Node(new_val)
 
+    # The following search will take in the nodes
+    # and perform BST search for the nodes,
+    # then return the lowest common ancestor between the nodes
     def search(self, node1, node2):
         node1_found = None
         node1_ancestry = []
@@ -60,12 +65,17 @@ class BST(object):
     def search_helper(self, current, node1, node2, node1_found, node1_ancestry, node2_ancestry):
 
         if current:
+
+            #  If the current value is node1 or node1 was already found
+            #  proceed to do a BST for node 2 
             if current.value == node1 or node1 == node1_found:
                 if current.value == node1:
                     node1_ancestry.append(current.value)
                     node1_found = node1_ancestry[-1]
                     current = self.root
 
+                # If node2 is found,
+                # find the lowest common ancestry 
                 if current.value == node2:
                     counter = 0
                     for i in node1_ancestry:
@@ -76,6 +86,7 @@ class BST(object):
                         else:
                             counter += 1
 
+                # Node2 BST
                 elif current.value < n2:
                     node2_ancestry.append(current.value)
                     return self.search_helper(current.right, node1, node2, node1_found, node1_ancestry, node2_ancestry)
@@ -83,6 +94,7 @@ class BST(object):
                     node2_ancestry.append(current.value)
                     return self.search_helper(current.left, node1, node2, node1_found, node1_ancestry, node2_ancestry)
 
+            # Node1 BST
             elif current.value < n1:
                 node1_found = current.value
                 node1_ancestry.append(current.value)
@@ -91,6 +103,7 @@ class BST(object):
                 node1_found = current.value
                 node1_ancestry.append(current.value)
                 return self.search_helper(current.left, node1, node2, node1_found, node1_ancestry, node2_ancestry)
+
         return 'Not found.'
 
 def Nodes_Linked(matrix, root_value, node1, node2):
@@ -101,6 +114,7 @@ def Nodes_Linked(matrix, root_value, node1, node2):
 
     lower = []
 
+    # Append root to tree
     matrix_root_row = matrix[root_value]
 
     i = 0
@@ -117,8 +131,8 @@ def Nodes_Linked(matrix, root_value, node1, node2):
                 lower.append(j)
             j += 1
 
-    print('\nlength before:')
-    print(len(lower))
+    # inert the non-root childs into the tree
+    # includes the childs of child
     print('\nnon-root node child:')
     while len(lower) != 0:
         print("\n" + str(lower[0]) + "'s node child:")
@@ -135,20 +149,22 @@ def Nodes_Linked(matrix, root_value, node1, node2):
             j += 1
         lower.remove(lower[0])
 
-    print('\nlength after:')
-    print(len(lower))
 
     # Should be found
-    print('\nParent node for input:')
+    print('\nParent node for input of two nodes:')
     print(tree.search(node1, node2))
 
+# Nodes connected to one another
+T = [[0, 1, 0, 0, 0], # Node 0
+     [0, 0, 0, 0, 0], # 1
+     [0, 0, 0, 0, 0], # 2
+     [1, 0, 0, 0, 1], # 3
+     [0, 0, 0, 0, 0]] # 4
 
-T = [[0, 1, 0, 0, 0],
-     [0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0],
-     [1, 0, 0, 0, 1],
-     [0, 0, 0, 0, 0]]
+# Root node
 r = 3
+
+# Searching for lowest common ancestor of these nodes
 n1 = 1
 n2 = 4
 
