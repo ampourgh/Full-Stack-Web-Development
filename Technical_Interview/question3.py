@@ -129,7 +129,7 @@ def question3(G):
             # Find the unique edges 
             if len(unique_edge_list) == 0:
                 unique_edge_list.append(t[1])
-            if any(unique_edges != t[1] for unique_edges in unique_edge_list):
+            elif any(unique_edges != t[1] for unique_edges in unique_edge_list):
                 if t[1] < unique_edge_list[0]:
                     unique_edge_list.insert(0, t[1])
                 elif t[1] > unique_edge_list[-1]:
@@ -142,7 +142,6 @@ def question3(G):
     unique_edge_list = sorted(unique_edge_list)
 
     # Run graph content through Kruskal
-    print "\nKruskal:"
     graph.kruskal(unique_edge_list)
 
 # Initial adjacency list
@@ -156,9 +155,19 @@ R = {'A': [('B', 2)],
      'D': [('A', 2), ('B', 2), ('C', 2)],
      'E': [('A', 5), ('D', 2)]}
 
+A = {'A': [('B', 2)],
+     'B': [('C', 5), ('A', 2)], 
+     'C': [('B', 5)],
+     'D': [('A', 2), ('B', 2), ('C', 2)],
+     'E': [('A', 5), ('D', 2)],
+     'F': [('A', 2), ('B', 2), ('C', 2)],
+     'G': [('F', 2), ('B', 5), ('C', 5)]}
+
 print "\nInitial adjacency list:"
 print G
 
 # Inputting the list in question3 function
+print "\nKruskal:"
 question3(G)
 question3(R)
+question3(A)
