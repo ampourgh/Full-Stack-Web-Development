@@ -60,28 +60,13 @@ class Graph(object):
         node_to.edges.append(new_edge)
         self.edges.append(new_edge)
 
-    def kruskal(self):
-
-        # Get sorted list of unique edge values
-        edge_values = []
-        
-        for edge in self.edges:
-            edge_values.append(edge.value)
-        
-        edge_values = sorted(edge_values)
-
-        for num, ind in enumerate(edge_values):
-            counter = 1
-            while counter + 1 < len(edge_values):
-                if ind == edge_values[counter]:
-                    edge_values.remove(edge_values[counter])
-                counter += 1
+    def kruskal(self, edge_values):
 
         # Create the dictionary for new adjacency list
         adjacency_list = {}
 
         # If the edge was printed, adj will be used to compare to the following one
-        previous_edge = []
+        previous_edges = []
         counter = -1
 
         # Goes through each sorted unique edge
@@ -91,34 +76,20 @@ class Graph(object):
             # If the edge matches the smallest edge in the list
             # and 
             for edge in self.edges:
-                from_value, to_value = edge.node_from.value, edge.node_to.value
 
                 if edge.value == edge_values[counter]:
+                    from_value, to_value = edge.node_from.value, edge.node_to.value
 
-                    if len(previous_edge) == 0:
+                    if any(connection == [self.node_names[to_value], self.node_names[from_value]] for connection in previous_edges):
+                        continue
+                    else:
                         adjacency_list[self.node_names[from_value]] = []
                 
                         adjacency_list[self.node_names[from_value]].append((self.node_names[to_value], edge.value))
 
                         append_edge = [self.node_names[from_value], self.node_names[to_value]]
-                        previous_edge.append(append_edge)
-                        
-                    else:
-                        last_edge = []
-                        for connection in previous_edge:        
-                            if (connection[0] != self.node_names[to_value] and
-                                connection[1] != self.node_names[from_value] and
-                                previous_edge != last_edge):
-                
-                                adjacency_list[self.node_names[from_value]] = []
-                
-                                adjacency_list[self.node_names[from_value]].append((self.node_names[to_value], edge.value))
-
-                                append_edge = [self.node_names[from_value], self.node_names[to_value]]
-                                previous_edge.append(append_edge)
-                                last_edge = previous_edge
+                        previous_edges.append(append_edge)
              
-
         # after all the edges are inserted into the dictionary, print
         print adjacency_list      
 
@@ -129,6 +100,8 @@ def question3(G):
 
     # Setting the nodes for each point
     g_array = []
+
+    unique_edge_list = []
 
     for key in G:
         g_array.append(key)
@@ -150,25 +123,42 @@ def question3(G):
                     
                 array_counter += 1
 
-            # graph insert edge (edge value, point 1, point 2)
-            print "\n(edge value, point 1, point 2)"
-            print t[1]
-            print key_counter
-            print key2_counter 
+            # Graph insert edge (edge value, point 1, point 2)
             graph.insert_edge(t[1], key_counter, key2_counter)
+
+            # Find the unique edges 
+            if len(unique_edge_list) == 0:
+                unique_edge_list.append(t[1])
+            if any(unique_edges != t[1] for unique_edges in unique_edge_list):
+                if t[1] < unique_edge_list[0]:
+                    unique_edge_list.insert(0, t[1])
+                elif t[1] > unique_edge_list[-1]:
+                    unique_edge_list.append(t[1])
+                
             
         key_counter += 1
-        
+
+    # Sort unique edges before sending them off to function
+    unique_edge_list = sorted(unique_edge_list)
+
     # Run graph content through Kruskal
     print "\nKruskal:"
-    graph.kruskal()
+    graph.kruskal(unique_edge_list)
 
 # Initial adjacency list
 G = {'A': [('B', 2)],
      'B': [('A', 2), ('C', 5)], 
      'C': [('B', 5)]}
-print "\nInitial ajacency list:"
+
+R = {'A': [('B', 2)],
+     'B': [('C', 5), ('A', 2)], 
+     'C': [('B', 5)],
+     'D': [('A', 2), ('B', 2), ('C', 2)],
+     'E': [('A', 5), ('D', 2)]}
+
+print "\nInitial adjacency list:"
 print G
 
 # Inputting the list in question3 function
 question3(G)
+question3(R)
