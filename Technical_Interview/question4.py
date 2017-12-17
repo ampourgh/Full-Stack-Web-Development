@@ -113,6 +113,7 @@ def Nodes_Linked(matrix, root_value, node1, node2):
     print(root_value)
 
     lower = []
+    used_nodes = []
 
     # Append root to tree
     matrix_root_row = matrix[root_value]
@@ -129,8 +130,23 @@ def Nodes_Linked(matrix, root_value, node1, node2):
                 print(j)
                 tree.insert(j)
                 lower.append(j)
+                used_nodes.append(j)
             j += 1
+    j = 0
+    for row in matrix:
+        if row[root_value] == 1:
+            if any(item == j for item in used_nodes):
+                pass
+            else:
+                print(j)
+                tree.insert(j)
+                lower.append(j)
+                used_nodes.append(j)
+        j += 1
 
+    used_nodes.append(root_value)
+    
+    print used_nodes
     # inert the non-root childs into the tree
     # includes the childs of child
     print('\nnon-root node child:')
@@ -142,10 +158,26 @@ def Nodes_Linked(matrix, root_value, node1, node2):
         n = 0
         for connection in matrix_breadth:
             connection = n + int(connection)
-            if connection == 1:
-                print(j)
-                tree.insert(j)
-                lower.append(j)
+            if(connection == 1):
+                if any(item == j for item in used_nodes):
+                    pass
+                else:
+                    print j
+                    tree.insert(j)
+                    lower.append(j)
+                    used_nodes.append(j)
+            j += 1
+
+        j = 0
+        for row in matrix:
+            if row[connection] == 1:
+                if any(item == j for item in used_nodes):
+                    pass
+                else:
+                    print(j)
+                    tree.insert(j)
+                    lower.append(j)
+                    used_nodes.append(j)
             j += 1
         lower.remove(lower[0])
 
@@ -163,9 +195,16 @@ T = [[0, 1, 0, 0, 0], # Node 0
 
 # Root node
 r = 3
+r2 = 0
+r3 = 1
 
 # Searching for lowest common ancestor of these nodes
 n1 = 1
 n2 = 4
+n3 = 3
+n4 = 0
+n5 = 2
 
 Nodes_Linked(T, r, n1, n2)
+#Nodes_Linked(T, r2, n3, n1)
+#Nodes_Linked(T, r3, n2, n5)
