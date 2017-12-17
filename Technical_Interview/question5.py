@@ -77,8 +77,7 @@ def question5(ll, m):
         print (str(ll) + ' is the first node in the linked list and ' +
               str(m_result) + ' is the element ' + str(m) +
               ' elements away from the end of the list.')
-
-# Insert Nodes and link them together
+    
 Node1 = Node(1)
 Node2 = Node(2)
 Node3 = Node(3)
@@ -93,4 +92,11 @@ Node3.next = Node4
 Node2.next = Node3
 Node1.next = Node2
 
+print '\nTry Node1 and 3:'
 question5(Node1, 3)
+
+print '\nTry Node2 and 3:'
+question5(Node2, 3)
+
+print '\nTry Node1 and the string \'five\':'
+question5(Node1, 'five')
