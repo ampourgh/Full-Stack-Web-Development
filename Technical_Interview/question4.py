@@ -170,7 +170,8 @@ def Nodes_Linked(matrix, root_value, node1, node2):
 
         j = 0
         for row in matrix:
-            if row[connection] == 1:
+            
+            if row[node_number] == 1:
                 if any(item == j for item in used_nodes):
                     pass
                 else:
@@ -178,6 +179,7 @@ def Nodes_Linked(matrix, root_value, node1, node2):
                     tree.insert(j)
                     lower.append(j)
                     used_nodes.append(j)
+            n += 1
             j += 1
         lower.remove(lower[0])
 
@@ -187,15 +189,32 @@ def Nodes_Linked(matrix, root_value, node1, node2):
     print(tree.search(node1, node2))
 
 # Nodes connected to one another
+
+    # 0  1  2  3  4 
 T = [[0, 1, 0, 0, 0], # Node 0
      [0, 0, 0, 0, 0], # 1
      [0, 0, 0, 0, 0], # 2
      [1, 0, 0, 0, 1], # 3
      [0, 0, 0, 0, 0]] # 4
+    
+     # 0  1  2  3  4  5  6  
+T2 = [[0, 1, 0, 0, 0, 0, 0], # 0
+      [1, 0, 1, 0, 0, 0, 0], # 1
+      [0, 0, 0, 1, 0, 0, 0], # 2
+      [0, 0, 0, 0, 0, 0, 0], # 3
+      [0, 0, 1, 0, 0, 1, 0], # 4
+      [0, 0, 0, 0, 0, 0, 1], # 5
+      [0, 0, 0, 0, 0, 0, 0]] # 6
+
+     # 0  1  2
+T3 = [[0, 1, 0], # 0
+      [0, 0, 1], # 1
+      [0, 0, 0]] # 2
+
 
 # Root node
 r = 3
-r2 = 0
+r2 = 4
 r3 = 1
 
 # Searching for lowest common ancestor of these nodes
@@ -205,6 +224,6 @@ n3 = 3
 n4 = 0
 n5 = 2
 
-Nodes_Linked(T, r, n1, n2)
-#Nodes_Linked(T, r2, n3, n1)
-#Nodes_Linked(T, r3, n2, n5)
+#Nodes_Linked(T, r, n1, n2)
+#Nodes_Linked(T2, r2, n1, n3)
+Nodes_Linked(T3, r3, n4, n5)
