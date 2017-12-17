@@ -1,5 +1,3 @@
-# GO-TO LINE ---- alt + G
-
 """
 Question 5
 Find the element in a singly linked list that's m elements from the end.
