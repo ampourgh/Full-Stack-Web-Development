@@ -10,32 +10,48 @@ question1(s, t) and return a boolean True or False.
 
 def question1(s, t):
 
-    # Put all shared letters between s and t in var below
-    new_string_s = ""
-    for s_letter in s:
-        done = 'not done'
-        t_count = 1
-        for  t_letter in t:
-            if (s_letter.lower() == t_letter.lower() and
-               done != 'done'):
-                new_string_s += s_letter
-                done = 'done'
-            elif t_count == len(t):
-                return False
-            else:
-                t_count += 1
+    # First sort the letters in the words,
+    # and join them to a string to so that they're not arrays
+    t = ''.join(sorted(t.lower()))
+    s = ''.join(sorted(s.lower()))
 
+    # This string will be compared to the original string t
+    new_string_t = ""
+
+    # Incrementation for string s
+    i = 0
+
+    # loop through the letters
+    for t_letter in t:
+
+        # To prevent duplicate letters 
+        done = 'not done'
+        
+        for s_letter in s:
+
+            # Compare the numerical values of the letters
+            if ord(t_letter) > ord(s[i]):
+                s = s[1:]
+
+            # If words are comparable and this isn't a duplicate letter in s
+            elif (t_letter == s_letter and
+                  done != 'done'):
+                new_string_t += t_letter
+                i += 1
+                done = 'done'
+                
     # If s and the new var are the same,
     # then all letters in s are in t
-    if new_string_s.lower() == s:
+    if new_string_t == str(t):
         print 'True'
         return True
     else:
-        print new_string_s.lower()
+        print new_string_t
+        print t
         return False
 
 # check if each letter in the first string
 # is the same as the letters in the second string
-question1('ad', 'udacity')
-question1('pdf', 'portable document format')
-question1('gif', 'Graphics Interchange Format i')
+question1('udacity', 'ad')
+question1('portable document format', 'pdf')
+question1('Graphics Interchange Format', 'gif')
