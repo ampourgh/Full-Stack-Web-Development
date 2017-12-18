@@ -19,7 +19,8 @@ def question1(s, t):
     new_string_t = ""
 
     # Incrementation for string s
-    i = 0
+    t_s = 0
+    i_s = 0
 
     # loop through the letters
     for t_letter in t:
@@ -30,25 +31,29 @@ def question1(s, t):
         for s_letter in s:
 
             # Compare the numerical values of the letters
-            if ord(t_letter) > ord(s[i]):
+            if ord(t[t_s]) > ord(s[i_s]):
                 s = s[1:]
 
             # If words are comparable and this isn't a duplicate letter in s
-            elif (t_letter == s_letter and
+            elif (t[t_s] == s[i_s] and
                   done != 'done'):
                 new_string_t += t_letter
-                i += 1
+                i_s += 1
+                t_s += 1
                 done = 'done'
-                
-    # If s and the new var are the same,
-    # then all letters in s are in t
-    if new_string_t == str(t):
-        print 'True'
-        return True
-    else:
-        print new_string_t
-        print t
-        return False
+
+                # If at the end of the length
+                if t_s == len(t):
+
+                    # If s and the new var are the same,
+                    # then all letters in s are in t
+                    if new_string_t == str(t):
+                        print 'True'
+                        return True
+                    else:
+                        print new_string_t
+                        print t
+                        return False
 
 # check if each letter in the first string
 # is the same as the letters in the second string
