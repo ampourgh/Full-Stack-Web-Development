@@ -74,7 +74,6 @@ class Graph(object):
             counter += 1
 
             # If the edge matches the smallest edge in the list
-            # and 
             for edge in self.edges:
 
                 if edge.value == edge_values[counter]:
@@ -108,32 +107,35 @@ def question3(G):
 
     graph.set_node_names(g_array)
 
-
-    # Setting the edge values 
+    # Setting the edge values
+    # key_counter going through the keys
     key_counter = 0
-    for key in G:
 
-        for t in G[key]:
+    # used to increment key_counter to get right key
+    for key in G:
+        for value in G[key]:
 
             array_counter = 0
             for item_in_array in g_array:
 
-                if t[0] == item_in_array:
+                # keeps index within range,
+                # for when key has multiple values
+                if value[0] == item_in_array:
                     key2_counter = array_counter
                     
                 array_counter += 1
 
             # Graph insert edge (edge value, point 1, point 2)
-            graph.insert_edge(t[1], key_counter, key2_counter)
+            graph.insert_edge(value[1], key_counter, key2_counter)
 
             # Find the unique edges 
             if len(unique_edge_list) == 0:
-                unique_edge_list.append(t[1])
-            elif any(unique_edges != t[1] for unique_edges in unique_edge_list):
-                if t[1] < unique_edge_list[0]:
-                    unique_edge_list.insert(0, t[1])
-                elif t[1] > unique_edge_list[-1]:
-                    unique_edge_list.append(t[1])
+                unique_edge_list.append(value[1])
+            elif any(unique_edges != value[1] for unique_edges in unique_edge_list):
+                if value[1] < unique_edge_list[0]:
+                    unique_edge_list.insert(0, value[1])
+                elif value[1] > unique_edge_list[-1]:
+                    unique_edge_list.append(value[1])
                 
             
         key_counter += 1
