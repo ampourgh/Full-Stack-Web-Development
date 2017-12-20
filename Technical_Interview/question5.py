@@ -1,3 +1,5 @@
+# GO-TO LINE ---- alt + G
+
 """
 Question 5
 Find the element in a singly linked list that's m elements from the end.
@@ -16,65 +18,65 @@ class Node(object):
 
 # Get full length of LL for comparison to m
 def get_full_length():
-    counter = 1
-    current = Node1
+  counter = 1
+  current = Node1
 
-    if current == None:
-        print 'No nodes in the linked list.'
-    elif current.next == None:
-        return counter
-    else:
-        current = current.next
-        counter += 1
+  if current == None:
+      print 'No nodes in the linked list.'
+  elif current.next == None:
+      return counter
+  else:
+      current = current.next
+      counter += 1
 
-        while current.next != None:
-            current = current.next
-            counter += 1
+      while current.next != None:
+          current = current.next
+          counter += 1
             
-            if current.next == None:
-                return counter
+          if current.next == None:
+              return counter
 
 # Get the item mth place from the end of the list
 def get_m_position(m):
-    if m > 0 and type(m) == int:
+  if m > 0 and type(m) == int:
 
-        # Use the function above for comparison
-        length = get_full_length()
-        m_location = length - (m - 1)
+    # Use the function above for comparison
+    length = get_full_length()
+    m_location = length - (m - 1)
 
-        # Now find the mth item value
-        current = Node1
-        counter = 1
-        while current.next != None:
-            if counter == m_location:
-                return current.data
-            else:
-                current = current.next
-                counter += 1
+    # Now find the mth item value
+    current = Node1
+    counter = 1
+    while current.next != None:
+      if counter == m_location:
+        return current.data
+      else:
+        current = current.next
+        counter += 1
     
-    else:
-        print 'm needs to be an integer.'
-        return False
+  else:
+    print 'm needs to be an integer.'
+    return False
 
 
 def question5(ll, m):
 
-    m_result = get_m_position(m)
+  m_result = get_m_position(m)
 
 
-    # See whether ll is the first node in the list
-    if ll != Node1:
-        print str(ll.data) + ' is not the first node.'
+  # See whether ll is the first node in the list
+  if ll != Node1:
+    print str(ll.data) + ' is not the first node.'
     
-    elif m_result == False:
-        ll = Node1.data
-        print str(ll) + ' is the first node in the linked list.'
+  elif m_result == False:
+    ll = Node1.data
+    print str(ll) + ' is the first node in the linked list.'
 
-    else: 
-        ll = Node1.data
-        print (str(ll) + ' is the first node in the linked list and ' +
-              str(m_result) + ' is the element ' + str(m) +
-              ' elements away from the end of the list.')
+  else: 
+      ll = Node1.data
+      print (str(ll) + ' is the first node in the linked list and ' +
+             str(m_result) + ' is the element ' + str(m) +
+             ' elements away from the end of the list.')
     
 Node1 = Node(1)
 Node2 = Node(2)
