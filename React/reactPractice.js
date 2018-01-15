@@ -49,3 +49,49 @@ ReactDOM.render(
   myList, 
   document.getElementById('app')
 );
+
+/* -------------------------------------------*/
+
+// Class is reserved in JavaScript, so use className in JSX to refer to class in HTML
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+var myDiv = <div className="big">I AM A BIG DIV</div>;
+
+ReactDOM.render(myDiv, 
+                document.getElementById('app'))
+
+/* -------------------------------------------*/
+
+const profile = (
+  <div>
+    <h1>I AM JENKINS</h1>
+    <img src="images/jenkins.png" >
+    <article>
+      I LIKE TO SIT
+      
+      // <br> needs a closing tag, unlike it's html counterpart    
+  
+      <br />
+      JENKINS IS MY NAME
+      <br />
+      THANKS HA LOT
+    </article>
+  </div>
+);
+
+/* -------------------------------------------*/
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+  
+  // Having curly braces makes the numbers behave like JavaScript instead of JSX
+  // So output is '5'
+  
+  <h1>2 + 3 = {2 + 3}</h1>,
+  document.getElementById('app')
+);
+
+
