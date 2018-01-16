@@ -210,4 +210,25 @@ const greatestDivEver = React.createElement(
 
 // the code above translates to the following:
 // const greatestDivEver = <div>i am div</div>;
+
 /* -------------------------------------------*/
+
+import React from 'react';
+
+// manipulates the DOM, which the React import does not do
+import ReactDOM from 'react-dom';
+
+// create class 'MyComponentClass' (class needs to adhere to JS' syntax guidelines),
+// needs instructions from subclass 'extends React.Component'
+class MyComponentClass extends React.Component {
+	
+  // render instructions are inserted here
+  render() {
+    return <h1>Hello world</h1>;
+  }
+}
+
+ReactDOM.render(
+  <MyComponentClass />,
+  document.getElementById('app')
+);
