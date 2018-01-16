@@ -331,3 +331,61 @@ ReactDOM.render(<Friend />,
 
 /* -------------------------------------------*/
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const fiftyFifty = Math.random() < 0.5;
+
+// New component class starts here:
+class TonightsPlan extends React.Component {
+  render() {
+    if (fiftyFifty) {
+      return <h1>Tonight I'm going out WOOO</h1>;
+    } else {
+      return <h1>Tonight I'm going to bed WOOO</h1>;
+    }
+  }
+}
+
+ReactDOM.render(
+	<TonightsPlan />,
+	document.getElementById('app')
+);
+
+/* -------------------------------------------*/
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class MyName extends React.Component {
+	// name property goes here:
+  get name() {
+    return 'whatever-your-name-is-goes-here';
+  }
+
+  render() {
+    return <h1>My name is {this.name}.</h1>;
+  }
+}
+
+ReactDOM.render(<MyName />, document.getElementById('app'));
+
+/* -------------------------------------------*/
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Button extends React.Component {
+  scream() {
+    alert('AAAAAAAAHHH!!!!!');
+  }
+
+  render() {
+    return <button onClick={this.scream}>AAAAAH!</button>;
+  }
+}
+
+ReactDOM.render(<Button />, document.getElementById('app'));
+
+/* -------------------------------------------*/
+
