@@ -389,3 +389,47 @@ ReactDOM.render(<Button />, document.getElementById('app'));
 
 /* -------------------------------------------*/
 
+// NAVBAR.JS SECTION
+import React from 'react';
+
+// have to use export function to import to ProfilePage.js
+export class NavBar extends React.Component {
+  render() {
+    const pages = ['home', 'blog', 'pics', 'bio', 'art', 'shop', 'about', 'contact'];
+    const navLinks = pages.map(page => {
+      return (
+        <a href={'/' + page}>
+          {page}
+        </a>
+      )
+    });
+
+    return <nav>{navLinks}</nav>;
+  }
+}
+
+// PROFILEPAGE.JS SECTION
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// javascript automatically assumeds that the file is a .js
+// the class is in brackets
+import { NavBar } from './NavBar';
+
+class ProfilePage extends React.Component {
+  render() {
+    return (
+      <div>
+	    
+	// where the NavBar class is placed 	
+	<NavBar />
+	    
+        <h1>All About Me!</h1>
+        <p>I like movies and blah blah blah blah blah</p>
+        <img src="https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-monkeyselfie.jpg" />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<ProfilePage />, document.getElementById('app'))
