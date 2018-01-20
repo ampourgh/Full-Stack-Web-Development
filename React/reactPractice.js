@@ -823,4 +823,29 @@ export class Sibling extends React.Component {
     );
   }
 }
+
+/* -------------------------------------------*/
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// regular js has styles written in hyphenated lowercase: margin-top
+// React has the styles in camelCase: marginTop
+const styles = {
+  background: 'lightblue',
+  color:      'darkred',
+  
+  // in React, px is assumed by default
+  // doesn't need quotation marks either
+  marginTop:  100,
+  fontSize:   50px
+};
+
+const styleMe = <h1 style={styles}>Please style me! I am so bland!</h1>;
+
+ReactDOM.render(
+	styleMe, 
+	document.getElementById('app')
+);
+
 /* -------------------------------------------*/
