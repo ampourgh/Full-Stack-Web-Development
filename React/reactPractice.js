@@ -933,6 +933,20 @@ export class GuineaPigs extends React.Component {
   }
 }
 
+// Stateless functional component way to display a prop:
+// ./components/GuineaPigs.js (alternative)
+import React from 'react';
+
+export const GuineaPigs = (props) => {
+  let src = props.src;
+  return (
+    <div>
+      <h1>Cute Guinea Pigs</h1>
+      <img src={src} />
+    </div>
+  );
+}
+
 // ./containers/GuineaPigsContainer.js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -982,3 +996,26 @@ ReactDOM.render(
 );
 /* -------------------------------------------*/
 
+// comparing components written the standard way vs the stateless functional method
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// A component class written in the usual way:
+export class Friend extends React.Component {
+	render() {
+		return <img src='https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-octopus.jpg' />;
+	}
+}
+
+// The same component class, written as a stateless functional component:
+export const Friend = () => {
+		return <img src='https://s3.amazonaws.com/codecademy-content/courses/React/react_photo-octopus.jpg' />;
+}
+
+ReactDOM.render(
+	<Friend />,
+	document.getElementById('app')
+);
+
+/* -------------------------------------------*/
