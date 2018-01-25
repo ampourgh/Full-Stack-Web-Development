@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 
 // YouTube v3 API key from console.developers.google.com
 const API_KEY = 'AIzaSyA0N8QmUhKX-L3FV36vcchMmIh6oaW4ASo';
@@ -11,6 +12,7 @@ const API_KEY = 'AIzaSyA0N8QmUhKX-L3FV36vcchMmIh6oaW4ASo';
 // but const is a constant/final value
 // () => takes the place of a function
 class App extends Component {
+
   constructor(props) {
     super(props);
 
@@ -28,6 +30,7 @@ class App extends Component {
     return (
       <div>
         <SearchBar />
+        <VideoDetail video={this.state.videos[0]} />
         <VideoList videos={this.state.videos} />
       </div>
     );
