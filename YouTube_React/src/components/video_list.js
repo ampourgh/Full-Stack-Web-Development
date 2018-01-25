@@ -5,9 +5,14 @@ const VideoList = (props) => {
 
   // .map() is a loop
   const videoItems = props.videos.map((video) => {
-    
+
     // etag is YouTube's key identifier
-    return <VideoListItem key={video.etag} video={video} />
+    return (
+      <VideoListItem
+        onVideoSelect={props.onVideoSelect}
+        key={video.etag}
+        video={video} />
+    );
   });
 
   return (
