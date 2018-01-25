@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
@@ -21,8 +22,12 @@ class App extends Component {
       selectedVideo: null
     };
 
+    this.videoSearch('surfboards');
+  }
+
+  videoSearch(term) {
     // immediately searches for term
-    YTSearch({key: API_KEY, term: 'surfboard'}, (videos) => {
+    YTSearch({key: API_KEY, term: term}, (videos) => {
 
       // videos: videos is condensed to videos, the key: variable takes the function variable
       this.setState({
@@ -33,9 +38,12 @@ class App extends Component {
   }
 
   render() {
+    // makes videoSearch run every 300ms
+    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
+
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo})}
