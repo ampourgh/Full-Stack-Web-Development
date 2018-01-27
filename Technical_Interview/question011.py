@@ -25,6 +25,12 @@ def leftRotation(a, d):
      
     return a
 
+    # alternative way of rotating left
+    val = a[0:d]
+    del a[0:d]  
+    a.extend(val)
+    return a
+
 if __name__ == "__main__":
     n, d = input().strip().split(' ')
     n, d = [int(n), int(d)]
