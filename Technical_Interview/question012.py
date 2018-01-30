@@ -29,3 +29,9 @@ class Solution(object):
         print(l2_value)
 
         l_sum = l1_value + l2_value
+        
+        l_sum = int(str(l_sum)[::-1])
+        
+        l_sum = [int(x) for x in str(l_sum)]
+
+        return l_sum
