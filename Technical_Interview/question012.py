@@ -6,22 +6,26 @@ class ListNode(object):
 
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
-    
         """
         :type l1: ListNode
         :type l2: ListNode
         :rtype: ListNode
         """
+        l2_value = ""
+        l1_value = ""
         
-        current = l1.current 
-        current2 = l2.current
+        while l1 != None or l2 != None:
+            if l1 != None:
+                l1_value += str(l1.val)
+                l1 = l1.next
+            if l2 != None:
+                l2_value += str(l2.val)
+                l2 = l2.next
+            
+        l1_value = int(l1_value[::-1])
+        l2_value = int(l2_value[::-1])
         
-        l1_value = str(current.data)
-        
-        while current.next != None:
-            current = current.next
-            l1_value += str(current.data)
+        print(l1_value)
+        print(l2_value)
 
-        return l1_value
-    
-print(addTwoNumbers((2 -> 4 -> 3), (5 -> 6 -> 4)))
+        l_sum = l1_value + l2_value
