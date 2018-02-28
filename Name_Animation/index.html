@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio Experiment</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/vue"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200" rel="stylesheet">
+</head>
+
+<body>
+  <div class="intro-text-wrapper">
+  <div class="intro-text-container">
+    <h1>
+      <span class="name start">
+        <div id="app">
+          <p>{{ message }}</p>
+        </div>
+      </span>
+    </h1>
+  </div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+    <script>
+      $(document).ready(function() {
+          $('.start').removeClass('start');
+      });
+
+      new Vue({
+        el: '#app',
+        data: {
+          message: 'Amir Pourghaed'
+        }
+      })
+    </script>
+
+</body>
+</html>
