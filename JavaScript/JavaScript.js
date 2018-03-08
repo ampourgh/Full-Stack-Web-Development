@@ -106,3 +106,35 @@ const volumeOfSphere = (diameter) => {
 const volumeOfSphere = diameter => (1/6) * Math.PI * diameter * diameter * diameter;
 
 console.log('The volume of a sphere is ' + volumeOfSphere(10) + ' cubic centimeters');
+
+/* ---------------------------------- */
+
+const visibleLightWaves = () => {
+  let lightWaves = 'Moonlight';
+  let region = 'The Arctic';
+    if (region === 'The Arctic') {
+      let lightWaves = 'Northern Lights';
+      console.log(lightWaves);  
+    }
+  console.log(lightWaves);
+};
+
+visibleLightWaves();
+console.log(lightWaves);
+// above code returns:
+// /home/ccuser/workspace/javascript_101_Unit_3b/light.js:12
+// console.log(lightWaves);
+
+/* ---------------------------------- */
+
+const starCount = () => {
+  let i = 5;
+  console.log(i);
+  for (let i = 0; i < 12; i++) {
+    console.log(i);  
+  }
+};
+
+starCount();
+console.log(i); 
+// console.log(i); 
