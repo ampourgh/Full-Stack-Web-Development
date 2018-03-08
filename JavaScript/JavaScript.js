@@ -64,3 +64,31 @@ let favoritePhrase = 'Love That!';
 favoritePhrase === 'Love That!' ?
 console.log('I love that!'):
 console.log("I don't love that!");
+
+/* ---------------------------------- */
+
+// needs to be a let var to be taken into function
+let orderCount = 0;
+
+const takeOrder = (topping, crustType) => {
+  orderCount++;
+  console.log(`Order: ${crustType}` + '\n' + `pizza topped with ${topping}`);
+}
+
+const getSubTotal = (itemCount) => {
+	const total = itemCount * 7.50;
+  console.log(`Your total is ${total}.`);
+  return total
+}
+
+const getTax = (total) => {
+ const tax = total * .06;
+  console.log(`Additional tax is ${tax}.`);
+	return tax
+}
+
+takeOrder('mushroom', 'thin crust');
+takeOrder('bacon', 'cheese crust');
+takeOrder('extra cheese', 'thin crust');
+
+getTax(getSubTotal(orderCount)); 
