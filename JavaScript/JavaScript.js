@@ -138,3 +138,25 @@ const starCount = () => {
 starCount();
 console.log(i); 
 // console.log(i); 
+
+
+/* ---------------------------------- */
+
+let vacationSpots = ['Mozambique', 'Thailand', 'Bolivia'];
+for(let vacationSpotIndex = 0; vacationSpotIndex < vacationSpots.length; vacationSpotIndex++){	console.log(`I would love to visit ${vacationSpots[vacationSpotIndex]}`);  
+};
+
+/* ---------------------------------- */
+
+let cards = ['Diamond', 'Spade', 'Heart', 'Club'];
+
+let currentCard = 'Heart';
+
+while (currentCard !== 'Spade') {
+  console.log(currentCard);
+  currentCard = cards[Math.floor(Math.random() *4)];
+}
+
+console.log('You found a spade!');
+
+/* ---------------------------------- */
