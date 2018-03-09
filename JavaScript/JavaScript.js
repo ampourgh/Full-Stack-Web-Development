@@ -258,3 +258,35 @@ alarm = 'weekAlarm';
 console.log(person[alarm]);
 
 /* ---------------------------------- */
+
+console.log(surgeonCurry.remainingVacationDays);
+
+let person = {
+  _name: 'Lu Xun',
+  _age: 137,
+  
+  set age(ageIn) {
+    if (typeof ageIn === 'number') {
+      this._age = ageIn;
+    }
+    else {
+      console.log('Invalid input');
+      return 'Invalid input';
+    }
+  },
+  
+  get age() {
+    console.log(`${this._name} is ${this._age} years old.`);
+    return this._age;
+  }
+
+};
+get
+person.age = 'Thirty-nine';
+person.age = 39;
+
+console.log(person.age);
+
+/* ---------------------------------- */
+
+console.log(surgeonCurry.remainingVacationDays);
