@@ -213,3 +213,48 @@ let longFavoriteWords = favoriteWords.filter(word => word.length > 7);
 console.log(longFavoriteWords);
 
 /* ---------------------------------- */
+
+let person = {
+  name: 'Tyron',
+  age: 40,
+  weekendAlarm: 'No alarms needed',
+  weekAlarm: 'Alarm set to 7AM',
+  hobbies: [],
+  sayHello: (name) => {
+  	return `Hello, ${name}!`;
+  },
+  sayGoodbye() {
+  	return `Hello, my name is ${this.name}`;
+  },
+};
+
+let friend = {
+  name: 'Dean'
+}
+
+friend.sayGoodbye = person.sayGoodbye;
+
+person.hobbies.push('videogames', 'journalism')
+
+console.log(person.hobbies)
+
+person.hobbies = ['caligraphy']
+
+console.log(person.hobbies)
+
+console.log(person['name']);
+console.log(person['age']);
+
+console.log(person.sayHello('Steve'))
+console.log(person.sayGoodbye)
+
+let day = 'Friday';
+let alarm;
+
+day === 'Saturday' || day === 'Sunday'?
+alarm = 'weekendAlarm':
+alarm = 'weekAlarm';
+
+console.log(person[alarm]);
+
+/* ---------------------------------- */
