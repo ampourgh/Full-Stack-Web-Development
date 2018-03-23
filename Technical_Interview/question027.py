@@ -1,3 +1,13 @@
+"""
+Inserting a Node Into a Sorted Doubly Linked List
+
+Sample Input:
+2 5 4
+
+Sample Output:
+2 4 5
+
+"""
 class Node:
     def __init__(self, data=None, prev=None, next=None):
         self.data = data
@@ -11,6 +21,8 @@ class DoublyLinkedList:
   def __init__(self):
     self.head = None
 
+  # use __repr__ to replace __str__ for print function; 
+  # represents the object instead of recieving unreadable hexadecimal
   def __repr__(self):
       nodes = []
       curr = self.head
@@ -18,7 +30,8 @@ class DoublyLinkedList:
           nodes.append(repr(curr))
           curr = curr.next
       return '[' + ', '.join(nodes) + ']'
-      
+  
+  # function for sorting the linked list
   def sortedList(self, data):
     if self.head == None:
       new_head = Node(data=data, next=self.head)
