@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type='text/css' rel='stylesheet' href='/css/styles.css'/>
+		<title>Returning to PHP.</title>
+	</head>
+	<body>
+        <p>
+          <!-- PHP tag within HTML -->
+          <?php
+
+            /*
+             * Sample Input:
+             * 5
+             * [1000000001, 1000000002, 1000000003, 1000000004, 1000000005]
+             *
+             * Sample Output:
+             * >>>5000000015
+             */
+            function aVeryBigSum($n, $ar) {
+
+                $i = 0;
+                $sum =0;
+                while($i < count($ar)) {
+                    $sum = $sum + $ar;
+                    $i++;
+                }
+                echo $sum;
+            }
+            $n = 5;
+            $arr = [1000000001, 1000000002, 1000000003, 1000000004, 1000000005];
+            aVeryBigSum($n, $arr);
+          ?>
+        </p>
+	</body>
+</html>
