@@ -63,9 +63,8 @@ h1 {
 /* Create two equal columns that floats next to each other */
 .column {
     float: left;
-    width: 50%;
-    padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
+    width: 33%;
+    padding: none;
 }
 
 /* Clear floats after the columns */
@@ -119,4 +118,61 @@ mark {
   display:inline-block;
   margin: 25px 0px 0px 7px;
   padding:10px;
+}
+
+.toggle {
+  style: none; 
+  text-align: left;
+  color: #fff;
+  padding: 0;
+  border: 1px solid yellow;
+}
+
+/*
+NAVIGATION BAR
+*/
+
+.navbar {
+  overflow: hidden;
+  background-color: #000;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+	font-size: 20px;
+	font-family: 'Coda';
+	color: #fff;
+	text-decoration: none;
+}
+
+.navbar a:hover {
+	transition: .1s;
+	color: DarkRed;
+}
+
+.scrolled {
+ transition: 0.5s ease;
+}
+
+.scrolled.navbar {
+  height: 50px;
+  background-color: rgba(0, 0, 0, .5);
+  transition: 0.5s ease;
+	margin-right: 0;
+  z-index: 100;
+}
+
+.scrolled.navbar a {
+	color: #fff;
+}
+
+.scrolled.navbar a:hover {
+	color: DarkRed;
+	padding-bottom: 0;
+	border-bottom: 3px solid transparent;
+	border-image: linear-gradient(to right, tomato , DarkRed);
+	border-image-slice: 1;
 }

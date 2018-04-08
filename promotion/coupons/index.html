@@ -4,26 +4,17 @@
   <title>Promotion</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/jquery-3.3.1.js"></script>
-  <script>
-    $(document).ready(function(){
-        $("#toggle").click(function(){
-            $("#hide0").toggle();
-            $("#hide1").toggle();
-            $("#hide2").toggle();
-            $("#hide3").toggle();
-            $("#hide4").toggle();
-            $("#hide5").toggle();
-        });
-    });
-  </script>
+  <script src="js/scroll.js"></script>
+  <script src="js/toggle.js"></script>
 </head>
 <body>
+
   <div class="row">
-    <div class="column" style="background-color:#aaa;">
-      <button id='toggle'>Preview / Edit</button>
+    <div class="column" style="background-color: rgba(0, 0, 0, 0);">
 
     </div>
-    <div class="column" style="background-color:#bbb;">
+    <form action="/action_page.php">
+    <div class="column" style="background-color: rgba(0, 0, 0, 0);">
       <div id="card">
         <div id="header">
           <br>
@@ -38,7 +29,7 @@
 
           <div id="logo-upload">
             <div v-if="!image">
-              <input id="hide0" type="file" @change="onFileChange">
+              <input id="hide0" type="file" @change="onFileChange" name="logo-upload">
 
               <div class="container">
                 <img src="./img/temp-company-logo.svg" style="max-width:200px; display:block; margin:auto;"/>
@@ -55,98 +46,50 @@
 
           <div id="image-upload">
             <div v-if="!image">
-              <input id="hide2" type="file" @change="onFileChange">
-
+              <input id="hide2" type="file" @change="onFileChange" name="image-upload">
               <div class="container">
                 <img src="./img/alcohol.jpg" style="max-width:375px; padding: 0; margin: 0; display:block; margin:auto;"/>
               </div>
-
             </div>
             <div v-else>
               <button id="hide3" @click="removeImage">Remove image</button>
               <img :src="image" style="max-width:375px; padding: 0; margin: 0; display:block; margin:auto;"/>
-
             </div>
+
           </div>
            <div>
              <div id="text-insert">
-               <b id="hide4" >Change text below:</b> <input id="hide5" type="text" v-model.text="promotion">
+               <b id="hide4" >Change text below:</b> <input id="hide5" type="text" v-model.text="promotion" name="promo-text">
               <p style="margin: 10px 10px;">{{ promotion }}</p>
               <div id="wrapper">
                 <button class="button" style="vertical-align:middle"><span>REDEEM </span></button>
               </div>
             </div>
           </div>
-          <script>
-            new Vue({
-              el: '#text-insert',
-              data: {
-                name: '',
-                promotion: 'Special offer at restaurant for a buy 1 get another for insert text 50% off.'
-              }
-            });
-
-            new Vue({
-              el: '#logo-upload',
-              data: {
-                image: ''
-              },
-              methods: {
-                onFileChange(e) {
-                  var files = e.target.files || e.dataTransfer.files;
-                  if (!files.length)
-                    return;
-                  this.createImage(files[0]);
-                },
-                createImage(file) {
-                  var image = new Image();
-                  var reader = new FileReader();
-                  var vm = this;
-
-                  reader.onload = (e) => {
-                    vm.image = e.target.result;
-                  };
-                  reader.readAsDataURL(file);
-                },
-                removeImage: function (e) {
-                  this.image = '';
-                }
-              }
-            })
-
-            new Vue({
-              el: '#image-upload',
-              data: {
-                image: ''
-              },
-              methods: {
-                onFileChange(e) {
-                  var files = e.target.files || e.dataTransfer.files;
-                  if (!files.length)
-                    return;
-                  this.createImage(files[0]);
-                },
-                createImage(file) {
-                  var image = new Image();
-                  var reader = new FileReader();
-                  var vm = this;
-
-                  reader.onload = (e) => {
-                    vm.image = e.target.result;
-                  };
-                  reader.readAsDataURL(file);
-                },
-                removeImage: function (e) {
-                  this.image = '';
-                }
-              }
-            })
-          </script>
-
+          <div id="hide6">
+            Location:<br>
+            <input type="text" name="location">
+            <br>
+            Social Media:<br>
+            <input type="text" name="social-media">
+            <br>
+            Contact number:<br>
+            <input type="text" name="contact-number">
+          </div>
+        <script src="js/form.js"></script>
         </div>
       </div>
     </div>
+    <div class="navbar" id="navbar">
+        <input type="submit" value="Submit"></input>
+      </form>
+      something here
+      <p class='toggle' id='toggle'>Preview / Edit</p>
+    </div>
+    <div class="column" style="background-color: rgba(0, 0, 0, 0);;">
+    </div>
   </div>
+
 </body>
 <footer>
 </footer>
