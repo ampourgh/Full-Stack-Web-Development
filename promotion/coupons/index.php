@@ -81,9 +81,9 @@
       </div>
     </div>
     <div class="navbar" id="navbar">
-      <p class='toggle' id='toggle'>Preview</p>
-        <input type="submit" value="Submit"></input>
-      </form>
+        <span class='toggle' id='toggle'>Preview</span>
+          <input class='submit' type="submit" value="Submit"></input>
+        </form>
     </div>
     <div class="column" style="background-color: rgba(0, 0, 0, 0);">
     </div>

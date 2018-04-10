@@ -121,11 +121,27 @@ mark {
 }
 
 .toggle {
-  style: none;
-  text-align: left;
-  color: #fff;
-  padding: 0;
-  border: 1px solid yellow;
+  font: bold 12px Arial;
+  text-decoration: none;
+  background-color: #EEE;
+  color: #333;
+  padding: 4px 12px;
+  border-top: 1px solid #CCC;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+  border-left: 1px solid #CCC;
+}
+
+.submit {
+  font: bold 12px Arial;
+  text-decoration: none;
+  background-color: #EEE;
+  color: #333;
+  padding: 4px 12px;
+  border-top: 1px solid #CCC;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+  border-left: 1px solid #CCC;
 }
 
 /*
@@ -139,6 +155,10 @@ NAVIGATION BAR
   position: fixed;
   top: 0;
   width: 100%;
+}
+
+.wrap-around {
+  width: 60px;
 }
 
 .navbar a {
