@@ -11,10 +11,11 @@
 
   <div class="row">
     <div class="column" style="background-color: rgba(0, 0, 0, 0);">
-
+      |
     </div>
     <form action="/action_page.php">
     <div class="column" style="background-color: rgba(0, 0, 0, 0);">
+      <br><br><br>
       <div id="card">
         <div id="header">
           <br>
@@ -88,8 +89,6 @@
     <div class="column" style="background-color: rgba(0, 0, 0, 0);">
     </div>
   </div>
-
-  <table>
 </body>
 <footer>
 </footer>
