@@ -10,10 +10,21 @@ p {
 }
 
 h1 {
-  font-family: 'Lalezar';
+  font-family: 'Maven Pro';
+  text-align:center;
+  color: rgb(0, 153, 51);
+}
+
+h2 {
+  font-family: 'Maven Pro';
+  text-align:center;
 }
 
 #wrapper {
+  display: none;
+}
+
+#wrapper2 {
   width: 100%;
   display: flex;
   align-items: center;
@@ -63,7 +74,7 @@ h1 {
 /* Create two equal columns that floats next to each other */
 .column {
     float: left;
-    width: 40%;
+    width: 30%;
     padding: none;
 }
 
@@ -83,6 +94,10 @@ h1 {
 }
 
 #card-inside {
+  display: none;
+}
+
+#card-inside2 {
   height: 75px;
   width: 375px;
 }

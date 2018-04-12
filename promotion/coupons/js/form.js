@@ -1,8 +1,32 @@
 new Vue({
-  el: '#text-insert',
+  el: '#title-insert',
   data: {
     name: '',
-    promotion: 'Special offer at restaurant for a buy 1 get another for insert text 50% off.'
+    promoTitle: 'HALF OFF!!'
+  }
+});
+
+new Vue({
+  el: '#description-insert',
+  data: {
+    name: '',
+    promoDescription: 'Special offer at restaurant for a buy 1 get another for insert text 50% off.'
+  }
+});
+
+new Vue({
+  el: '#new-price',
+  data: {
+    name: '',
+    newPrice: '4.99'
+  }
+});
+
+new Vue({
+  el: '#original-price',
+  data: {
+    name: '',
+    originalPrice: '9.99'
   }
 });
 
