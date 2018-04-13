@@ -25,17 +25,6 @@ h1 h2 p {
   text-align:center;
 }
 
-#wrapper {
-  display: none;
-}
-
-#wrapper2 {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .button {
   display: inline-block;
   border-radius: .5em;
@@ -88,6 +77,25 @@ h1 h2 p {
     content: "";
     display: table;
     clear: both;
+}
+
+
+/* Columns for advert*/
+.advert-column {
+    float: left;
+    width: 33%;
+    padding: none;
+}
+
+/* Clear floats after the columns */
+.advert-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.advert-column-change {
+  width: 65%;
 }
 
 #external-padding {
@@ -184,4 +192,16 @@ NAVIGATION BAR
 
 #hide0 {
   display: none;
+}
+
+.imagediv .showonhover {
+  font: bold 12px Arial;
+  text-decoration: none;
+  background-color: #EEE;
+  color: #333;
+  padding: 4px 12px;
+  border-top: 1px solid #CCC;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+  border-left: 1px solid #CCC;
 }
