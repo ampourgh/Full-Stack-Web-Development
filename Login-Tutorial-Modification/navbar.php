@@ -6,9 +6,10 @@
 ?>
 
 <div class="options-box">
-  <a href="logout.php"><button class="button button-block" " name="logout"/>Log Out</button></a>
+  <a href="logout.php"><button class="button button-block" name="logout"/>Log Out</button></a>
 
   <button class="button button-block username" /><?php echo $username.' '.$company; ?></button>
+  <a href="add_promo.php"><button class="button button-block" name="logout"/>Add Promotion</button></a>
   <p><?= $email ?></p>
   <p><?php $logo ?></p>
   <?php
