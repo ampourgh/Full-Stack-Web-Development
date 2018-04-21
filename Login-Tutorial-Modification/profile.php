@@ -58,7 +58,7 @@ else {
 
           <h2><?php echo $username.' '.$company; ?></h2>
           <p><?= $email ?></p>
-          <a href="controlpanel.php">Go to my Control Panel</a>
+          <a href="controlpanel.php"><button class="button button-block username" />Go to my Control Panel</button></a>
 
           <a href="logout.php"><button class="button button-block" name="logout"/>Log Out</button></a>
 

@@ -13,6 +13,8 @@
 * {
   font-family: 'Open Sans';
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
@@ -25,7 +27,6 @@ h2 {
 
 h3 {
   font-size: 2em;
-  color: rgb(0, 153, 51);
 }
 
 h4 {
@@ -34,6 +35,24 @@ h4 {
 
 h1 h2 h3 h4 h5 p {
   text-align:center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.line-height {
+  line-height:22px;
+}
+
+.img-container {
+    position: relative;
+}
+
+.top-left {
+    position: absolute;
+    top: 2px;
+    left: 2px;
 }
 
 .button {
@@ -90,7 +109,6 @@ h1 h2 h3 h4 h5 p {
     clear: both;
 }
 
-
 /* Columns for advert*/
 .advert-column {
     float: left;
@@ -105,27 +123,21 @@ h1 h2 h3 h4 h5 p {
     clear: both;
 }
 
-#external-padding {
-  border: 1px solid rgb(190, 192, 196);
-}
-
 #card {
-  margin: 16px;
-  height: 350px;
-  width: 95%;
-  border-radius: 2px;
+  height: 200px;
+  width: 400px;
   box-shadow: 0px 2px 7px rgba(0, 0, 0, .6);
   background: #fff;
 }
 
-#card2 {
+/* #card2 {
   margin: 16px;
   height: 600px;
   width: 95%;
   border-radius: 2px;
   box-shadow: 0px 2px 7px rgba(0, 0, 0, .6);
   background: #fff;
-}
+} */
 
 .toggle {
   font: bold 12px Arial;
@@ -137,6 +149,15 @@ h1 h2 h3 h4 h5 p {
   border-right: 1px solid #333;
   border-bottom: 1px solid #333;
   border-left: 1px solid #CCC;
+}
+
+.toggle2 {
+  font: bold 10px;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, .8);
+  border-radius: 20px;
+  color: #fff;
+  padding: 0px 5px;
 }
 
 .submit {

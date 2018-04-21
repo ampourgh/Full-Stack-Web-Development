@@ -2,16 +2,14 @@
   $username = $_SESSION['username'];
   $company = $_SESSION['company'];
   $email = $_SESSION['email'];
-  $logo = $_SESSION['image'];
 ?>
 
 <div class="options-box">
   <a href="logout.php"><button class="button button-block" name="logout"/>Log Out</button></a>
 
-  <button class="button button-block username" /><?php echo $username.' '.$company; ?></button>
+  <a href="controlpanel.php"><button class="button button-block username" /><?php echo $username.' '.$company; ?></button></a>
   <a href="add_promo.php"><button class="button button-block" name="logout"/>Add Promotion</button></a>
   <p><?= $email ?></p>
-  <p><?php $logo ?></p>
   <?php
     $mysqli = new mysqli("localhost", "root", "root", "accounts");
 

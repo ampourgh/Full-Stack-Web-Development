@@ -2,180 +2,100 @@
 <html>
 <head>
   <title>Promotion</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
   <script src="./js/jquery-3.3.1.js"></script>
   <script src="./js/scroll.js"></script>
   <script src="./js/toggle.js"></script>
   <script src="./js/vue-2.5.16.js"></script>
 </head>
 <body>
-    <form action="/action_page.php" method="post">
+    <form method="POST" action="form_submit.php" enctype="multipart/form-data">
       <br><br><br>
 
       <section id="app" class="section">
         <div class="row">
-        <div class="column" style="background-color: rgba(0, 0, 0, 0); padding-left: 20%;">
+        <div class="column" style="background-color: rgba(0, 0, 0, 0);">
+        <div style="float: right; margin-right: 10px;">
+          <span style="line-height: 40px;" />
 
-        <form>
-          <h3 class="title is-1">
-            Template # {{form.formId}}:
-          </h3>
-
-          <h4>Select an image:</h4>
-
-          <div v-for="item in items">
-            <div v-if="!item.image">
-              <input type="file" @change="onFileChange(item, $event)">
-            </div>
-            <div v-else>
-              <span class='toggle' @click="removeImage(item)">Remove image</span>
-            </div>
-          </div>
-
-          <br>
+          <input class="input" type="text" id='template_id' name='template_id' title="1" />
 
           <div class="field">
-            <h3>Title</h3>
             <div class="control">
-              <input class="input" type="text" v-model="form.title" />
+              <span class='bold'>Title:</span> <input class="input" type="text" name='title' v-model="form.title" />
             </div>
           </div>
-
-          <br>
 
           <div class="field">
-            <label class="label">Description</label>
             <div class="control">
-              <input class="input" type="text" v-model="form.description" />
+              <span class='bold'>Description:</span> <input class="input" type="text" name='description' v-model="form.description" />
             </div>
           </div>
-
-          <br>
 
           <div class="field">
-            <label class="label">Redeem Button?</label>
             <div class="control">
-              <label>
-                <input id='show' type="radio" value="REDEEM " v-model="form.button" />
-                Yes
-              </label>
-              <br>
-              <label>
-                <input id='hide' type="radio" value="NO REDEEM" v-model="form.button" />
-                No
-              </label>
+              <span class='bold'>Reduced Price:</span> <input class="input" type="text" name='reduced_price' v-model="form.reducedPrice" />
             </div>
           </div>
-
-          <br>
 
           <div class="field">
-            <label class="label">Reduced Price:</label>
             <div class="control">
-              <input class="input" type="text" v-model="form.reducedPrice" />
+              <span class='bold'>Original Price:</span> <input class="input" type="text" name='original_price' v-model="form.originalPrice" />
             </div>
           </div>
+        </div>
+      </div>
 
-          <br>
+            <div class="column">
 
-          <div class="field">
-            <label class="label">Original Price:</label>
-            <div class="control">
-              <input class="input" type="text" v-model="form.originalPrice" />
-            </div>
-          </div>
+            <div id="card">
+              <h3 style="display: block; text-align: center; font-weight: 800;">{{form.title}}</h3>
+              <div class="advert-row">
+                <div class="advert-column">
 
-          <br>
+                  <br>
 
-          <div class="field">
-            <label class="label">Percentage off?</label>
-            <div class="control">
-              <h4 class="title is-4">
-                {{form.percentageOff}} / 100
-              </h4>
-              <input type="range" min="0" max="100" step="5" list="tickmarks" v-model="form.percentageOff"/>
-
-              <!-- "Currently, no browser fully supports these features. Firefox doesn't support hash marks and labels at all, for example, while Chrome supports the hash marks but doesn't support labels." -MDN -->
-              <datalist id="tickmarks">
-                <option value="0" label="0%">
-                <option value="10">
-                <option value="20">
-                <option value="30">
-                <option value="40">
-                <option value="50" label="50%">
-                <option value="60">
-                <option value="70">
-                <option value="80">
-                <option value="90">
-                <option value="100" label="100%">
-              </datalist>
-            </div>
-          </div>
-
-          <input class="button is-primary margin-bottom" type="submit" @click.prevent="fakeSubmit" />
-
-        </form>
-        <transition name="fade" mode="out-in">
-          <article class="message is-primary" v-show="showSubmitFeedback">
-            <div class="message-header">
-              <p>Send Status:</p>
-            </div>
-            <div class="message-body">
-              Successfully Submitted!
-            </div>
-          </article>
-        </transition>
-          </div>
-            <div class="column" style="background-color: rgba(0, 0, 0, 0);">
-
-            <h3>Preview</h3>
-
-            <div id="external-padding">
-              <div id="card">
-                <h2 style="display: block; text-align: center;">{{form.title}}</h2>
-                <div class="advert-row">
-                  <div class="advert-column" style="background-color: rgba(0, 0, 0, 0);">
-                    &nbsp;
-                    <img :src="items[0].image" style="max-height: 240px; padding: 0; margin: 0; position: absolute; clip: rect(0px, 240px, 250px, 0px);"/>
-                  </div>
-                  <div class="advert-column" style="background-color: rgba(0, 0, 0, 0); padding-left: 20px;">
-                    <h1 style="display: block;">{{form.reducedPrice}} <b style="font-size: 25px;"><s>{{form.originalPrice}}</s></b></h1>
-                    <h1 style="margin-top: -70px;">{{form.percentageOff}}% OFF</h1>
+                  <div v-for="item in items">
+                    <div v-if="!item.image">
+                      <input type="file" name='image' @change="onFileChange(item, $event)" >
+                    </div>
+                    <div v-else>
+                      <input type="file" style="display: none;" name='image' @change="onFileChange(item, $event)" >
+                      <div class="img-container">
+                        <img :src='items[0].image' style='z-index: 1; max-height: 135px; padding: 0; margin: 0; position: absolute; clip: rect(0px, 135px, 250px, 0px);'/>
+                        <span class='toggle2 top-left' style='z-index: 2;' @click='removeImage(item)'>&#10006</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div id="external-padding">
-              <div id="card2">
-                <h2 style="display: block; text-align: center;">{{form.title}}</h2>
-                <div class="advert-row">
-                  <div class="advert-column" style="background-color: rgba(0, 0, 0, 0);">
-                    &nbsp;
-                    <img :src="items[0].image" style="max-height: 300px; padding: 0; margin: 0; position: absolute; clip: rect(0px, 300px, 300px, 0px);"/>
-                  </div>
-                  <div class="advert-column" style="background-color: rgba(0, 0, 0, 0); padding-left: 20px;">
-                    <h1 style="display: block;">{{form.reducedPrice}} <b style="font-size: 25px;"><s>{{form.originalPrice}}</s></b></h1>
-                    <h1 style="margin-top: -70px;">{{form.percentageOff}}% OFF</h1>
-                  </div>
+                <div class="advert-column">
+                  <br>
+                  <h3 style="display: block; color: rgb(50,205,50);">{{form.reducedPrice}}</h3>
+                  <h5 style="display: block; color: red;"><s>{{form.originalPrice}}</s></h5>
                 </div>
-                <br>
-                <h4 style="display: block; text-align: center;">{{form.description}}</h4>
               </div>
             </div>
 
           </div>
         </div>
+        <div class="navbar" id="navbar">
+          <a href="../controlpanel.php"><span class='submit'>Control Panel</span></a>
+          <a href="../add_promo.php"><span class='submit'>Choose a Different Template</span></a>
+            <button type="submit" class='submit' value="Submit">submit</button>
+          </form>
+        </div>
       </section>
 
       </div>
     </div>
-    <div class="navbar" id="navbar">
-        <input class='submit' type="submit" value="Submit"></input>
-      </form>
-    </div>
   </div>
+  <script>
+    $( document ).ready(function() {
+      $("#template_id").val('1');
+      $("#template_id").hide();
+    });
+  </script>
   <script src="./js/form.js"></script>
 </body>
 <footer>
