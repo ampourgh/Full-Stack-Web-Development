@@ -2,6 +2,25 @@
 Find the unique letters in a string, discard the values that are not alphanumeric.
 """
 
+# Dictionary Method
+
+item_index = dict()
+
+# arr = [4, 5, 2, 1, 3]
+
+str = 'Hello World'
+
+for index, value in enumerate(str):
+    if not value.isalpha():
+        pass
+    else:
+        item_index[value] = index
+
+# item_index = {'H': 0, 'e': 1, 'l': 9, 'o': 7, 'W': 6, 'r': 8, 'd': 10}
+print(len(item_index))
+
+
+# First Attempt
 def uniqueLetterCount(string):
 
     print(string)
@@ -29,7 +48,8 @@ uniqueLetterCount(hello)
 uniqueLetterCount(elipses)
 uniqueLetterCount(goodbye)
 
-# Alternative method
+
+# Alternative Method
 
 def uniqueLetterCount2(string):
     array = [s for s in string.strip() if s.isalpha() and s != ' ']
