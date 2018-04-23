@@ -33,3 +33,21 @@ def strangeCounter(t):
                 n *= 2
                 
 print(strangeCounter(24))
+
+# More Efficient Method
+
+def strangeCounter(t):
+    
+    # initial counter
+    counter = 3
+    
+    # will stop at 6 counter
+    while t > counter:
+        
+        #  1 = 4 - 3
+        t = t-counter
+        counter *= 2
+    
+    t -= 1
+    
+    return counter - t
