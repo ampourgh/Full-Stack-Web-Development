@@ -1,13 +1,23 @@
+* {
+  transition: height 2s;
+  -webkit-transition: height 2s; /* Safari */
+}
+
 body {
   background: #737878;
 }
 
-h1 {
+h1, a:link, a:visited, a:hover, a:active {
   text-align: center;
   font-family: 'Open Sans';
   color: #ffffff;
   font-weight: 300;
   margin: 0 0 40px;
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  font-size: 20px;
 }
 
 input {
