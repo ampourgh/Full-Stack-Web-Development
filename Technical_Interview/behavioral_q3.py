@@ -33,3 +33,13 @@ Along with what the length of strings,
 what alphanumeric values would be accepted,
 or whether a dictionary would be preferable for what the user is inputting.
 """
+
+def display_strings(list_of_strings):
+    aggregated_string = "<ul>\n"
+    for string in list_of_strings:
+        aggregated_string += ("  <li>%s</li>\n" % (string))
+    aggregated_string += "</ul>"
+    return aggregated_string
+
+arr = ['hello', 'world']
+print(display_strings(arr))
