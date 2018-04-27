@@ -34,6 +34,8 @@ what alphanumeric values would be accepted,
 or whether a dictionary would be preferable for what the user is inputting.
 """
 
+# Refactored code to take up less space
+
 def display_strings(list_of_strings):
     aggregated_string = "<ul>\n"
     for string in list_of_strings:
