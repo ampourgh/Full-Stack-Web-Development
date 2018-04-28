@@ -1,0 +1,38 @@
+<script>
+
+/*
+User's design can be scanned with the user of html2canvas, 
+and then a their work is saved on their computer. 
+
+The user can upload the image themselves, 
+and the base64 in the DOM can be sent via form input to a  database.
+*/
+
+$( document ).ready(function() {
+  $("#publish").click(function(){
+  
+    // Check if display is 'none' so that the image does not upload multiple times
+    if ($('#image-upload').css('display') === 'none') {
+          $(function(){html2canvas($(".tab-section").get(0), {
+            allowTaint: true
+          }).then(function (canvas) {
+            var url = canvas.toDataURL();
+            var name = document.getElementById("filename").innerText;
+            
+            // base64 of image is automatically clicked and stored as a png into the user's hard drive
+            var triggerDownload = $("<a>").attr("href", url).attr("download",name+".png").appendTo("body");
+            triggerDownload[0].click();
+            triggerDownload.remove();
+          });
+    });
+    
+    console.log('The toggle to upload is open and the user has the file downloaded to their computer, they can upload the image if they want.');
+  
+  } else {
+  
+    console.log('No need to download image since user is out of the preview.');
+  
+  }
+  $("#image-upload").toggle();
+});
+ <script>
