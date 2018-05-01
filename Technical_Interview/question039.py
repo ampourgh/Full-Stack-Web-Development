@@ -96,3 +96,40 @@ s = 'abcdefghi'
 it = iter(s)
 for part in zip(it, it, it):
     print(''.join(part))
+
+
+# MORE READABLE METHOD
+
+def merge_the_tools(s, k):
+  
+  n = len(s)
+  
+  #intervals of 3: 0, 3, 6
+  for x in range(0, n, k):
+      
+    # sliced = AAB = s[0:3]
+    sliced_str = s[x : x + k]
+    
+    arr =[]
+    arr2 =[]
+
+    for alpha in sliced_str:
+      
+      # lengthier method
+      
+      if not arr:
+        arr.append(alpha)
+      else:
+        if any(alpha == i for i in arr):
+          pass
+        else: 
+          arr.append(alpha)
+          
+      # shortened method
+      if alpha not in arr2:
+        arr2.append(alpha)
+        
+    print ''.join(arr)
+    print ''.join(arr2)
+    
+merge_the_tools('AABCAAADA', 3)
