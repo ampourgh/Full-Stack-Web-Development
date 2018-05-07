@@ -20,21 +20,35 @@ class node_action():
   
   def search(self, root, word):
       node = root
-      depth = 0
-      count = 0
       while True:
-          print(node.data)
-          depth += 1
           if node.data == word:
-              return node.data
+              print(('\nNode %d was found!') % (node.data))
               break
           elif word < node.data:
               node = node.left
           elif word > node.data:
               node = node.right
-  
+              
+  def max_depth(self, node):
+    print(('\nMaximum depth of tree is: %d') % (self.trees_depth(node)))
+    
+  def trees_depth(self, node):
+    if node is not None:
+      depthL = self.trees_depth(node.left)
+      depthR = self.trees_depth(node.right)
+
+      if(depthL > depthR):
+          return depthL + 1
+      else:
+          return depthR + 1
+    else:
+      return False
+
 
   def print_binary(self, root, direction, count):
+    
+    if direction == ' o ':
+      print("""+---+-----+---+\n| BINARY TREE |\n+---+-----+---+""")
       
     count += 1
     
@@ -52,12 +66,12 @@ r00t = node(3)
 action = node_action()
 action.insertion(r00t, node(5), node(2), node(1), node(4), node(6), node(0))
 
-print("""+---+-----+---+
-| BINARY TREE |
-+---+-----+---+""")
+
 action.print_binary(r00t, ' o ', 0)
 
-print(action.search(r00t, 5))
+action.search(r00t, 5)
+
+action.max_depth(r00t)
 
 BST_len = 1
 
