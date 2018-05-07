@@ -4,73 +4,62 @@ class node:
     self.left = None
     self.right = None
 
-def insertion(root, *args):
-  for node in args:
-    if root.data > node.data:
-      if root.left is None:
-        root.left = node
+class node_action():
+  def insertion(self, root, *args):
+    for node in args:
+      if root.data > node.data:
+        if root.left is None:
+          root.left = node
+        else:
+          self.insertion(root.left, node)
       else:
-        insertion(root.left, node)
-    else:
-      if root.right is None:
-        root.right = node
-      else:
-        insertion(root.right, node)
-
-def search_binary(root, value):
-  if not root:
-    return
-
+        if root.right is None:
+          root.right = node
+        else:
+          self.insertion(root.right, node)
   
-  if root.data == value:
-    print('Found %s' % (value))
-    
-  
-  if root.left:
-    search_binary(root.left, value)
-  if root.right:
-    search_binary(root.right, value)
-  
-  count_binary(root)
-  if BST_len == BST_counter:
-    print('%s has not been found within this tree' % (value))
+  def search(self, root, word):
+      node = root
+      depth = 0
+      count = 0
+      while True:
+          print(node.data)
+          depth += 1
+          if node.data == word:
+              return node.data
+              break
+          elif word < node.data:
+              node = node.left
+          elif word > node.data:
+              node = node.right
   
 
-def count_binary(*arg):
-  
-  BST_len += 1 
-  
-  print_binary(r00t.left)
-  print_binary(r00t.right)
-  
-  
-
-def print_binary(root, direction, count):
+  def print_binary(self, root, direction, count):
+      
+    count += 1
     
-  count += 1
-  
-  if not root:
-    return  
-    
-  print("| %s | %s | %s |" % (root.data, direction, count))
-  print("+---+-----+---+")
-    
-  print_binary(root.left, ' / ', count)
-  print_binary(root.right, ' \ ', count)
+    if not root:
+      return  
+      
+    print("| %s | %s | %s |" % (root.data, direction, count))
+    print("+---+-----+---+")
+      
+    self.print_binary(root.left, ' / ', count)
+    self.print_binary(root.right, ' \ ', count)
     
 
 r00t = node(3)
-insertion(r00t, node(5), node(2), node(1), node(4), node(6), node(0))
+action = node_action()
+action.insertion(r00t, node(5), node(2), node(1), node(4), node(6), node(0))
 
 print("""+---+-----+---+
 | BINARY TREE |
 +---+-----+---+""")
-print_binary(r00t, ' o ', 0)
+action.print_binary(r00t, ' o ', 0)
 
-search_binary(r00t, 5)
+print(action.search(r00t, 5))
 
 BST_len = 1
-count_binary(r00t, BST_len)
 
 
 """
