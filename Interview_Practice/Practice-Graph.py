@@ -18,12 +18,32 @@ class edges:
      ('D', 'B'), ('E', 'F'), ('E', 'B'), ('F', 'E'), 
       ('F', 'C'), 'G']
     """
+  
+  def listed(self):
+    edge_dic = dict()
+    for key, val in enumerate(self.edge_val):
+      edge_dic[val[0]] = val[0]
+    edge_arr = []
+    for key, val in edge_dic.items():
+      edge_arr.append(key)
+      
+    return edge_arr
     
   def connection(self, start, end, counter):
     if counter is 0:
-      print('Starting search for connection between vertices %s and %s' % (start, end))
+      print('\nStarting search for connection between vertices %s and %s' % (start, end))
       counter += 1
-      
+    
+    array_list = self.listed()
+    
+    if start not in array_list or end not in array_list:
+      if start not in array_list and end in array_list: 
+        print('%s is not a vertice.' % (start))
+      elif end not in array_list and start in array_list:
+        print('%s is not a vertice.' % (end))
+      else:
+        print('%s and %s are both is not a vertice.' % (start, end))
+        
     for val in self.edge_val:
       if len(val) < 2:
         pass
@@ -46,3 +66,6 @@ graphed = edges()
 graphed.insertion(graph)
 
 graphed.connection('A', 'C', 0)
+graphed.connection('X', 'Y', 0)
+
+print('\n Unique Edges:', graphed.listed())
