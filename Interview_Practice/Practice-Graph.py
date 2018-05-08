@@ -19,16 +19,20 @@ class edges:
       ('F', 'C'), 'G']
     """
     
-  def connection(self, start, end):
+  def connection(self, start, end, counter):
+    if counter is 0:
+      print('Starting search for connection between vertices %s and %s' % (start, end))
+      counter += 1
+      
     for val in self.edge_val:
-      if not val[1]:
+      if len(val) < 2:
         pass
       else:
         if start is val[0] or start is val[1]:
           if start is val[1] and end is val[0]:
-            print('Found!')
+            print('Found connection between %s and %s' % (val[0], val[1]))
           if start is val[0] and end is val[1]:
-            print('Found!')
+            print('Found connection between %s and %s' % (val[0], val[1]))
           
 graph = {'A': set(['B', 'C', 'F']),
          'B': set(['A', 'D', 'E']),
@@ -41,4 +45,4 @@ graph = {'A': set(['B', 'C', 'F']),
 graphed = edges()
 graphed.insertion(graph)
 
-graphed.connection('A', 'C')
+graphed.connection('A', 'C', 0)
