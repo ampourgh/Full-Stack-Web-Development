@@ -18,7 +18,18 @@ class edges:
      ('D', 'B'), ('E', 'F'), ('E', 'B'), ('F', 'E'), 
       ('F', 'C'), 'G']
     """
-  
+    
+  def connection(self, start, end):
+    for val in self.edge_val:
+      if not val[1]:
+        pass
+      else:
+        if start is val[0] or start is val[1]:
+          if start is val[1] and end is val[0]:
+            print('Found!')
+          if start is val[0] and end is val[1]:
+            print('Found!')
+          
 graph = {'A': set(['B', 'C', 'F']),
          'B': set(['A', 'D', 'E']),
          'C': set(['A', 'F']),
@@ -29,3 +40,5 @@ graph = {'A': set(['B', 'C', 'F']),
           
 graphed = edges()
 graphed.insertion(graph)
+
+graphed.connection('A', 'C')
