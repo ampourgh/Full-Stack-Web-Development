@@ -53,6 +53,26 @@ class edges:
             print('Found connection between %s and %s' % (val[0], val[1]))
           if start is val[0] and end is val[1]:
             print('Found connection between %s and %s' % (val[0], val[1]))
+  
+  def isolation(self):
+    isolated_edges = []
+    for node in self.edge_val:
+      node = ' '.join(node)
+      if len(node) == 1:
+        isolated_edges.append(node)
+    
+    print('The isolated edges are/is ')
+    counter = 0
+    for iso_edge in isolated_edges:
+      counter += 1 
+      if len(isolated_edges) > 1 and counter == len(isolated_edges):
+        print('and %s.' % (iso_edge))
+      elif len(isolated_edges) > 1:  
+        print(iso_edge)
+      else:
+        print('%s.' % iso_edge)
+        
+        
           
 graph = {'A': set(['B', 'C', 'F']),
          'B': set(['A', 'D', 'E']),
@@ -68,4 +88,8 @@ graphed.insertion(graph)
 graphed.connection('A', 'C', 0)
 graphed.connection('X', 'Y', 0)
 
-print('\n Unique Edges:', graphed.listed())
+graphed.insertion({'H': set(['A', 'E', 'F'])})
+
+print('\nUnique Edges:', graphed.listed())
+
+graphed.isolation()
