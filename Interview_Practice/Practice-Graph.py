@@ -60,19 +60,22 @@ class edges:
       node = ' '.join(node)
       if len(node) == 1:
         isolated_edges.append(node)
-    
-    print('The isolated edges are/is ')
-    counter = 0
-    for iso_edge in isolated_edges:
-      counter += 1 
-      if len(isolated_edges) > 1 and counter == len(isolated_edges):
-        print('and %s.' % (iso_edge))
-      elif len(isolated_edges) > 1:  
-        print(iso_edge)
-      else:
-        print('%s.' % iso_edge)
         
-        
+    if not isolated_edges:
+      print('There are no isolated edges in this graph.')
+    elif len(isolated_edges) == 1:
+        print('The single isolated edge is %s.' % (isolated_edges[0]))
+    else:
+      string = 'The isolated edges are'
+      counter = 0
+      
+      for iso_edge in isolated_edges:
+        counter += 1 
+        if len(isolated_edges) > 1 and counter == len(isolated_edges):
+          string += ' and %s.' % (iso_edge)
+          print(string)
+        elif len(isolated_edges) > 1:  
+          string += ' %s' % (iso_edge)
           
 graph = {'A': set(['B', 'C', 'F']),
          'B': set(['A', 'D', 'E']),
@@ -88,7 +91,7 @@ graphed.insertion(graph)
 graphed.connection('A', 'C', 0)
 graphed.connection('X', 'Y', 0)
 
-graphed.insertion({'H': set(['A', 'E', 'F'])})
+graphed.insertion({'H': set([])})
 
 print('\nUnique Edges:', graphed.listed())
 
