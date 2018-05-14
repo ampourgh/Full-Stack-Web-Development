@@ -4,7 +4,7 @@
 }
 
 body {
-  background: #737878;
+  background: #292828;
 }
 
 h1, a:link, a:visited, a:hover, a:active {
@@ -20,11 +20,15 @@ a:link, a:visited, a:hover, a:active {
   font-size: 20px;
 }
 
+h1 {
+  font-size: 50px;
+}
+
 input {
-  font-size: 22px;
+  font-size: 50px;
   display: block;
-  margin-left: 10%;
-  width: 80%;
+  margin-left: 27.5%;
+  width: 45%;
   height: 100%;
   padding: 5px 10px;
   background: none;
@@ -42,17 +46,17 @@ input:focus, textarea:focus {
 }
 
 .form {
-  background: #494D4D;
+  background: #464646;
   padding: 40px;
-  max-width: 600px;
+  max-width: 1000px;
   margin: 40px auto;
   border-radius: 5px;
   box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
 
 .centered {
-  width: 32%;
-  margin: 0 34%;
+  width: 19%;
+  margin: 0 41%;
   background: #CEB813;
 }
 
@@ -71,6 +75,7 @@ input:focus, textarea:focus {
   transition: all 0.5s ease;
   -webkit-appearance: none;
 }
+
 .button:hover, .button:focus {
   background: #ECD214;
 }

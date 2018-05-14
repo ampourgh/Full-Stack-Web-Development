@@ -10,30 +10,32 @@
   <div class="pre-form">
   <div class="form">
     <?php
+      include 'J-Init.php';
 
-      function refresh() {
-        $page = $_SERVER['PHP_SELF'];
-        $sec = "5";
-        echo "<meta http-equiv='refresh' content='".$sec."' URL='".$page."'>";
-        echo "<br><a href='./login.php'><p>(click here to return back to login page, or wait for an automatic refresh in 5 seconds)</p></a>";
-      }
+      //form section that duplicates into the sign in button, username input and password
+      $G.$form = "<form action='login.php' method='POST' autocomplete='off'>";
 
-      session_start();
+      // HTML of the first page of login
+      $G.$signIn.$start = $G.$form."<div id='hide0' class='centered'>"
+                ."<button id='hide1' class='button' name='signin' />Sign In</button>"
+                ."</div>"
+                ."</form>";
 
-      $mysqli = new mysqli('localhost', 'root', 'root', 'loginswitch');
+      // the sign in input
+      $G.$signIn.$userName = $G.$form."<br><h1>Username</h1><br>"
+                          ."<input id='signin' type='text' name='username' />"
+                          ."</form>";
 
-      echo "<form action='login.php' method='POST' autocomplete='off'>"
-           ."<div id='hide0' class='centered'>"
-           ."<button id='hide1' class='button' name='signin' />Sign In</button>"
-           ."</div>"
-           ."</form>";
+      // the password input
+      $G.$signIn.$password = $G.$form."<br><h1>Password</h1><br>"
+                          ."<input id='signin' type='password' name='password' />"
+                          ."</form>";
+
+      echo $G.$signIn.$start;
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['signin'])) {
-          echo "<form action='login.php' method='POST' autocomplete='off'>"
-               ."<br><h1>Username</h1><br>"
-               ."<input id='signin' type='text' name='username' />"
-               ."</form>";
+          echo $G.$signIn.$userName;
         }
         elseif (isset($_POST['username'])) {
 
@@ -51,10 +53,7 @@
             refresh();
           }
           else {
-            echo "<form action='login.php' method='POST' autocomplete='off'>"
-                 ."<br><h1>Password</h1><br>"
-                 ."<input id='signin' type='password' name='password' />"
-                 ."</form>";
+            echo $G.$signIn.$password;
           }
         }
         elseif (isset($_POST['password'])) {
@@ -62,6 +61,8 @@
           if ($_POST['password'] == $_SESSION['password']) {
             echo "<br><h1>Welcome!</h1>"
                  . "<br><a href='./panel.php'><p>Head to Control Panel</p></a>";
+            $G.$_SESSION['loggedIn'] = True;
+            header("location: J-Checklogin.php");
 
           } else {
             echo "<br><h1>Wrong password.</h1>";
@@ -74,7 +75,7 @@
 
     ?>
   </div>
-  </div>  
+  </div>
 </body>
 <script>
   document.getElementById('signin').submit();
