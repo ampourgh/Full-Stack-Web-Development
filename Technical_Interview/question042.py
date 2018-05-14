@@ -30,3 +30,16 @@ def fibonacci(n):
 print(fibonacci(input))
 
 # print(map(cube, list(fibonacci(input))))
+
+
+# Lambda and map functionality
+
+counter= 11
+times = lambda x: x * 10
+
+def function(n):
+  for i in range(n):
+    yield i
+    
+# map(function_to_apply, list_of_inputs)
+print(map(string, list(function(counter))))
