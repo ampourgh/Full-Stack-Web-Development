@@ -11,7 +11,7 @@ WHERE COUNTRYCODE = 'JPN';
 // All attributes
 SELECT *
 FROM CITY
-WHERE COUNTRYCODE = 'JPN;
+WHERE COUNTRYCODE = 'JPN';
 
 \*
 Query the names of all American cities in CITY with populations larger than 120000. 
@@ -21,3 +21,14 @@ The CountryCode for America is USA.
 SELECT NAME
 FROM CITY
 WHERE COUNTRYCODE = 'USA' AND POPULATION > 120000;
+
+// Select all with specific ID
+
+SELECT *
+FROM CITY 
+WHERE ID = 1661;
+
+// Query City and State from station table
+
+SELECT CITY, STATE
+FROM STATION;
