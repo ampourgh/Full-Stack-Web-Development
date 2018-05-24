@@ -14,11 +14,10 @@ from fileinput import input
 class OrderedCounter(Counter, OrderedDict):
     def __init__(self, items):
         super(OrderedCounter, self).__init__(sorted(items))
-
-    def main(self, string):
-        for letter, count in OrderedCounter(string).most_common(3):
-            print(letter, count)
-
+        
+def main(string):
+    for letter, count in OrderedCounter(string).most_common(3):
+        print(letter, count)
 
 if __name__ == '__main__':
-    OrderedCounter.main('aabbbccde')
+    main('aabbbccde')
