@@ -335,3 +335,21 @@ nurseOlynyk.addCertification('Genetics');
 console.log(nurseOlynyk.certifications);
 
 /* ---------------------------------- */
+
+// 1-Airplane.js
+let Airplane = {};
+
+Airplane.myAirplane = "StarJet";
+
+module.exports = Airplane; 
+
+// 1-missionControl.js
+const Airplane = require('./1-airplane.js');
+
+function displayAirplane() {
+  console.log(Airplane.myAirplane);
+}
+
+displayAirplane();
+
+/* ---------------------------------- */
