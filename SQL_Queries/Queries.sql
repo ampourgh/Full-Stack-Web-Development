@@ -68,3 +68,54 @@ WHERE origin in (
     SELECT code 
     FROM airports 
     WHERE elevation > 2000);
+   
+-- Second subquery looks for areas where the Federal Aviation Administration region are ASO.
+    
+SELECT * 
+FROM flights 
+WHERE origin in (
+    SELECT code 
+    FROM airports 
+    WHERE faa_region = 'ASO');
+    
+-- 
+
+SELECT a.dep_month,
+       a.dep_day_of_week,
+       -- averaging out the flight count
+       AVG(a.flight_count) AS average_flights
+  FROM (
+        SELECT dep_month,
+              dep_day_of_week,
+               dep_date,
+                -- counting the number of flights by week and month  
+               COUNT(*) AS flight_count
+          FROM flights
+         GROUP BY 1,2,3
+       ) a
+ GROUP BY 1,2
+ 
+ 
+SELECT a.dep_month,
+       a.dep_day_of_week,
+        -- Sum distance is for the days are then averaged out displayed displayed for the month and week       
+       AVG(a.flight_distance) AS average_distance
+  FROM (
+        -- Get the sum distance from flights for week, date and month       
+        SELECT dep_month,
+              dep_day_of_week,
+               dep_date,
+               sum(distance) AS flight_distance
+          FROM flights
+         GROUP BY 1,2,3
+       -- subquery is labeled as 'a'        
+       ) a
+ GROUP BY 1,2
+ ORDER BY 1,2;
+ 
+--  Query Result example for above:
+-- dep_month	dep_day_of_week	average_distance
+-- 2000-01	Monday	1302.0
+-- 2000-01	Saturday	328.0
+-- 2000-01	Sunday	691.333333333333
+-- 2000-01	Thursday	1805.0
