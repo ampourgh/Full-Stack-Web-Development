@@ -53,3 +53,18 @@ FROM STUDENTS,
      GRADES
 WHERE (MARKS BETWEEN MIN_MARK AND MAX_MARK)
 ORDER BY MARKS DESC;
+
+-- Limits to the first 10 flihts that pop up within the query.
+SELECT * 
+FROM flights
+LIMIT 10;
+
+-- Subquery returns the codes with an elevation greater than 2000, 
+-- Origin is a column within the airport table
+
+SELECT * 
+FROM flights 
+WHERE origin in (
+    SELECT code 
+    FROM airports 
+    WHERE elevation > 2000);
