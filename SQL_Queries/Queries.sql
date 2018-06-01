@@ -119,3 +119,13 @@ SELECT a.dep_month,
 -- 2000-01	Saturday	328.0
 -- 2000-01	Sunday	691.333333333333
 -- 2000-01	Thursday	1805.0
+
+
+-- Find the id of the flights whose distance is below average for their carrier.
+SELECT id
+FROM flights as fly
+-- Subquery for comparing inside carrier of all average distance to the id's carrier 
+WHERE distance < (
+ SELECT AVG(distance)
+ FROM flights
+ WHERE carrier = fly.carrier);
