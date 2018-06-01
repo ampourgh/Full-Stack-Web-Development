@@ -129,3 +129,15 @@ WHERE distance < (
  SELECT AVG(distance)
  FROM flights
  WHERE carrier = fly.carrier);
+ 
+-- write a query to view flights by origin, flight id, and sequence number. 
+-- Alias the sequence number column as flight_sequence_number.
+
+-- SELECT origin, id and flight_sequence number
+SELECT origin, id,
+    (SELECT COUNT(*)
+     FROM flights f
+     -- f is inside, flights is outside     
+		 WHERE f.id < g.id
+		 AND f.origin=g.origin) + 1 AS flight_sequence_number
+FROM flights as g;
