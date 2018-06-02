@@ -160,3 +160,10 @@ SELECT category FROM new_products
 INTERSECT
 
 SELECT category FROM legacy_products;
+
+-- Select from one, that is not in the other
+SELECT category FROM legacy_products
+
+EXCEPT
+
+SELECT category FROM new_products;
