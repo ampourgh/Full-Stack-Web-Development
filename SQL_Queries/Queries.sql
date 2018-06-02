@@ -141,3 +141,8 @@ SELECT origin, id,
 		 WHERE f.id < g.id
 		 AND f.origin=g.origin) + 1 AS flight_sequence_number
 FROM flights as g;
+
+-- Merging brands from different tables
+SELECT brand FROM legacy_products
+UNION 
+SELECT brand FROM new_products;
