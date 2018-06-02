@@ -153,3 +153,10 @@ SELECT id, avg(a.sale_price) FROM (
   UNION ALL
   SELECT id, sale_price FROM order_items_historic) AS a 
   GROUP BY 1;
+
+-- Select from different tables where there is an intesect of category
+SELECT category FROM new_products
+
+INTERSECT
+
+SELECT category FROM legacy_products;
