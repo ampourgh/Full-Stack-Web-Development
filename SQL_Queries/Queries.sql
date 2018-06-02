@@ -146,3 +146,10 @@ FROM flights as g;
 SELECT brand FROM legacy_products
 UNION 
 SELECT brand FROM new_products;
+
+-- Make union between order items and historical, then get the average sales price 
+SELECT id, avg(a.sale_price) FROM (
+  SELECT id, sale_price FROM order_items
+  UNION ALL
+  SELECT id, sale_price FROM order_items_historic) AS a 
+  GROUP BY 1;
