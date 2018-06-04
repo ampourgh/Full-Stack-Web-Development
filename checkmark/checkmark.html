@@ -6,6 +6,9 @@
     background: #fff;
     border: 2px solid #000;
     /* border-radius: 2px; */
+    padding:0;
+    width: auto;
+    height: auto;
   }
 
   * html .btn1 .btn2 {
@@ -28,6 +31,9 @@
     -moz-border:0 none;
     -webkit-border:0 none;
     outline:0 !important;
+    margin: 0;
+    padding: 0;
+    border-width: 0px;
   }
   .btn2 img {
     background: #000;
@@ -39,11 +45,25 @@
     -moz-border:0 none;
     -webkit-border:0 none;
     outline:0 !important;
+    margin: 0;
+    padding: 0;
+    border-width: 0px;
   }
+
   .btn1:focus, .btn2:focus {
     outline: none;
   }
+
+  .input-img-none, .input-img-checked {
+    outline: none;
+    border: 3px solid black;
+    width: 12px;
+    height: 12px;
+  }
 </style>
+Button image style:
+
+<br><br>
 <button class="btn1" type="submit" value="Submit">
   <img />
 </button>
@@ -63,3 +83,14 @@
   <img />
 </button>
 4
+
+<br><br>
+Input image style:
+
+<br><br>
+<input type="image" src="./none-squared.png" alt="Submit" class="input-img-none">
+5
+
+<br><br>
+<input type="image" src="./checkmark-squared.png" alt="Submit" class="input-img-checked">
+6
