@@ -16,8 +16,15 @@ for i in range(cols):
 
 s = list('haveanicelife'.strip())
 L =  len(s)
-row = math.floor(L**(1/2))
-col = math.ceil(L**(1/2))
+
+rint, rfloat = int(len(s) ** 0.5), len(s) ** 0.5
+
+if rint < rfloat:
+  row = rint
+  col = rint + 1
+else: 
+  row = rint -1 
+  col = rint
 
 for i in range(col):
     x = 0     
