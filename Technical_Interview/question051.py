@@ -1,14 +1,16 @@
-n = ['0 ab', '0 ef', '0 ab', '0 ef', '0 ij', '0 to', '1 be','1 or', '2 not', '2 to', '3 be', '4 ij', '4 that', '4 is', '4 the', '5 question', '6 cd', '6 gh', '6 cd', '6 gh']
+n2 = ['0 ab', '0 ef', '0 ab', '0 ef', '0 ij', '0 to', '1 be','1 or', '2 not', '2 to', '3 be', '4 ij', '4 that', '4 is', '4 the', '5 question', '6 cd', '6 gh', '6 cd', '6 gh']
+
+n3 = [['0', 'ab'], ['0', 'ef'], ['0', 'ab'], ['0', 'ef'], ['0', 'ij'], ['0', 'to'], ['1', 'be'],['1', 'or'], ['2', 'not'], ['2', 'to'], ['3', 'be'], ['4', 'ij'], ['4', 'that'], ['4', 'is'], ['4', 'the'], ['5', 'question'], ['6', 'cd'], ['6', 'gh'], ['6', 'cd'], ['6', 'gh']]
 
 n1 = '0 ab 0 ef 0 ab 0 ef 0 ij 0 to 1 be 1 or 2 not 2 to 3 be 4 ij 4 that 4 is 4 the 5 question 6 cd 6 gh 6 cd 6 gh'
 
-# n = int(input())
+n = n3
 
 num_dict = {}
 maxNum = 0
 
 for i, val in enumerate(n):
-    x = n1.strip().split()
+    x = n3[i]
     numX = int(x[0])
     linX = x[1]
     
