@@ -31,3 +31,26 @@ for i in range(n):
         
 palinStr = '\n'.join(map(str, palinList))
 print(palinStr)
+
+# Second attempt
+
+k = ''
+j = ''
+arr = []
+for i in range(int(input())):
+    if i == 0:
+        i += 1
+        k += str(i)
+        j += str(i)
+        arr.append(int(k))
+    else:
+        if i != 1:
+            j += str(i)
+        i += 1
+        k += str(i)
+        m = j[::-1]
+        l = k + m
+        arr.append(int(l))
+
+for a in arr:
+    print(a)
