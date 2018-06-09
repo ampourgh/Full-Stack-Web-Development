@@ -37,7 +37,7 @@ print(palinStr)
 k = ''
 j = ''
 arr = []
-for i in range(int(input())):
+for i in range(int('5')):
     if i == 0:
         i += 1
         k += str(i)
@@ -54,3 +54,8 @@ for i in range(int(input())):
 
 for a in arr:
     print(a)
+
+# Mathematical approach
+
+for i in range(1,int('5')+1):
+    print(((10**i-1)//9)**2)
