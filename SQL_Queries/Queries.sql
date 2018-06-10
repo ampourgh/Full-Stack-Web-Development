@@ -167,3 +167,52 @@ SELECT category FROM legacy_products
 EXCEPT
 
 SELECT category FROM new_products;
+
+-- Count the number of rows from the flights table, where arr_time is not null and the destination is ATL.
+SELECT COUNT(*) 
+FROM flights 
+WHERE arr_time IS NOT Null 
+      AND destination IS 'ATL';
+
+-- Counting based on elevation
+SELECT
+    CASE
+        WHEN elevation < 250 THEN 'Low'
+        WHEN elevation BETWEEN 250 AND 1749 THEN 'Medium'
+        WHEN elevation >= 1750 THEN 'High'
+        ELSE 'Unknown'
+    END AS elevation_tier
+    , COUNT(*)
+FROM airports
+GROUP BY 1;
+
+-- elevation_tier | COUNT(*)
+-- ---------------+---------
+-- High	   	  | 110
+-- Low		  | 172
+-- Medium	  | 362
+
+-- write a query to count the number of low elevation airports by state where low elevation is defined as less than 1000 ft.
+SELECT state, 
+    COUNT(CASE WHEN elevation < 1000 THEN 1 ELSE NULL END) as count_low_elevation_aiports 
+FROM airports 
+GROUP BY state;
+
+-- find both the total flight distance and the flight distance by origin for Delta (carrier = 'DL').
+SELECT origin, 
+       sum(distance) as total_flight_distance, 
+       sum(CASE WHEN carrier = 'DL' THEN distance ELSE 0 END) as total_delta_flight_distance 
+FROM flights 
+GROUP BY origin;
+
+-- find the percentage of flights from Delta by origin (carrier = 'DL')
+SELECT origin, 
+       100.0*(sum(CASE WHEN carrier = 'DL' THEN distance ELSE 0 END)/sum(distance)) as percentage_flight_distance_from_delta 
+FROM flights 
+GROUP BY origin;
+
+-- Find the percentage of high elevation airports (elevation >= 2000) by state from the airports table.
+SELECT state, 
+       100.0 * sum(CASE WHEN elevation >= 2000 THEN 1 ELSE 0 END) / count(*)  as percentage_high_elevation_airports 
+FROM airports 
+GROUP BY state;
