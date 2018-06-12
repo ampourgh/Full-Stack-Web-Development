@@ -52,18 +52,34 @@ if __name__ == '__main__':
 
 # Alternative solution
 
-#!/bin/python3
-ByOne=[0,'one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve',
+minute = [0,'one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve',
        'thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','ninteen','twenty']
-ByQua=["%s o' clock", "quarter past %s", "half past %s", "quarter to %s"]
-for i in range(1,10):
-    ByOne.append('twenty %s'%ByOne[i])
+quarter = ["%s o' clock", "quarter past %s", "half past %s", "quarter to %s"]
 
-h,m=int(input()),int(input())
-hour=ByOne[h] if (m<31) else ByOne[h+1]
+appendMinutes()
+
+h, m = int('6'), int('00')
+
+hour = minute[h] if (m<31) else minute[h+1]
+
 if not m%15:
-    print(ByQua[m//15] % hour)
+    print(quarter[m//15] % hour)
 elif m<30:
-    print("%s minute"%ByOne[m]+"s"*(m==1)+ " past %s"%hour)
+    print("%s minute"
+          % minute[m]+"s"*(m==1)+ " past %s"%hour)
 else:
-    print("%s minute"%ByOne[60-m]+"s"*(m==59)+ " to %s"%hour)
+    print("%s minute"
+          % minute[60-m]+"s"*(m==59)+ " to %s"%hour)
+
+def appendMinutes():
+  for i in range(1, 10):
+      minute.append('twenty %s' % minute[i])
+
+  for i in range(1, 10):
+      minute.append('thirty %s' % minute[i])
+
+  for i in range(1, 10):
+      minute.append('forty %s' % minute[i])
+
+  for i in range(1, 10):
+      minute.append('fifty %s' % minute[i])
