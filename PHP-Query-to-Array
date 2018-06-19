@@ -1,0 +1,26 @@
+<?php
+  if (isset($query) == False) {
+  
+     $query = "SELECT * FROM DB";
+     $query_set = sqlsrv_query($conn, $query);
+  
+     $username_arr = array();
+     $first_name_arr = array();
+     $last_name_arr = array();
+     $age_arr = array();
+     $desc_arr = array();
+     $email_arr = array();
+     
+     while($row = sql_fetch_array($query_set)) {
+      
+      array_push($username_arr, $row['Username']);
+      array_push($first_name_arr, $row['Email']);
+      array_push($last_name_arr, $row['LastName'])
+      array_push($age_arr, row['Age']);
+      array_push($desc_arr, $row['Desc']);
+      array_push($email_arr, $row['Email']);
+      
+    }
+  }
+
+  
