@@ -1,0 +1,33 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<form id="form1" action="/form_insert.php">
+  <input type='file' id="uploadImage" />
+</form>
+
+<img id="page-1" src="./img/fff.png" style="height: 100px; width: auto;"/>
+<br>
+<img id="page-2-slot-1" src="./img/f00.png" style="height: 80px; width: auto;"/>
+<img id="page-2-slot-2" src="./img/0f0.png" style="height: 40px; width: auto;"/>
+<img id="page-2-slot-3" src="./img/00f.png" style="height: 20px; width: auto;"/>
+
+<script>
+  function readURL(input) {
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        $('#page-1').attr('src', e.target.result);
+        $('#page-2-slot-1').attr('src', e.target.result);
+        $('#page-2-slot-2').attr('src', e.target.result);
+        $('#page-2-slot-3').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $("#uploadImage").change(function() {
+    readURL(this);
+  });
+</script>
