@@ -4,8 +4,6 @@
 This repo contains folders to separate projects that I have worked on that currently are not contained in their own repository.
 
 ## Projects contained
-### __Logs Analysis__
-Python code running postgreSQL to query news database, returning the top 3 ranking of the most viewed articles and authors, and day in which error rates exceeded 2%.
 
 ### __Mobile Map with Jquery__
 This is a variant on the Neighborhood Map project that uses Jquery to have the Wikipedia API show over the mobile drop down page.
