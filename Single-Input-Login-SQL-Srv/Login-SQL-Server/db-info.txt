@@ -1,3 +1,0 @@
-database: loginswitch
-table: accounts
-columns: id(int(16), AI, primary), username(varchar(50)), password(varchar(50))
