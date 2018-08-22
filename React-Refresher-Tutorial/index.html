@@ -1,0 +1,64 @@
+<!--
+Building with React
+
+1. Set up Boilerplate with Emmet (https://emmet.io)
+2. Set up Developer Environment with script of:
+  a. React
+  b. React DOM
+  c. Babel Libraries (babeljs.io)
+3. How to choose the element within the DOM we want our React to render to
+4. How to render React to the DOM
+
+
+With Emmet, HTML:5 + TAB will create a basic HTML template
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- REACT LIBRARY -->
+  <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+
+  <!-- REACT DOM LIBRARY -->
+  <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+
+  <!-- BABEL LIBRARY -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+
+  <title>REACT</title>
+
+</head>
+<body>
+  <!-- LOCATION TO INSERT REACT CONTENT -->
+  <div id="app">Not rendered yet.</div>
+
+  <!-- JAVASCRIPT -->
+  <!-- Need to have ability to use JSX right away with Babel -->
+  <script type="text/babel">
+
+    // Refactored the variables so that the ReactDOM's render container is more easier to read
+
+    // Variable for JSX
+    var hello = <h1>Hello</h1>;
+
+    // Variable for location
+    var destination = document.getElementById("app");
+
+    // Render React to the DOM - will accept 2 arguments (React WHAT, React WHERE)
+    ReactDOM.render(
+
+      // React WHAT - JSX
+      hello,
+
+      // React WHERE - Div with ID of "APP"
+      // Note that this document write will NOT work with a semicolon;
+      destination
+    );
+
+  </script>
+</body>
+</html>
