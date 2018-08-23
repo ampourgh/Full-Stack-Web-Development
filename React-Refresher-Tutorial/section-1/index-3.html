@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- REACT LIBRARY -->
+  <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+
+  <!-- REACT DOM LIBRARY -->
+  <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+
+  <!-- BABEL LIBRARY -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+
+  <title>REACT</title>
+
+</head>
+<body>
+  <!-- LOCATION TO INSERT REACT CONTENT -->
+  <div id="app">Not rendered yet.</div>
+
+  <!-- JAVASCRIPT -->
+  <!-- Need to have ability to use JSX right away with Babel -->
+  <script type="text/babel">
+
+    ReactDOM.render(
+
+      // React WHAT - JSX
+
+      // Cannot have multiple tags in here at once,
+      // need an enclosing tag in order to read JSX
+      <div>
+        <h1>Hello there</h1>
+        <p>What is your name?</p>
+      </div>,
+
+      // React WHERE - Div with ID of "APP"
+      // Note that this document write will NOT work with a semicolon;
+      document.getElementById("app")
+    );
+
+  </script>
+</body>
+</html>
