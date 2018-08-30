@@ -1,0 +1,71 @@
+<!--
+JavaScript Objects
+
+Objects in JavaScript is a value type with a key/value pair
+
+Anything that isn't a primitive is an object
+
+primitives include
+ - integors
+ - strings
+ - booleans
+ - NULL values
+ - undefined
+ - symbols
+
+NAME CHANGES:
+
+Variable -> Properties
+Functions -> Methods
+
+var car = {
+  key: 'value',
+  wheels: 4,
+  color: 'red',
+  mpg: 34,
+  engine: 34,
+  engine: 1,
+  gallons: 12
+}
+
+Object Notation = object.property = value;
+Bracket Notation = object['property'] = value;
+
+e.g.:
+car.wheels = 4;
+car['wheels'] = 4;
+-->
+
+
+<script>
+  // CHALLENGE
+  // BUILD A PERSON WITH OBJECT LITERAL Notation
+  // Use 3 property values consisting of a string, int and boolean
+
+  var person = {
+    name: 'default',
+    age: 0,
+    live: false
+  }
+
+  person.name = 'Niyuh';
+  person['age'] = 1;
+  person.live = true;
+
+
+  var pizza = {};
+
+  pizza.crust = "wheat";
+
+  pizza.cheese = "mozzarella";
+
+  pizza.toppings = "cheese, pepperoni, olives";
+
+  // console.log(pizza);
+  // >>> Object {crust: "wheat", cheese: "mazzarella", toppings: "cheese, pepperoni, olives"}
+
+  // console.log(pizza.cheese);
+  // console.log(pizza['cheese']);
+  // >>> "mozzarella"
+
+</script>
