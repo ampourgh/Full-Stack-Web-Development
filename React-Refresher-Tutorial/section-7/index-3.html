@@ -21,41 +21,57 @@
   <!-- JAVASCRIPT -->
   <script type="text/babel">
     function FamilyList(props) {
+
       var femaleSiblings = props.siblings.filter(function(person) {
-        return person.female;
+        // return person.female; <-- same as below
+        return person.female === true;
       }).map(function(person) {
-        return <div key={person.id}>{person.name}</div>;
+        return <div key={person.id}>{person.id}.) {person.name}</div>;
       });
+
       // CHALLENGE - use filter and map to generate JSX for male siblings
       var maleSiblings = props.siblings.filter(function(person) {
         return person.female === false;
       }).map(function(person) {
-        return <div key={person.id}>{person.name}</div>
+        return <div key={person.id}>{person.id}.) {person.name}</div>
       });
+
       return(
         <div>
-          <h1>Female Siblings</h1>
+          <h1>Female</h1>
             <div>
-              {/*Render female siblings*/}
+              {/*Render var femaleSiblings*/}
               {femaleSiblings}
             </div>
+
+            {/*in JSX, hr tag needs a closing at the end*/}
             <hr/>
-          <h1>Male Siblings</h1>
+
+          <h1>Male</h1>
             <div>
-              {/*Render male siblings*/}
+              {/*Render var maleSiblings*/}
               {maleSiblings}
             </div>
         </div>
       );
+
     }
-    var siblings = [{id: 1, name: 'Chris', female: false}, {id: 2, name: 'Jeff', female: false},
-                {id: 3, name: 'Julie', female: true}, {id: 4, name: 'Jessica', female: true}];
+
+    var siblings = [
+                    {id: 1, name: 'Flowers', female: false},
+                    {id: 2, name: 'Pie', female: false},
+                    {id: 3, name: 'Tie', female: true},
+                    {id: 4, name: 'Oval', female: true}
+                  ];
+
     ReactDOM.render(
+      // props (siblings) = var siblings
       <FamilyList
         siblings={siblings}
       />,
       document.getElementById("app")
     );
+
   </script>
 
 </body>
