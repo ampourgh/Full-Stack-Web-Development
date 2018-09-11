@@ -11,7 +11,7 @@
   <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
   <!-- BABEL LIBRARY -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
-  <title>Boiler Plate Code</title>
+  <title>List of Males and Females</title>
 </head>
 <body>
 
@@ -23,14 +23,24 @@
     function FamilyList(props) {
 
       var femaleSiblings = props.siblings.filter(function(person) {
-        // return person.female; <-- same as below
+
+        /*
+        Below is the shorthand for the following:
+
+        if (person.female === true) {
+          return person.female;
+        }
+        */
         return person.female === true;
+
       }).map(function(person) {
         return <div key={person.id}>{person.id}.) {person.name}</div>;
       });
 
       // CHALLENGE - use filter and map to generate JSX for male siblings
       var maleSiblings = props.siblings.filter(function(person) {
+
+        // shorthand
         return person.female === false;
       }).map(function(person) {
         return <div key={person.id}>{person.id}.) {person.name}</div>
@@ -61,7 +71,8 @@
                     {id: 1, name: 'Flowers', female: false},
                     {id: 2, name: 'Pie', female: false},
                     {id: 3, name: 'Tie', female: true},
-                    {id: 4, name: 'Oval', female: true}
+                    {id: 4, name: 'Oval', female: true},
+                    {id: 5, name: 'Clov', female: true}
                   ];
 
     ReactDOM.render(

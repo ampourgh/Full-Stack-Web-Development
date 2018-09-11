@@ -13,43 +13,53 @@
   <title>Styling Components</title>
 </head>
 <body>
-  <div id="app">React has not rendered yet</div>
+  <div id="app">Colors have not rendered yet</div>
 
   <script type="text/babel">
-    // Challenge 2 - set up Color component to receive the array and transform it with the map method
+
     var Color = function(props) {
+
       var colorItems = props.colors.map(function(color) {
+
         var colorStyle = {
-          marginBottom: 25,
+          marginBottom: 0,
           height: 50,
           width: 150,
+          fontFamily: 'Arial',
+          fontSize: 30,
+          textAlign: 'center',
+          color: color.text,
           backgroundColor: color.color
         };
+
         return <div style={colorStyle} key={color.id}>{color.name}</div>
+
       });
+
       return(
         <h1>{colorItems}</h1>
       );
+
     }
-    // var Color = function(props) {
-    //   var colorStyle = {
-    //     height: 50,
-    //     width: 150,
-    //     backgroundColor: props.color
-    //   }
-    //   return(
-    //     <h1 style={colorStyle}>{props.name}</h1>
-    //   );
-    // }
-    var colors = [{id: 1, color: "red", name: "red"}, {id: 2, color: "orange", name: "orange"},
-      {id: 3, color: "yellow", name: "yellow"}, {id: 4, color: "green", name: "green"},
-      {id: 5, color: "blue", name: "blue"}, {id: 6, color: "indigo", name: "indigo"},
-      {id: 7, color: "violet", name: "violet"}];
-      // Challenge 1 - create prop of colors and assign it the value of our colors array
+
+    var colors = [{id: 1, color: "red", text: "orange", name: "red"},
+                  {id: 2, color: "orange", text: "red", name: "orange"},
+                  {id: 3, color: "yellow", text: "green", name: "yellow"},
+                  {id: 4, color: "green", text: "yellow", name: "green"},
+                  {id: 5, color: "blue", text: "white", name: "blue"},
+                  {id: 6, color: "indigo", text: "white", name: "indigo"},
+                  {id: 7, color: "violet", text: "black", name: "violet"}
+                ];
+
     ReactDOM.render(
+
       // REACT WHAT
-      <Color colors={colors}/>,
+      <Color
+        colors={colors}
+      />,
+
       document.getElementById("app")
+
     );
   </script>
 </body>
