@@ -11,36 +11,50 @@
   <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
   <!-- BABEL LIBRARY -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
-  <title>Boiler Plate Code</title>
+  <title>Notepad</title>
 </head>
 <body>
 
   <!-- DESIGNATED LOCATION TO INSERT REACT CONTENT  -->
-  <div id="app">React has not rendered yet</div>
+  <div id="app">Not rendered.</div>
 
   <!-- JAVASCRIPT -->
   <script type="text/babel">
+
     // Create Note Component
     class Note extends React.Component {
+
+      handleButtonAdd() {
+        alert("Add note:");
+      }
+
       handleButtonEdit() {
-        alert("this function will edit a note");
+        alert("Edit note:");
       }
+
       handleButtonDelete() {
-        alert("this function will delete a note")
+        alert("Are you sure you want to delete?")
       }
+
       render() {
         console.log(this);
         return(
+
           <div>
-            <h1>Useless Note Taker</h1>
-            <button onClick={this.handleButtonEdit}>edit note</button>
-            <button onClick={this.handleButtonDelete}>delete note</button>
+            <h1>Note Taker</h1>
+            <button onClick={this.handleButtonAdd}>add</button>
+            <button onClick={this.handleButtonEdit}>edit</button>
+            <button onClick={this.handleButtonDelete}>delete</button>
           </div>
+
         );
       }
     }
+
     ReactDOM.render(
-      <Note/>,
+      <
+        Note
+      />,
       document.getElementById("app")
     );
   </script>

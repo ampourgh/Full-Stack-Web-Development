@@ -11,12 +11,12 @@
   <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
   <!-- BABEL LIBRARY -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
-  <title>Boiler Plate Code</title>
+  <title>Life Lesson</title>
 </head>
 <body>
 
   <!-- DESIGNATED LOCATION TO INSERT REACT CONTENT  -->
-  <div id="app">React has not rendered yet</div>
+  <div id="app">Not yet rendered.</div>
 
   <!-- JAVASCRIPT -->
   <script type="text/babel">
@@ -24,25 +24,38 @@
     // Challenge - Name two functions to run whenever event occurs
     // Challenge - Create two functions above the render method
     class Warnings extends React.Component {
-      handleButtonStove() {
-        alert("Ouch, that is hot!!")
+
+      handleButtonBin() {
+        alert("That smells terrible!")
       }
+
+      handleButtonStove() {
+        alert("Ouch! Burn!")
+      }
+
       handleButtonSlurpee() {
         alert("Brain freeze!!")
       }
+
       render() {
         return(
           <div>
-            <h1>Life Warnings</h1>
+            <h1>Life Lessons:</h1>
+            <button onMouseOver={this.handleButtonBin}>Smell garbage bin</button>
             <button onMouseOver={this.handleButtonStove}>Touch Stove</button>
             <button onMouseOver={this.handleButtonSlurpee}>Drink Slurpee Really Fast</button>
           </div>
         );
       }
+
     }
     ReactDOM.render(
-      <Warnings/>,
+      <
+        Warnings
+      />,
+
       document.getElementById("app")
+
     );
   </script>
 
