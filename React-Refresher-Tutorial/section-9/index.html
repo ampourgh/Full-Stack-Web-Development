@@ -11,66 +11,50 @@
   <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
   <!-- BABEL LIBRARY -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
-  <title>Boiler Plate Code</title>
+  <title>Guessing Game</title>
 </head>
 <body>
 
   <!-- DESIGNATED LOCATION TO INSERT REACT CONTENT  -->
-  <div id="app">React has not rendered yet</div>
+  <div id="app">Not rendered.</div>
 
   <!-- JAVASCRIPT -->
   <script type="text/babel">
-    // class GuessAge extends React.Component {
-    //   constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //       age: 'Guess My Age'
-    //     };
-    //     this.onButtonClick = this.onButtonClick.bind(this)
-    //   }
-    //   onButtonClick() {
-    //     this.setState({
-    //       age: '37'
-    //     });
-    //   }
-    //   render() {
-    //     return(
-    //       <div>
-    //         <h1>Guessing Game</h1>
-    //         <h2>{this.state.age}</h2>
-    //         <button onClick={this.onButtonClick}>reveal my age</button>
-    //       </div>
-    //     );
-    //   }
-    // }
+
     // BIND IN CONSTRUCTOR
     // USE ARROW FUNCTION IN RENDER
-    class GuessAge extends React.Component {
+    class Guesser extends React.Component {
+
       constructor(props) {
         super(props);
         this.state = {
-          age: 'Guess My Age'
+          age: '???'
         };
       }
-      onButtonClick() {
+
+      buttonClickFunction() {
         this.setState({
-          age: '37'
+          age: '1000'
         });
       }
+
       render() {
         return(
           <div>
             <h1>Guessing Game</h1>
-            <h2>{this.state.age}</h2>
-            <button onClick={() => this.onButtonClick()}>reveal my age</button>
+            <button onClick={() => this.buttonClickFunction()}>AGE: {this.state.age}</button>
           </div>
         );
+
       }
+
     }
+
     ReactDOM.render(
-      <GuessAge/>,
+      <Guesser/>,
       document.getElementById("app")
     );
+
   </script>
 
 </body>
