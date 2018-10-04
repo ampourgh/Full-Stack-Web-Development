@@ -94,83 +94,71 @@
     // CREATE CLASS COMPONENT FOR DinnerVote
     class MealSelection extends React.Component {
 
-      var allMeals = props.meals.map(function(meal) {
+      constructor(props) {
 
-        constructor(props) {
+        super(props);
 
-          super(props);
+        this.state = {
+          votes: 0
+        };
 
-          meal.state = {
-            votes: 0
-          };
+        this.add = this.add.bind(this);
+        this.subtract = this.subtract.bind(this);
+        this.nameVal = this.props.nameVal.charAt(0).toUpperCase()
+                       + this.props.nameVal.slice(1).replace('-',' ');
+      }
 
-          meal.add = meal.add.bind(meal);
-          meal.subtract = meal.subtract.bind(meal);
-          meal.nameVal = meal.props.nameVal.charAt(0).toUpperCase()
-                         + meal.props.nameVal.slice(1).replace('-',' ');
+      add() {
+        if (this.state.votes < 10) {
+          this.setState({
+            votes: this.state.votes + 1
+          })
+        } else {
+
         }
+      }
 
-        add() {
-          if (meal.state.votes < 10) {
-            meal.setState({
-              votes: meal.state.votes + 1
-            })
-          } else {
+      subtract() {
 
-          }
-        }
+        if (this.state.votes == 0) {
 
-        subtract() {
+          this.setState({
+            votes: this.state.votes
+          })
 
-          if (meal.state.votes == 0) {
+         } else {
 
-            meal.setState({
-              votes: meal.state.votes
-            })
-
-           } else {
-
-            meal.setState({
-              votes: meal.state.votes - 1
-            })
-
-          }
+          this.setState({
+            votes: this.state.votes - 1
+          })
 
         }
 
-        return(
-          <div style={styler}>
-            <img src={meal.props.img} alt="food image" style={foodStyle}/>
-            <h1>{meal.nameVal}</h1>
-            <span style={plus} onClick={meal.add}>+</span>
-            <span style={negative} onClick={meal.subtract}>-</span>
-            <input style={total} type="text" name={meal.props.nameVal} value={meal.state.votes} />
-            <Looper idVal={meal.props.id} />
-          </div>
-        );
-      });
-
-      render() {
-        return(
-          <h1>{allMeals}</h1>
-        );
       }
 
 
+      render() {
 
+        return(
+          <div style={styler}>
+            <img src={this.props.img} alt="food image" style={foodStyle}/>
+            <h1>{this.nameVal}</h1>
+            <span style={plus} onClick={this.add}>+</span>
+            <span style={negative} onClick={this.subtract}>-</span>
+            <input style={total} type="text" name={this.props.nameVal} value={this.state.votes} />
+            <Looper idVal={this.props.id} />
+          </div>
+        );
+      }
     }
-
-    var colors = [
-                  {id="1" nameVal="item-1" img="./img/lime.png"},
-                  {id="2" nameVal="item-2" img="./img/lime.png"},
-                  {id="3" nameVal="item-3" img="./img/lime.png"}
-                 ];
 
     ReactDOM.render(
 
-      <MealSelection
-        meals={meals}
-      />,
+      <div>
+        <MealSelection id="1" nameVal="item-1" img="./img/lime.png"/>
+        <MealSelection id="2" nameVal="item-2" img="./img/lime.png"/>
+        <MealSelection id="3" nameVal="item-3" img="./img/lime.png"/>
+      </div>,
 
       document.getElementById("app")
     );
