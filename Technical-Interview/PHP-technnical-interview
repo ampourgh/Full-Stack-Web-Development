@@ -1,0 +1,66 @@
+echo 'Check order: ';
+$values = ["a", "A", "0"];
+sort($values);
+
+$valuesLength=count($values);
+for($x=0; $x<$valuesLength; $x++) {
+  echo $values[$x] . ', ';
+}
+
+echo "\n----------------------------\n";
+
+function bugFunction($bugType) {
+  $c = 0;
+  foreach ($bugType as $key => $item) {
+    foreach ($item as $i) {
+      $c++;
+    }
+  }
+  return $c;
+}
+
+$html = '<html><head></head><body>';
+
+// $_SERVER['QUERY_STRING'] == http://webserver.local/?pt1=this&amp;pt2=that&amp;pt3=these
+
+parse_str("pt1=this&pt2=that&pt3=these", $output);
+$html .= bugFunction($output);
+$html .= "</body></html>\n";
+echo $html;
+
+print_r($output);
+
+echo "\nInvalid argument supplied for foreach() :15";
+
+echo "\n----------------------------\n";
+
+$array1 = [1,2,3,4,5,6,7];
+$array2 = [3,4,8,0];
+
+$merge = array_merge($array1,$array2);
+$result = array_unique($merge);
+print_r($result);
+
+echo "\n----------------------------\n";
+
+$array = [1, 2, 3, 4, 5, 7];
+$result = 0;
+for ($x = 0; $x <= count($array); $x++) {
+  $result += $array[$x]; //6: 49 undefined
+}
+echo $result;
+
+echo "\n----------------------------\n";
+
+$array = [1, 2, 3, 4, 5, 6];
+$result = 0;
+foreach (array_reverse($array) as $key => $item) {
+  $result .= $array[$key];
+  $keyItem = $key + $item;
+  $key++;
+}
+echo $result;
+
+echo "\n----------------------------\n";
+
+echo 'Tomorrow' . ' will be January ' . 3 . 'rd';
