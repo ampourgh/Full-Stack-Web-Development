@@ -1,0 +1,181 @@
+<!-- INSERT BOILER PLATE CODE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- REACT LIBRARY -->
+  <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+  <!-- REACT DOM LIBRARY -->
+  <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+  <!-- BABEL LIBRARY -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+  <title>Meal Vending Machine</title>
+</head>
+<body>
+
+  <!-- DESIGNATED LOCATION TO INSERT REACT CONTENT  -->
+  <div style="text-align: center;">
+    <h1>Meal Vending Machine</h1>
+  </div>
+
+  <hr>
+  <br>
+
+  <form action="index.php" method="post" enctype="multipart/form-data">
+    <div style="text-align: center;">
+      <div id="app">React has not rendered yet</div>
+
+      <br>
+      <hr>
+      <br>
+
+      <input type="submit" style="font-size: 30px; border: 0 solid black; padding: 10px 20px; border-radius: 0; filter: drop-shadow(0px 1px 1px #555);">
+    </div>
+  </form>
+
+  <!-- JAVASCRIPT -->
+  <script type="text/babel">
+
+    var styler = {
+      // From Friendly
+      display: "inline-block",
+      textAlign: "center",
+      margin: 20,
+      height: 400,
+      width: 300,
+      padding: 0,
+      backgroundColor: "#FFF",
+      WebkitFilter: "drop-shadow(0px 0px 5px #555)",
+      filter: "drop-shadow(0px 0px 5px #555)"
+    }
+
+    var plus = {
+      backgroundColor: "#FFF",
+      border: 0,
+      cursor: 'pointer',
+      padding: '0px 5px',
+      fontSize: 20,
+      WebkitFilter: "drop-shadow(0px 1px 1px #555)",
+      filter: "drop-shadow(0px 1px 1px #555)"
+    }
+
+    var negative = {
+      backgroundColor: "#FFF",
+      border: 0,
+      cursor: 'pointer',
+      padding: '0px 5px',
+      fontSize: 20,
+      WebkitFilter: "drop-shadow(0px 1px 1px #555)",
+      filter: "drop-shadow(0px 1px 1px #555)",
+      zIndex: "1000"
+    }
+
+    var total = {
+      fontSize: 30,
+      textAlign: "center"
+    }
+
+    var foodStyle = {
+      height: 200,
+      width: 'auto',
+      marginTop: 20
+    }
+
+    function Looper(props) {
+      return(
+        <div>
+          <h1>{props.idVal}</h1>
+        </div>
+      );
+    }
+
+    // CREATE CLASS COMPONENT FOR DinnerVote
+    class MealSelection extends React.Component {
+
+      constructor(props) {
+
+        super(props);
+
+        this.state = {
+          votes: 0
+        };
+
+        this.add = this.add.bind(this);
+        this.subtract = this.subtract.bind(this);
+        this.nameVal = this.props.nameVal.charAt(0).toUpperCase()
+                       + this.props.nameVal.slice(1).replace('-',' ');
+      }
+
+      add() {
+        if (this.state.votes < 10) {
+          this.setState({
+            votes: this.state.votes + 1
+          })
+        } else {
+
+        }
+      }
+
+      subtract() {
+
+        if (this.state.votes == 0) {
+
+          this.setState({
+            votes: this.state.votes
+          })
+
+         } else {
+
+          this.setState({
+            votes: this.state.votes - 1
+          })
+
+        }
+
+      }
+
+
+      render() {
+        return(
+          <div style={styler} id={this.props.id}>
+            <img src={this.props.img} alt="food image" style={foodStyle}/>
+            <h1>{this.nameVal}</h1>
+            <span style={plus} onClick={this.add}>+</span>
+            <span style={negative} onClick={this.subtract}>-</span>
+            <input style={total} type="text" name={this.props.nameVal} value={this.state.votes} />
+            <Looper idVal={this.props.id} />
+          </div>
+        );
+      }
+
+    }
+
+    var MealSelector = function(props) {
+
+      var bundledMeals = props.meals.map(function(meal) {
+        return <MealSelection key={meal.id} id={meal.id} nameVal={meal.nameVal} img={meal.img}/>
+      });
+
+      return(
+        <div>{bundledMeals}</div>
+      );
+    }
+
+    var meals = [
+                  {id: 1, nameVal: "item-1", img: "./img/lime.png"},
+                  {id: 2, nameVal: "item-2", img: "./img/lime.png"},
+                  {id: 3, nameVal: "item-3", img: "./img/lime.png"}
+                ];
+
+    ReactDOM.render(
+      <MealSelector meals={meals}/>,
+      document.getElementById("app")
+    );
+
+
+  </script>
+
+</body>
+</html>
