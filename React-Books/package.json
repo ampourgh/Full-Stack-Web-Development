@@ -1,0 +1,24 @@
+{
+  "name": "react-books",
+  "version": "1.0.0",
+  "description": "Book list",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./node_modules/server.js/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ampourgh/Full-Stack-Web-Development.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ampourgh/Full-Stack-Web-Development/issues"
+  },
+  "homepage": "https://github.com/ampourgh/Full-Stack-Web-Development#readme",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "react": "^16.5.2",
+    "server.js": "^1.0.0"
+  }
+}
