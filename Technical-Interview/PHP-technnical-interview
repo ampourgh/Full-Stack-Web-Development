@@ -64,3 +64,9 @@ echo $result;
 echo "\n----------------------------\n";
 
 echo 'Tomorrow' . ' will be January ' . 3 . 'rd';
+
+
+echo "\n----------------------------\n";
+
+$alpha = ['a', 'b', 'c', 'd', 'e', 'f'];
+var_dump($alpha[3]);
