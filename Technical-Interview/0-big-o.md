@@ -1,26 +1,29 @@
 # BIG O NOTATION NOTES
 
-### CALCULATE
+## CALCULATE
 
-```
-def sumOfList(a, n):		  # cost & No. of Times
-	total = 0		# 1 & 1
-	for i = 0 in (n-1):	    # 2 & n + 1
-	      total = total + a # 2 & n
-	return total		        # 1 & 1
+```python
+def sumOfList(a, n):		   # cost & No. of Times
+	total = 0		             # 1 & 1
+	for i = 0 in (n-1):	     # 2 & n + 1
+	      total = total + a  # 2 & n
+	return total		         # 1 & 1
 
 f(n) = 1 + 2(n+1) + 2n + 1
 f(n) = 4n + 4
 f(n) = O(n)
 ```
 
-### Types of Possible Big O Outcomes
+## Types of Possible Big O Outcomes
+
 
 **O(1)** - static/constant -> the function is going to be the same every time
 
 EX: Simply looking up the third value.
+```python
 letters = ["A", "B", "C"]
 letters[2]
+```
 
 **O(log N)** - "divide + conquer", binary search; growth at the beginning, but flattens out.
 
@@ -30,8 +33,10 @@ Rinse and repeat until number is found.
 
 **O(N)** - directly + linearly linked with N, will grow in proportion to the input data
 EX: Inserting makes the rest of the values move right; as dataset grows, so does the time.
+```python
 letters = ["B", "C", "D"]
 letters.insert(0, "A")
+```
 
 EX: Linear search -> going from left to right, searching for a value.
 
@@ -46,6 +51,7 @@ Bubble Sort ->
 Compare the 2 indices right next to each other.
 
 **O(2^N)**
+
 **O(infinity)** - coin flip, could take forever
 
 -----
