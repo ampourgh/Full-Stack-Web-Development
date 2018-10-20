@@ -65,11 +65,17 @@ class BinarySearchTree {
     // start function
     checkNode(this.root);
 
+    console.log('Aggregating from BST...');
 
-    function checkNode(node) {
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms))
+    }
+
+    async function checkNode(node) {
 
       // check left
       if(node.left !== null) {
+        await sleep(200);
         treeArr.push('[left] ' + node.left.value);
         // repeat function from left node's children
         checkNode(node.left);
@@ -77,12 +83,16 @@ class BinarySearchTree {
 
       // check right
       if(node.right !== null) {
+        await sleep(100);
         treeArr.push('[right] ' + node.right.value);
         checkNode(node.right);
       }
     }
-
-    console.log(treeArr);
+    async function consoleLog() {
+      await sleep(1000);
+      console.log(treeArr);
+    }
+    consoleLog()
   }
 }
 
@@ -98,7 +108,7 @@ numList.add(0);
 
 numList.showcase();
 /*
-   [ 
+   [
      '[root] 3', '[left] 2', '[left] 1', '[left] 0', '[right] 4', '[right] 5',
      '[right] 17', '[left] 9'
    ]
