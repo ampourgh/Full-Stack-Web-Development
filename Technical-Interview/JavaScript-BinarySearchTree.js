@@ -67,15 +67,17 @@ class BinarySearchTree {
 
     console.log('Aggregating from BST...');
 
+    // sleep function with timeout promise
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     }
 
+    // async function that references the sleep function
     async function checkNode(node) {
 
       // check left
       if(node.left !== null) {
-        await sleep(200);
+        await sleep(2);
         treeArr.push('[left] ' + node.left.value);
         // repeat function from left node's children
         checkNode(node.left);
@@ -83,16 +85,81 @@ class BinarySearchTree {
 
       // check right
       if(node.right !== null) {
-        await sleep(100);
+        await sleep(1);
         treeArr.push('[right] ' + node.right.value);
         checkNode(node.right);
       }
     }
+
+    // log the array of BST branches after the main async function completes
     async function consoleLog() {
-      await sleep(1000);
+      await sleep(10);
       console.log(treeArr);
     }
+
     consoleLog()
+  }
+}
+
+class DepthFirstSearch extends BinarySearchTree {
+  // pre-order -> root, left, right
+  // in-order -> left, root, right
+  // post-order -> left, right, root
+  consstructor(){
+    this.traverseMethod = 'pre-order';
+  }
+
+  setTraverseMethod(traverseMethod){
+
+    if(traverseMethod == 'pre-order' || traverseMethod == 'in-order' || traverseMethod == 'post-order'){
+
+      this.traverseMethod = traverseMethod;
+
+    } else {
+
+      console.error('Not a valid search method, must be "pre-order", "in-order" or "post-order"');
+
+    }
+
+  }
+
+  getTraverseMethod(){
+    return this.traverseMethod;
+  }
+
+  traverse(){
+    switch(this.traverseMethod){
+      case 'pre-order':
+        this.preOrderTraverse(value);
+        break;
+      case 'in-order':
+        this.inOrderTraverse(value);
+        break;
+      case 'post-order':
+        this.postOrderTraverse(value);
+        break;
+      default:
+        console.error('invalid traverse method');
+    }
+  }
+
+  preOrderTraverse(value){
+
+
+  }
+
+  inOrderTraverse(value){
+
+  }
+
+  postOrderTraverse(value){
+
+  }
+}
+
+class BreadthFirstTraverser extends BinarySearchTree {
+  traverse(value){
+
   }
 }
 
@@ -107,9 +174,6 @@ numList.add(9);
 numList.add(0);
 
 numList.showcase();
-/*
-   [
-     '[root] 3', '[left] 2', '[left] 1', '[left] 0', '[right] 4', '[right] 5',
-     '[right] 17', '[left] 9'
-   ]
-*/
+
+var dfs = new DepthFirstSearch();
+dfs.traverse();
