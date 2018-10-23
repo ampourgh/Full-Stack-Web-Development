@@ -20,7 +20,7 @@
           }
       }
 
-      public function partition($low, $high){
+      public function partition($low, $high) {
 
           if($low===null || $high===null){
               return false;
