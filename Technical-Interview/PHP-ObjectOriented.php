@@ -13,7 +13,7 @@
     protected $start_up_sound;
     protected $id;
 
-    public static $population = 0;
+    public static $population = 1;
 
     const PI = "3.14159";
 
@@ -62,20 +62,15 @@
       echo "Set " . str_replace("_", " ", $variable) . " to " . $value . ".\n";
     }
 
-    function run() {
-      echo $this->birth_name . " operates economically.\n";
-    }
-
     function __toString(){
       return $this->birth_name . " says " . $this->start_up_sound .
       " while ". $this->operating_system . " starts running. ID: " .
-      $this->id . ", sequence: " . Animal::$number_of_animals .
-
-      "\n";
+      $this->id . ", sequence: " . Android::$population . "\n";
     }
 
-}
-
+    function run() {
+      echo $this->birth_name . " operates economically.\n";
+    }
   }
 
   class Android_Gen_2 extends Android {
@@ -84,7 +79,7 @@
     }
   }
 
-  class Android_Gen_3 extends Android_Gen_2 {
+  class Android_Gen_3 extends Android_Gen_2 implements Singable{
     protected $telepathy;
 
     public function tele() {
@@ -98,13 +93,37 @@
     function run() {
       echo $this->birth_name . " has visions of the future.\n";
     }
+
+    function __toString(){
+      return $this->birth_name . " fails to respond with the initial " . $this->start_up_sound .
+      " sound while ". $this->operating_system . " boots up. ID: " .
+      $this->id . ", sequence: " . Android::$population . "\n";
+    }
+
+    function sing() {
+      echo $this->birth_name . " uses an atiquated device called a flute.\n";
+    }
+
+    static function add_this($first, $second) {
+      return $first . " " . $second;
+    }
+  }
+
+  interface Singable {
+    public function sing();
+  }
+
+  function sing_function(Singable $passed_var) {
+    $passed_var->sing();
+  }
+
+  function sing_function_ver2(Android_Gen_3 $passed_var) {
+    $passed_var->sing();
   }
 
   $android_clone = new Android_Gen_3();
 
   echo $android_clone->birth_name . " says " . $android_clone->start_up_sound . ".\n";
-
-  $android_clone->telepathy . ".\n";
 
   $android_clone->birth_name = "l33t";
   $android_clone->operating_system = "Windows 2057";
@@ -113,6 +132,20 @@
   echo $android_clone->birth_name . " says " . $android_clone->start_up_sound . ".\n";
   $android_clone->run();
 
-  $android_clone->setTele(" hello\n");
-  $android_clone->tele();
+  // $android_clone->setTele(" hello\n");
+  // $android_clone->tele();
+
+  echo $android_clone;
+
+  // $android_clone->sing();
+  sing_function($android_clone);
+  sing_function_ver2($android_clone);
+
+  echo Android_Gen_3::add_this('first', 'last');
+
+  $android_clone_replica = clone $android_clone;
+
+  echo "\n\n";
+
+  echo $android_clone_replica->birth_name . " says " . $android_clone_replica->start_up_sound . ".\n";
  ?>
