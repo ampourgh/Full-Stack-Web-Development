@@ -65,6 +65,17 @@
     function run() {
       echo $this->birth_name . " operates economically.\n";
     }
+
+    function __toString(){
+      return $this->birth_name . " says " . $this->start_up_sound .
+      " while ". $this->operating_system . " starts running. ID: " .
+      $this->id . ", sequence: " . Animal::$number_of_animals .
+
+      "\n";
+    }
+
+}
+
   }
 
   class Android_Gen_2 extends Android {
