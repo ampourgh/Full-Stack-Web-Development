@@ -4,7 +4,6 @@
   protected - same as private, but also can be altered by sub-classes
   public - outside can modify this
   private - only classes can modify this attribute
-
   */
 
   class Android {
@@ -77,7 +76,13 @@
   class Android_Gen_3 extends Android_Gen_2 {
     protected $telepathy;
 
-    $telepathy = ' emits messages to you.';
+    public function tele() {
+      echo $this->birth_name . $this->telepathy;
+    }
+
+    public function setTele(string $variable=" emits signals you can understand.") {
+      $this->telepathy = $variable;
+    }
 
     function run() {
       echo $this->birth_name . " has visions of the future.\n";
@@ -96,4 +101,7 @@
 
   echo $android_clone->birth_name . " says " . $android_clone->start_up_sound . ".\n";
   $android_clone->run();
+
+  $android_clone->setTele(" hello\n");
+  $android_clone->tele();
  ?>
