@@ -1,7 +1,7 @@
 <?php
 
-$passedUser = "\nthisUser";
-$passedPass = "\nthisPass";
+$passedUser = "thisUser";
+$passedPass = "thisPass";
 
 class Connect {
 
@@ -30,13 +30,26 @@ class Connect {
 
 }
 
-class Query {
-    public function firstQuery($user, $pass) {
+class Query implements Welcome {
+    public function loggingIn($user, $pass) {
         $database = Connect::getInstance($user, $pass);
         $start = $database::connection();
-        echo $start;
+        return $start;
+    }
+
+    public function welcomeMessage($user) {
+        return "\nWelcome " . $user . " to the server!";
     }
 }
 
+interface Welcome {
+    public function welcomeMessage($user);
+}
+
+function pushWelcome(Welcome $qq, $login) {
+  $qq->welcomeMessage($login);
+}
+
 $qq = new Query();
-echo $qq->firstQuery($passedUser, $passedPass);
+$login = $qq->loggingIn($passedUser, $passedPass);
+echo pushWelcome($qq, $login);
