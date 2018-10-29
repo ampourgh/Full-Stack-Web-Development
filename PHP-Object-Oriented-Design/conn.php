@@ -30,7 +30,7 @@ class Connect {
 
 }
 
-class Query implements Welcome {
+class Query {
     public function loggingIn($user, $pass) {
         $database = Connect::getInstance($user, $pass);
         $start = $database::connection();
@@ -42,14 +42,6 @@ class Query implements Welcome {
     }
 }
 
-interface Welcome {
-    public function welcomeMessage($user);
-}
-
-function pushWelcome(Welcome $qq, $login) {
-  $qq->welcomeMessage($login);
-}
-
 $qq = new Query();
 $login = $qq->loggingIn($passedUser, $passedPass);
-echo pushWelcome($qq, $login);
+echo $qq->welcomeMessage($login);
