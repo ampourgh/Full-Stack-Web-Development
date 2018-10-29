@@ -4,12 +4,13 @@ class Connect {
 
     public static $instance;
 
-    protected static $username = "thisUser";
-    protected static $password = "thisPass";
+    protected static $username;
+    protected static $password;
 
     private function __construct() {
-        $this->username = $username;
-        $this->password = $password;
+        self::$username = "\nthisUser";
+        self::$password = "\nthisPass";
+        echo "Start connection.";
     }
 
     public static function getInstance() {
@@ -20,7 +21,8 @@ class Connect {
     }
 
     public static function connection() {
-        return $this->username;
+        $user = self::$username;
+        return $user;
     }
 
 }
@@ -28,8 +30,8 @@ class Connect {
 class Query {
     public function firstQuery() {
         $database = Connect::getInstance();
-        $start = $database->connection();
-        return $start;
+        $start = $database::connection();
+        echo $start;
     }
 }
 
