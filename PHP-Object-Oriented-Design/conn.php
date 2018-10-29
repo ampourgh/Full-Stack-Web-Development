@@ -1,5 +1,8 @@
 <?php
 
+$passedUser = "\nthisUser";
+$passedPass = "\nthisPass";
+
 class Connect {
 
     public static $instance;
@@ -7,15 +10,15 @@ class Connect {
     protected static $username;
     protected static $password;
 
-    private function __construct() {
-        self::$username = "\nthisUser";
-        self::$password = "\nthisPass";
+    private function __construct($user, $pass) {
+        self::$username = $user;
+        self::$password = $pass;
         echo "Start connection.";
     }
 
-    public static function getInstance() {
+    public static function getInstance($user, $pass) {
         if (!isset(Connect::$instance)) {
-            Connect::$instance = new Connect();
+            Connect::$instance = new Connect($user, $pass);
         }
         return Connect::$instance;
     }
@@ -28,12 +31,12 @@ class Connect {
 }
 
 class Query {
-    public function firstQuery() {
-        $database = Connect::getInstance();
+    public function firstQuery($user, $pass) {
+        $database = Connect::getInstance($user, $pass);
         $start = $database::connection();
         echo $start;
     }
 }
 
 $qq = new Query();
-echo $qq->firstQuery();
+echo $qq->firstQuery($passedUser, $passedPass);
