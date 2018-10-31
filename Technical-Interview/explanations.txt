@@ -2,7 +2,7 @@ Question 1:
 Q1 uses a partial nested loop, with a efficiency of O((n + 1)(n/2)). Since the words are alphabatized and the letters' ORD are compared to discard uneeded letters for subsequent loops, this reduces the amount of looping. Worst case scenario would be if the t string was 'aaa', where a loops through the entirety of string s,  while the best case scenario would be if the string was 'zzz', as the former would be a full nested loop whereas the latter would be simplified as O(n + 1). In terms of space effiency, there's a singular variable declaration within the outer loop called done. This is to prevent additional letters outside for the first matching letter from being addeed to the new_string variable, which would make the space efficiency come out to O(5 + n).
 
 Question 2:
-Q2 similarly uses a nested loop, but conditions must be met in order for the loop to end. Originally, I had implemented a conventional nest loop, but came to a conclusion that finding the pattern while looping once through would increase the efficiency. The best case scenario would be if the input only has a single palindromic substring that's on the short side, worst case would be a word with several longer palindrom. The guess is that the palindroms within a string will generally loop less than half the length of the string itself. In the case of the first test string, 'racecarat', there's 2 substring that would pause the loop to go into a nested loop: 'racecar' and 'ara'. The first one would loop three times, where the latter would loop a single time. Considering the loop starts at index 1 of the string, this string would have an efficiency of O((n-1)(n/2)). As for space effiency, there are 3 variables outside the loop, 4 variable within the outer loop, and 3 variables within the nested loop; coming to a notation of O(3n^2 + 4n +3). The space efficiency ended up being more than the original nested loop that I had implemented for this equation. A compromised made when trying to reduce the time efficiency. 
+Q2 similarly uses a nested loop, but conditions must be met in order for the loop to end. Originally, I had implemented a conventional nest loop, but came to a conclusion that finding the pattern while looping once through would increase the efficiency. The best case scenario would be if the input only has a single palindromic substring that's on the short side, worst case would be a word with several longer palindrom. The guess is that the palindroms within a string will generally loop less than half the length of the string itself. In the case of the first test string, 'racecarat', there's 2 substring that would pause the loop to go into a nested loop: 'racecar' and 'ara'. The first one would loop three times, where the latter would loop a single time. Considering the loop starts at index 1 of the string, this string would have an efficiency of O((n-1)(n/2)). As for space effiency, there are 3 variables outside the loop, 4 variable within the outer loop, and 3 variables within the nested loop; coming to a notation of O(3n^2 + 4n +3). The space efficiency ended up being more than the original nested loop that I had implemented for this equation. A compromised made when trying to reduce the time efficiency.
 
 Question 3:
 The solution for this question is divided to 2 sections: the question3 function that takes in the adjacency list, and the Kruskal equation within the graph class that returns the minimum spanning tree. For the question 3 function, the function will loop through the entirety of the dictionary to send the information off into the insert function, while also storing the unique edges into an array for being used into the Kruskal equation. Originally, I had the unique edges function stored with it's own function, but found that the question3 loop could perform both tasks simualtaneously. The big O notation would look like O((n + 3)((n + 3/2) + ((n + 1) +1)). For the loop in the Kruskal function, although it is a O(n^3) set of nested loops, the assumption is that the initial n would be a significantly reduced number of values. This would especially be the case since half the edges would be duplicate values from nodes connected connected from one to the other. For the second loop, all the edges are looped through, are guaranteed to go go through the following condition once before being passed on to the next loop. The inner most loop only has an array of the values used, discarding the unused values. The space complexity for the function would be O(2n^3 + 2n^2 + 4).
@@ -12,3 +12,268 @@ Since question 4 has 4 variables that need to go through the function, there is 
 
 Question 5:
 The method I decided to use for this one was to go through the full length of the linked list, then create a function comparing the full length to the mth item. Initially I had a single functon with multiple nested loops to come to the solution, but came to the conclusion that the separation actually breaks down the process into simpler steps. This ends up making the space complexity a O(1) and the efficiency a O(n).
+
+---
+
+Behavioral Interview Questions
+
+WebDev Specific:
+
+What is W3C and why is it important?
+W3C stands for World Wide Consortium.
+It’s an international community that focuses on developing and standardizing the web. 
+As a webdev, enforcing these standards ensures that web content is accessible in all browsers to reach all audiences, as well as optimizes the user experience. 
+e.g., using W3C-compliant CSS and XML allows every website to function similarly, but also improves SEO.
+
+Explain how you optimize and reduce web application load time.
+I use Chrome’s network performance tab to check the load times of pages, checking how long the:
+- Reduce images size
+- Reduce HTTP requests
+- Improve the efficiency of scripting language
+-  Insert SQL queries in static arrays when there isn’t a HTTP request to update the query
+2-3 second load times is ideal, and each second of load time increases user retention by 10%+.
+
+What are the differences of using HTTP/2 as opposed to HTTP 1.1?
+HTTP/2 improves web application’s performance by a fraction (20%)
+
+In what programming languages are you proficient?
+I have experience with PHP, Python, JavaScript and a number of JS frameworks.
+With PHP, I have work experience using the language alongside SQL Server 2014/16 and MySQL for a contract position and a couple of freelance work.
+With Python, I have used it during my coursework and in one of my previous jobs, using PostgreSQL and SQLite for fb and Flask and Jinja2 for a framework.
+I also work with HTML5 and CSS3 for design, and JavaScript for making a page more dynamic.
+
+What steps do you take to balance demanding client requirements?
+I have been improving my workflow ever since I started, using plugins and considering stacks that are more efficient. If the allotted time will compromise the webpage in some way, such as not being able to troubleshoot the bugs or using bad coding practices as a shortcut, I will communicate that to the client or my manager.
+
+What sparked your interest in web development?
+When I first learned about web development, I thought it was incredible that you could create an interface that people could conveniently use. The additional functionalities over the years have broadened what  a website can accomplish or be used for.
+
+General Questions:
+
+Why do you want to work here?
+I looked through the website and see the opportunity making the page more responsive, and I’m excited to see what other modern functionalities I could implement to improve the interface and increase user attrition.
+
+Why should I hire you?
+I believe I have a history of being versatile and picking up technologies, such as with picking up PHP after being a Python developer for my previous job, or gaining familiarity with the different stacks that go with it, such as using IIS, Heroku, MySQL and SQL Server.
+
+What interests you most about this position?
+The number of responsibilities that are listed on the position would help my growth as a developer, and I already see potential of how the website could be reworked with modern web practices in mind. I believe that similar refinements and reworks could be make for the intranet side as well.
+
+Would you like to have your boss’s job?
+Absolutely, however I believe that I have steps ahead of me that I still need to take.
+
+What are your biggest accomplishments?
+My manager for my last job wanted to order a wizard from an external source, I created a simple wizard overnight, and from there we were able to refine it with more functionality to give the user more flexibility. I also made adjustments to the wizard based of the needs of our team’s Android developer.
+
+What kinds of decisions are most difficult for you?
+I think the preliminary research on what stack to use can be a challenge, especially with all the choices that are out in the market. I try to be thorough in my research, even though most any stack could reach the desired objective.
+
+How do you feel about your progress to date?
+I had made the decision to switch career paths back to web development a couple of years ago, and I believe I have made the right decision, as I have enjoyed the development process and creating interfaces. I believe this position would be the next step in furthering my career.
+
+How long will you stay with the company?
+As long as I’m able to grow as a developer and make valuable contributions to the organizations.
+
+Have you done the best work you are capable of doing?
+I’d be lying to you if I said I was perfect, but I try to put my skills and effort when working on a project. I am constantly learning and honing my skills so that I can be a better version of myself each day.
+
+What would you like to be doing five years from now?
+I see myself as being talented senior programmer. I would like to improve the depth of my current programming skills, and expand the breadth of what languages, stacks, or tricks I could draw from. That way I would be able to incorporate cutting edge tech into pages, along with refactor my current code to be more elegant and easier develop.
+
+What training/qualifications do you have for a job like this?
+I have programming experience with PHP with MySQL in both a job setting and as a freelancer, I have deployed using AWS with Linux Ubuntu and Apache. I have a certificate for full stack development, and have handled several webpages at once while I was working at the graphic printing company.
+
+Why do you want to change jobs?
+I’m looking for a full time position where I could grow from.
+
+What is your energy level like? Describe a typical day.
+By the end of the day I usually try to wrap up what I was working on before I leave, even if it means working after hours. I also think about my work on my leisure time, for instance what I need to learn so that I could improve websites or make an application more efficient or engaging.
+
+Why have you changed jobs so frequently?
+I was at my previous job for a webpage I was developing that acted as a companion to the android application. The start up decided to go a different direction; a more streamlined direction with all the functionality simplified and put into the original app itself.
+
+What is your greatest strength?
+I can work well under pressure, and can remained focused on the task at hand.
+
+★ For instance, once the parameters for the control panel was changed drastically to be a single page instead of a multi-layered page with several links back and forth. What I did was map out from the code what could be salvageable, and rebuilt the pages into a singular page with a new design that fit the interface.
+
+How have you helped sales/profits/cost reductions?
+When I was an SEO, I was tasked with bringing the web presence up on certain keywords on search engines such as Google and Bing. I did my research to see what the top competitors did and compiled the best practices. This led to a gradual improvement in the web’s presence, which led to sales orders increasing within a year’s time. This was important since the company didn’t need to downsize during seasons the company usually saw lower sales.
+
+Why aren’t you earning more at your age?
+I was willing to take on lower salary in my last position since I was offered 8% stock on the entire company when the application took off.
+
+How many people have you supervised?
+At my SEO position, I was supervising between 2-5 subordinates. We collaborated on our research, and I delegated tasks to them based on their strengths. For instance whether they were good writers, or were able to revise the webpages.
+
+What are the reasons for your success?
+I am willing to work hard and learn new languages or stacks, and I continue to work on my core competency. For instance with the situation where I had a basic level of understanding with PHP creating forms, and had previously spent most my time developing with Python. The business owner wanted to develop the site using PHP, and looked through the fundamentals of the syntax and tutorials, and was able to develop a fully functional back end website from there.
+
+What kind of experience do you have for this job?
+I have experience using the LAMP stack, with PHP being my primary language to use this year.
+
+I have extensive knowledge of web design and graphic softwares, for instance creating icons, banners and logos using Adobe Illustrator, or using CSS and Bootstrap.
+
+I have experience writing documentation for technical code and creating tools that adapt to user privileges.
+
+I have past experience with my SEO job creating Wordpress CMS pages for some of our webpages.
+
+Tell me about yourself.
+I started out web dev as a hobbyist -> creating static webpages and styling templates for message boards that my friends could use.
+This led to me landing my first position as an SEO, where my knowledge of web dev helped me format web pages to show up on search engines such as Google and Bing.
+I went to graduate school and was introduced to open source programming languages such as Python for descriptive statistics. Seeing that python was also used for web dev had gotten me interested to creating web pages again, leading me to go back to web dev.
+I had since created a survey site for one of my employers, taken a contract PHP website, freelanced and volunteered on projects.
+
+Why should we hire you?
+With my extensive background in front  end development and design, along with my experience in full stack in the last 2 years, I see many opportunities to improve the webpages. 
+For instance:
+- The current website is not as responsive as it should be, one of improvements that can be made is for it being easier to navigate through on a phone.
+- The website also doesn't have a consistent visual design, with sections being different colors and shapes.
+- Similarly, I believe other sections of the webpage can be improved, such as the design patterns, refactoring legacy code so that it will be easier for a team to collaborate. 
+
+Why have you left your job?
+I received a contract with a start up to work on a webpage that would act as a supplement to the Android application they were working on. They decided to streamline the application, which led to many of the functionality to be on  the app. The website then turned into a static landing page.
+
+What is your greatest strength?
+When it comes to web development, I take passion in the work that I am doing. So if I feel like I could do something differently or better, I'll study or experiment on my own time. 
+★ For instance, we had rows of promotions on the control panel. These promotions were originally set it up so that the user starts with a sample promotion that they could edit, with additional promotions added after. A sort function wasn't in our pipeline, but without such a feature, the user was limited to editing each individual promotion to create the promotion that they wanted. What I thought of on my own time and created was arrow icons that quarried the promotions up and down. This gave the user greater flexibility on how they wanted their promotions displayed.
+
+What is your greatest weakness?
+I'd be lying to you that I'm perfect, I feel like I could be better communication wise. Sometimes there will be information that I think is mutually understood. I have been taking steps to ask the questions that need to be asked, and to be more thorough with a project's parameter. 
+
+What are your salary expectations?
+Anywhere between the range 40-60k. 
+
+Why do you want this job?
+I have been looking for a web development job with a broad set of responsibilities. This position in particular has both back and front end role to it, and I think it would be both challenging and allow me to grow my career. 
+
+How do you handle stress and pressure?
+I maintain composure and consider what I am accountable for, and how I could deliver the best possible product I can. This means considering how I can be more efficient, or considering how I could deal with a situation better.
+
+★ For instance, in my previous job, my manager wanted to change the design of the control panel to be a single page so that it would be easier to show off to his clients. He wanted this done the following week when he was to meet with one of his client. This meant I needed to rework the content to fit a page, which included changing the query and reworking the HTTP requests. After writing down on a sheet of paper an outline of what I needed and could dispose of, it made setting up a single page easier. From there, I copy/pasted what code was salvageable, bit by bit so I didn’t have a troubleshooting nightmare. The outcome was I was able to create the page earlier, when everything functioning like it previously was.
+
+Describe a difficult work situation or project and how you overcame it.
+★ I had originally created a wizard for my previous employer that would convert the user design to a website that would display on the Android application. Because of space concerns, I was told I needed to send an image of the wizard design instead. What I did was search for how to convert a design to wizard. I found an open source API that take a snapshot of the website. I configured the API so that the snapshot was taken after the user had created the design, without reloading the page, and the base64 of the snapshot was sent to the database and converted to a JPG or PNG file on the server. This only saved storage space, but ended up improving the loadtimes of the displayed content on the android application.
+
+What was challenging about this project was that I had an API that did part of what I wanted, but I also needed to work around the API to fit the parameters I needed.
+
+What are your goals for the future?
+I want to continue my career path of being a web developer, and eventually get a senior or lead level position. I want to improve the breadth and depth of my skillset. Implementing better coding practices and modern techniques that creates better interfaces for the user.
+
+What motivates you?
+I like building interfaces that can be refined and improved, and be used by others. Especially when I’m given a lot of autonomy, and in web development, the scope is both broad and far, so there’s always a new technique or feature to master.
+
+What were your responsibilities?
+>>> Know what's on your resume, so you can discuss what you did at the other jobs you've held. When you're describing your responsibilities, try to mention those that match the new job's requirements.
+>>> Showing that you have done similar work will be an asset during the interview. Focus on the responsibilities that most closely align with the job for which you're interviewing when you respond to the recruiter.
+
+What did you like or dislike about your previous job? 
+What I like was that I was able to build a full stack website and collaborate with a few other developers.
+What I disliked was the start up nature of not having any organizations: such as, set rules, expectations, time sheets, etc. Nothing was written down.
+
+What were your starting and final levels of compensation?
+Hiring managers will want to learn how much you earned to see if you're a competitive candidate for the company from a salary perspective. Be honest when discussing how much you were paid because employers can ask about salary when checking your background.
+
+However, also be aware that in some locations employers are prohibited from asking about your prior wages. Some employers have also implemented policies that restrict questions about salary from being asked.
+
+What was the biggest accomplishment (or failure) in this position? 
+★ My manager had wanted me to do research and order a package for designing content. After doing research, I didn’t find a package that fit the requirements he was looking for. I did however have an idea of how to develop it myself. I had created the design with CSS and JavaScript’s framework Vue.js, and showed what I was able to put together to the team. After getting the team’s approval and suggestions as to where to take the design wizard from there, I was able to build on it further, giving the wizard a number of additional functionality.
+
+How do you evaluate success?
+I believe that it’s by taking the parameters given to me, and developing functionality that can be used by both the personnel and the external user base.
+
+Did you get along with your manager? Have you worked with difficult colleagues? 
+I’ve gotten along with most of my managers, but some of them I had to really struggle to keep on their good side. Managers manage differently, some are very supportive, others have varying expectations, while many will have your success in mind.
+
+★ In my SEO role, I came to the point where I was managing and delegating tasks to my subordinates. One of my subordinates was very extraverted, so it was difficult for him to stay on task for very long without needed a social outlet to be stimulated. So what I did to improve his performance was give him more opportunities to do the social aspects of optimization, and also created time during our workday where we could together to do research as a group to come to solutions as to how to improve the websites’ rankings. This not only elevated the coworkers’ energy levels, the entire team was able to engage in solutions that my manager and I wouldn’t have been able to come up on our own.
+
+What are your strengths?
+What are your weaknesses?
+Why are you interested in working for [insert company name here]?
+Where do you see yourself in five years? Ten years?
+
+I would like to be in a senior level web developer position in 5 years, and a more managerial role in 10 years. Although I have worked with two programming languages in the last 2 years, I would like to be language agnostic by 5 years where I can pick up any language and start building immediately.
+
+Why do you want to leave your current company?
+Why was there a gap in your employment between [insert date] and [insert date]?
+Between June 2015 to December 2015: I left my position at Premium Graphicx for an internship in another city (Galveston) as a requirement for graduate school. Although it introduced me to open source programming (for descriptive statistics at the time), the role did not relate closely to web development as other roles I’ve listed on my resume.
+
+Between February 2016 to March 2018: I was working as part timer survey sender at Scientific Solutions. I took the initiative to build a survey page for my manager after learning about Python’s back end framework, however the primary function of the role had little to do with web development.
+
+What can you offer us that someone else can not?
+I have a variety of backgrounds and experiences that I can bring. I freelanced as both a graphic designer and a web developer, I have previously worked as a search engine optimizer. I have also taken a number of MBA coursework. I feel like these experiences would allow me to interface with different departments.
+
+What are three things your former manager would like you to improve on?
+Are you willing to relocate?
+Yes. I have been looking to move to Austin or Dallas because it’s where the tech industry is, and I prefer to remain in my home state.
+
+Are you willing to travel?
+Yes.
+
+Tell me about an accomplishment you are most proud of.
+Tell me about a time you made a mistake.
+What is your dream job?
+How did you hear about this position?
+What would you look to accomplish in the first 30 days/60 days/90 days on the job?
+Discuss your resume.
+Discuss your educational background.
+Describe yourself.
+Tell me how you handled a difficult situation.
+Why should we hire you?
+Why are you looking for a new job?
+Would you work holidays/weekends?
+How would you deal with an angry or irate customer?
+What are your salary requirements? (Hint: if you’re not sure what’s a fair salary range and compensation package, research the job title and/or company on Glassdoor.)
+Give a time when you went above and beyond the requirements for a project.
+Who are our competitors?
+What was your biggest failure?
+What motivates you?
+What’s your availability?
+Who’s your mentor?
+Tell me about a time when you disagreed with your boss.
+How do you handle pressure?
+What is the name of our CEO?
+What are your career goals?
+What gets you up in the morning?
+What would your direct reports say about you?
+What were your bosses’ strengths/weaknesses?
+If I called your boss right now and asked him/her what is an area that you could improve on, what would he/she say?
+Are you a leader or a follower?
+What was the last book you’ve read for fun?
+What are your co-worker pet peeves?
+What are your hobbies?
+What is your favorite website?
+What makes you uncomfortable?
+What are some of your leadership experiences?
+How would you fire someone?
+What do you like the most and least about working in this industry?
+Would you work 40+ hours a week?
+What questions haven’t I asked you?
+What questions do you have for me?
+
+Questions to Ask:
+
+What are the biggest challenges the person in this position will face?
+
+Can you describe a typical day or week in the position?
+
+What would a successful first year in the position look like?
+
+How will the success of the person in this position be measured?
+
+How would you describe the culture here? What type of people tend to really thrive, and
+what type don’t do as well?
+
+How would you describe your management style?
+
+How long did the previous person in the role hold the position? What has turnover in the
+role generally been like?
+
+Thinking back to the person who you’ve seen do this job best, what made their
+performance so outstanding?
+
+
+Are there any reservations you have about my fit for the position that I could try to
+address?
+
+What is your time line for getting back to candidates about the next steps?
