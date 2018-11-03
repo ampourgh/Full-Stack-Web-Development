@@ -6,8 +6,10 @@
       echo '';
     }
 
-    public function _add($key) {
-      array_push($this->_i, $key);
+    public function _add(...$key) {
+      foreach ($key as &$value) {
+        array_push($this->_i, $value);
+      }
     }
 
     public function _remove($comparison) {
@@ -59,9 +61,8 @@
   }
 
   $Arr = new Arr();
-  $Arr->_add(3);
-  $Arr->_add(1);
-  $Arr->_add(2);
+  $Arr->_add(3, 1, 2, 6);
+  $Arr->_add(9);
 
   $Arr->_placeBefore(7, 1);
   $Arr->_placeAfter(8, 1);
