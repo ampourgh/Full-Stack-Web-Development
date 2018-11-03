@@ -45,6 +45,33 @@
       }
     }
 
+    public function _swap($value1, $value2) {
+      $x = 0;
+
+      while($value1 !== $this->_i[$x] || $value2 !== $this->_i[$x]) {
+        $x++;
+        echo $x . $this->_i[$x]  . "\n";
+      }
+
+      if($value1 === $this->_i[$x]) {
+        $this->_i[$x] = $value2;
+      } else {
+        $this->_i[$x] = $value1;
+      }
+
+      $x++;
+
+      while($value1 !== $this->_i[$x] || $value2 !== $this->_i[$x]) {
+        $x++;
+      }
+
+      if($value1 === $this->_i[$x]) {
+        $this->_i[$x] = $value2;
+      } else {
+        $this->_i[$x] = $value1;
+      }
+    }
+
     public function _values() {
       foreach ($this->_i as &$value) {
         echo $value;
@@ -61,11 +88,14 @@
   }
 
   $Arr = new Arr();
+
   $Arr->_add(3, 1, 2, 6);
   $Arr->_add(9);
 
   $Arr->_placeBefore(7, 1);
   $Arr->_placeAfter(8, 1);
+
+  $Arr->_swap(7, 8);
 
   $Arr->_dump();
 
@@ -76,9 +106,4 @@
   echo "\n\n";
 
   $Arr->_dump();
-
-  echo "\n\n\n";
-  $input = array("red", "green", "blue", "yellow");
-  array_splice($input, 3, 0, "purple");
-  var_dump($input);
  ?>
