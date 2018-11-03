@@ -48,9 +48,9 @@
     public function _swap($value1, $value2) {
       $x = 0;
 
-      while($value1 !== $this->_i[$x] || $value2 !== $this->_i[$x]) {
+      while($value1 !== $this->_i[$x] && $value2 !== $this->_i[$x] && $x !== count($this->_i)) {
         $x++;
-        echo $x . $this->_i[$x]  . "\n";
+        echo $this->_i[$x]  . "\n";
       }
 
       if($value1 === $this->_i[$x]) {
@@ -61,7 +61,7 @@
 
       $x++;
 
-      while($value1 !== $this->_i[$x] || $value2 !== $this->_i[$x]) {
+      while($value1 !== $this->_i[$x] && $value2 !== $this->_i[$x] && $x !== count($this->_i)) {
         $x++;
       }
 
@@ -95,9 +95,9 @@
   $Arr->_placeBefore(7, 1);
   $Arr->_placeAfter(8, 1);
 
-  $Arr->_swap(7, 8);
-
   $Arr->_dump();
+
+  $Arr->_swap(7, 8);
 
   $Arr->_remove(3);
   $Arr->_remove(1);
