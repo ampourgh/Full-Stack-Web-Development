@@ -18,9 +18,28 @@
       }
     }
 
-    public function _place($x) {
-      public function _between($y, $z) {
-        echo 11111;
+    public function _placeBefore($data, $before) {
+      $x = 0;
+
+      while($before !== $this->_i[$x]) {
+        $x++;
+      }
+
+      if($before === $this->_i[$x]) {
+        array_splice($this->_i, $x, 0, $data);
+      }
+    }
+
+    public function _placeAfter($data, $after) {
+      $x = 0;
+
+      while($after !== $this->_i[$x]) {
+        $x++;
+      }
+
+      if($after === $this->_i[$x]) {
+        $x++;
+        array_splice($this->_i, $x, 0, $data);
       }
     }
 
@@ -43,12 +62,22 @@
   $Arr->_add(3);
   $Arr->_add(1);
   $Arr->_add(2);
-  $Arr->_place(4)->_between(2, 3);
+
+  $Arr->_placeBefore(7, 1);
+  $Arr->_placeAfter(8, 1);
+
   $Arr->_dump();
+
   $Arr->_remove(3);
   $Arr->_remove(1);
-  echo "\n";
+  echo "\n\n\n";
   echo $Arr->_values();
   echo "\n\n";
+
   $Arr->_dump();
+
+  echo "\n\n\n";
+  $input = array("red", "green", "blue", "yellow");
+  array_splice($input, 3, 0, "purple");
+  var_dump($input);
  ?>
