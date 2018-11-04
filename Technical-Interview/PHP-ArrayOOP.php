@@ -13,9 +13,9 @@ class Arr {
   }
 
   public function _remove($comparison) {
-    for ($x = 0; $x <= count($this->_i); $x++) {
-      if ($comparison == $this->_i[$x]) {
-        unset($this->_i[$x]);
+    foreach ($this->_i as $key => $val) {
+      if ($comparison == $val) {
+        unset($this->_i[$key]);
       }
     }
   }
@@ -93,18 +93,19 @@ $Arr->_add('yo');
 $Arr->_placeBefore('greetings', 'hi');
 $Arr->_placeAfter('salutations', 'hi');
 
-echo "\n\n\n";
+echo "\n";
 echo $Arr->_values();
-echo "\n\n";
+echo "\n";
 
 $Arr->_swap('greetings', 'salutations');
 
 $Arr->_remove('hello');
 $Arr->_remove('hi');
+$Arr->_remove('greetings');
 
 $Arr->_alphabatize();
 
-echo "\n\n\n";
+echo "\n";
 echo $Arr->_values();
-echo "\n\n";
+echo "\n";
  ?>
