@@ -20,29 +20,29 @@ class Arr {
     }
   }
 
-  public function _placeBefore($data, $before) {
+  public function _place($data, $ab, $placement) {
     $x = 0;
 
-    while($before !== $this->_i[$x]) {
+    while($ab !== $this->_i[$x]) {
       $x++;
     }
 
-    if($before === $this->_i[$x]) {
+    if($ab === $this->_i[$x]) {
+      if($placement === 'after') {
+        $x++;
+      }
       array_splice($this->_i, $x, 0, $data);
     }
   }
 
+  public function _placeBefore($data, $before) {
+    $placement = 'before';
+    $this->_place($data, $before, $placement);
+  }
+
   public function _placeAfter($data, $after) {
-    $x = 0;
-
-    while($after !== $this->_i[$x]) {
-      $x++;
-    }
-
-    if($after === $this->_i[$x]) {
-      $x++;
-      array_splice($this->_i, $x, 0, $data);
-    }
+    $placement = 'after';
+    $this->_place($data, $after, $placement);
   }
 
   public function swapping($x, $value1, $value2) {
