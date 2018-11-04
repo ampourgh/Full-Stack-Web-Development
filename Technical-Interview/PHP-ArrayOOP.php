@@ -48,7 +48,6 @@ class Arr {
   public function swapping($x, $value1, $value2) {
     while($value1 !== $this->_i[$x] && $value2 !== $this->_i[$x] && $x !== count($this->_i)) {
       $x++;
-      echo $this->_i[$x]  . "\n";
     }
 
     if($value1 === $this->_i[$x]) {
@@ -68,8 +67,8 @@ class Arr {
   }
 
   public function _values() {
-    foreach ($this->_i as &$value) {
-      echo $value;
+    foreach ($this->_i as $key => $val) {
+      echo "[" . $key . "] = " . $val . "\n";
     }
   }
 
@@ -80,25 +79,32 @@ class Arr {
   public function getKey() {
     return $this->_i;
   }
+
+  public function _alphabatize() {
+    sort($this->_i);
+  }
 }
 
 $Arr = new Arr();
 
-$Arr->_add(3, 1, 2, 6);
-$Arr->_add(9);
+$Arr->_add('hello', 'hi', 'hai', 'hey');
+$Arr->_add('yo');
 
-$Arr->_placeBefore(7, 1);
-$Arr->_placeAfter(8, 1);
+$Arr->_placeBefore('greetings', 'hi');
+$Arr->_placeAfter('salutations', 'hi');
 
-$Arr->_dump();
-
-$Arr->_swap(7, 8);
-
-$Arr->_remove(3);
-$Arr->_remove(1);
 echo "\n\n\n";
 echo $Arr->_values();
 echo "\n\n";
 
-$Arr->_dump();
+$Arr->_swap('greetings', 'salutations');
+
+$Arr->_remove('hello');
+$Arr->_remove('hi');
+
+$Arr->_alphabatize();
+
+echo "\n\n\n";
+echo $Arr->_values();
+echo "\n\n";
  ?>
