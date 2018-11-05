@@ -72,6 +72,24 @@ class Arr {
     }
   }
 
+  public function _sentence() {
+    for ($i = 0; $i < count($this->_i); $i++) {
+
+      if ($i === 0) {
+        echo ucwords($this->_i[$i]);
+      } else {
+        echo $this->_i[$i];
+      }
+
+      if(isset($this->_i[$i + 1])) {
+        echo " ";
+      } else {
+        echo ".";
+      }
+
+    }
+  }
+
   public function _dump() {
     var_dump($this->_i);
   }
@@ -82,6 +100,10 @@ class Arr {
 
   public function _alphabatize() {
     sort($this->_i);
+  }
+
+  public function _shuffle() {
+    shuffle($this->_i);
   }
 }
 
@@ -108,4 +130,8 @@ $Arr->_alphabatize();
 echo "\n";
 echo $Arr->_values();
 echo "\n";
+$Arr->_sentence();
+echo $Arr->_shuffle();
+echo "\n";
+$Arr->_sentence();
  ?>
