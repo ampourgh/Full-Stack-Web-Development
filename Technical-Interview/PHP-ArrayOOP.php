@@ -2,8 +2,13 @@
 class Arr {
   private $_i = [];
 
-  public function __construct() {
-    echo '';
+  public function __construct(...$key) {
+
+    echo 'New array has been created.';
+
+    foreach ($key as &$value) {
+      array_push($this->_i, $value);
+    }
   }
 
   public function _add(...$key) {
@@ -107,7 +112,18 @@ class Arr {
   }
 }
 
+class Misc {
+  public function _space() {
+    echo "\n";
+  }
+
+  public function _double_space() {
+    echo "\n\n";
+  }
+}
+
 $Arr = new Arr();
+$Misc = new Misc();
 
 $Arr->_add('hello', 'hi', 'hai', 'hey');
 $Arr->_add('yo');
@@ -115,9 +131,9 @@ $Arr->_add('yo');
 $Arr->_placeBefore('greetings', 'hi');
 $Arr->_placeAfter('salutations', 'hi');
 
-echo "\n";
+$Misc->_space();
 echo $Arr->_values();
-echo "\n";
+$Misc->_space();
 
 $Arr->_swap('greetings', 'salutations');
 
@@ -127,11 +143,28 @@ $Arr->_remove('greetings');
 
 $Arr->_alphabatize();
 
-echo "\n";
+$Misc->_space();
 echo $Arr->_values();
-echo "\n";
+$Misc->_space();
 $Arr->_sentence();
 echo $Arr->_shuffle();
-echo "\n";
+$Misc->_double_space();
 $Arr->_sentence();
+
+$Misc->_double_space();
+$Arr2 = new Arr('This', 'is', 'the', 'second', 'array');
+$Misc->_double_space();
+$Arr2->_sentence();
+
+$Misc->_double_space();
+
+$Arr3 = new Arr();
+$sentence  = "This is a third sentence.";
+$sentence = trim($sentence, '.');
+$pieces = explode(" ", $sentence);
+foreach ($pieces as $val) {
+  $Arr3->_add($val);
+}
+$Misc->_double_space();
+$Arr3->_sentence();
  ?>
