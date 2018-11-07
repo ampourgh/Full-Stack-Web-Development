@@ -7,7 +7,22 @@ class Arr {
     echo 'New array has been created.';
 
     foreach ($key as &$value) {
-      array_push($this->_i, $value);
+      if (strpos($value, ' ') !== false) {
+
+        if (strpos($value, '.') !== true) {
+          $value = trim($value, '.');
+        } elseif (strpos($value, '!') !== true) {
+          $value = trim($value, '!');
+        }
+
+        $pieces = explode(" ", $value);
+        foreach ($pieces as $val) {
+          array_push($this->_i, $val);
+        }
+
+      } else {
+        array_push($this->_i, $value);
+      }
     }
   }
 
@@ -36,7 +51,7 @@ class Arr {
     if (strpos($sentence, ' ') !== false) {
       $pieces = explode(" ", $sentence);
       foreach ($pieces as $val) {
-        $arrayName->_add($val);
+        array_push($this->_i, $val);
       }
     }
 
