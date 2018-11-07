@@ -25,6 +25,23 @@ class Arr {
     }
   }
 
+  public function _break_characters($arrayName, $sentence) {
+
+    if (strpos($sentence, '.') !== true) {
+      $sentence = trim($sentence, '.');
+    } elseif (strpos($sentence, '!') !== true) {
+      $sentence = trim($sentence, '!');
+    }
+
+    if (strpos($sentence, ' ') !== false) {
+      $pieces = explode(" ", $sentence);
+      foreach ($pieces as $val) {
+        $arrayName->_add($val);
+      }
+    }
+
+  }
+
   public function _place($data, $ab, $placement) {
     $x = 0;
 
@@ -159,12 +176,14 @@ $Arr2->_sentence();
 $Misc->_double_space();
 
 $Arr3 = new Arr();
-$sentence  = "This is a third sentence.";
-$sentence = trim($sentence, '.');
-$pieces = explode(" ", $sentence);
-foreach ($pieces as $val) {
-  $Arr3->_add($val);
-}
+$Arr3->_break_characters($Arr3, 'This is a third sentence.');
+
 $Misc->_double_space();
 $Arr3->_sentence();
+$Misc->_double_space();
+$Arr3->_break_characters($Arr3, 'send this over please');
+
+$Arr3->_sentence();
+$Misc->_double_space();
+echo $Arr3->_values();
  ?>
