@@ -40,7 +40,15 @@ class Arr {
     }
   }
 
-  public function _break_characters($arrayName, $sentence) {
+  public function _break_characters(...$arguments) {
+
+    [$arrayName, $sentence] = [$arguments[0], $arguments[1]];
+
+    if(isset($arguments[2])) {
+      $targetValue = $arguments[2];
+    } else {
+      $targetValue = " ";
+    }
 
     if (strpos($sentence, '.') !== true) {
       $sentence = trim($sentence, '.');
@@ -48,8 +56,8 @@ class Arr {
       $sentence = trim($sentence, '!');
     }
 
-    if (strpos($sentence, ' ') !== false) {
-      $pieces = explode(" ", $sentence);
+    if (strpos($sentence, $targetValue) !== false) {
+      $pieces = explode($targetValue, $sentence);
       foreach ($pieces as $val) {
         array_push($this->_i, $val);
       }
@@ -191,12 +199,12 @@ $Arr2->_sentence();
 $Misc->_double_space();
 
 $Arr3 = new Arr();
-$Arr3->_break_characters($Arr3, 'This is a third sentence.');
+$Arr3->_break_characters($Arr3, 'This is a third sentence.', ' ');
 
 $Misc->_double_space();
 $Arr3->_sentence();
 $Misc->_double_space();
-$Arr3->_break_characters($Arr3, 'send this over please');
+$Arr3->_break_characters($Arr3, 'send this over please', ' ');
 
 $Arr3->_sentence();
 $Misc->_double_space();
