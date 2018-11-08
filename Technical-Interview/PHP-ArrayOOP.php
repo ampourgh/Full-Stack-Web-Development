@@ -80,12 +80,12 @@ class Arr {
     }
   }
 
-  public function _placeBefore($data, $before) {
+  public function _place_before($data, $before) {
     $placement = 'before';
     $this->_place($data, $before, $placement);
   }
 
-  public function _placeAfter($data, $after) {
+  public function _place_after($data, $after) {
     $placement = 'after';
     $this->_place($data, $after, $placement);
   }
@@ -139,6 +139,14 @@ class Arr {
     var_dump($this->_i);
   }
 
+  public function __toString() {
+    $stringify = '';
+    foreach ($this->_i as $key => $val) {
+      $stringify .= "[" . $key . "] = " . $val . "\n";
+    }
+    return $stringify;
+  }
+
   public function getKey() {
     return $this->_i;
   }
@@ -149,6 +157,15 @@ class Arr {
 
   public function _shuffle() {
     shuffle($this->_i);
+  }
+
+  public function __set($arguments, $value) {
+    if ($arguments == "this") {
+        echo "been here @line(" . __LINE__ . ") Bar::__set('$name', '$value') <br/>";
+        $result = $this->property2 = $value;
+        return $result;
+    }
+    return;
   }
 }
 
@@ -168,8 +185,8 @@ $Misc = new Misc();
 $Arr->_add('hello', 'hi', 'hai', 'hey');
 $Arr->_add('yo');
 
-$Arr->_placeBefore('greetings', 'hi');
-$Arr->_placeAfter('salutations', 'hi');
+$Arr->_place_before('greetings', 'hi');
+$Arr->_place_after('salutations', 'hi');
 
 $Misc->_space();
 echo $Arr->_values();
@@ -209,4 +226,6 @@ $Arr3->_break_characters($Arr3, 'send this over please', ' ');
 $Arr3->_sentence();
 $Misc->_double_space();
 echo $Arr3->_values();
+
+echo $Arr3;
  ?>
