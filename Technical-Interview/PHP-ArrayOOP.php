@@ -9,11 +9,7 @@ class Arr {
     foreach ($key as &$value) {
       if (strpos($value, ' ') !== false) {
 
-        if (strpos($value, '.') !== true) {
-          $value = trim($value, '.');
-        } elseif (strpos($value, '!') !== true) {
-          $value = trim($value, '!');
-        }
+        $value = $this->_delete_mark($value);
 
         $pieces = explode(" ", $value);
         foreach ($pieces as $val) {
@@ -24,6 +20,15 @@ class Arr {
         array_push($this->_i, $value);
       }
     }
+  }
+
+  public function _delete_mark($value) {
+    if (strpos($value, '.') !== true) {
+      $value = trim($value, '.');
+    } elseif (strpos($value, '!') !== true) {
+      $value = trim($value, '!');
+    }
+    return $value;
   }
 
   public function _add(...$key) {
@@ -50,11 +55,7 @@ class Arr {
       $targetValue = " ";
     }
 
-    if (strpos($sentence, '.') !== true) {
-      $sentence = trim($sentence, '.');
-    } elseif (strpos($sentence, '!') !== true) {
-      $sentence = trim($sentence, '!');
-    }
+    $sentence = $this->_delete_mark($sentence);
 
     if (strpos($sentence, $targetValue) !== false) {
       $pieces = explode($targetValue, $sentence);
