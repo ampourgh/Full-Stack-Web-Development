@@ -233,5 +233,5 @@ $Arr3->_sentence();
 $Misc->_double_space();
 echo $Arr3->_values();
 
-echo $Arr3;
+echo $Arr3; 
  ?>
