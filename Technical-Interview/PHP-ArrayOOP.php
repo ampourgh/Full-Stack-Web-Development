@@ -1,6 +1,6 @@
 <?php
 class Arr {
-  private $_i = [];
+  public $_i = [];
 
   public function __construct(...$key) {
 
@@ -9,9 +9,8 @@ class Arr {
     foreach ($key as &$value) {
       if (strpos($value, ' ') !== false) {
 
-        $value = $this->_delete_mark($value);
+        $pieces = $this->_delete_mark($value);
 
-        $pieces = explode(" ", $value);
         foreach ($pieces as $val) {
           array_push($this->_i, $val);
         }
@@ -28,8 +27,51 @@ class Arr {
     } elseif (strpos($value, '!') !== true) {
       $value = trim($value, '!');
     }
-    return $value;
+
+    $pieces = explode(" ", $value);
+
+    return $pieces;
   }
+
+  public function __toString() {
+    $stringify = '';
+    foreach ($this->_i as $key => $val) {
+      $stringify .= "[" . $key . "] = " . $val . "\n";
+    }
+    return $stringify;
+  }
+
+  public function _place($data, $ab, $placement) {
+    $x = 0;
+
+    while($ab !== $this->_i[$x]) {
+      $x++;
+    }
+
+    if($ab === $this->_i[$x]) {
+      if($placement === 'after') {
+        $x++;
+      }
+      array_splice($this->_i, $x, 0, $data);
+    }
+  }
+
+  public function swapping($x, $value1, $value2) {
+    while($value1 !== $this->_i[$x] && $value2 !== $this->_i[$x] && $x !== count($this->_i)) {
+      $x++;
+    }
+
+    if($value1 === $this->_i[$x]) {
+      $this->_i[$x] = $value2;
+    } else {
+      $this->_i[$x] = $value1;
+    }
+
+    return $x;
+  }
+}
+
+class Action extends Arr {
 
   public function _add(...$key) {
     foreach ($key as &$value) {
@@ -55,30 +97,15 @@ class Arr {
       $targetValue = " ";
     }
 
-    $sentence = $this->_delete_mark($sentence);
-
     if (strpos($sentence, $targetValue) !== false) {
-      $pieces = explode($targetValue, $sentence);
+
+      $pieces = $this->_delete_mark($sentence);
+
       foreach ($pieces as $val) {
         array_push($this->_i, $val);
       }
     }
 
-  }
-
-  public function _place($data, $ab, $placement) {
-    $x = 0;
-
-    while($ab !== $this->_i[$x]) {
-      $x++;
-    }
-
-    if($ab === $this->_i[$x]) {
-      if($placement === 'after') {
-        $x++;
-      }
-      array_splice($this->_i, $x, 0, $data);
-    }
   }
 
   public function _place_before($data, $before) {
@@ -89,20 +116,6 @@ class Arr {
   public function _place_after($data, $after) {
     $placement = 'after';
     $this->_place($data, $after, $placement);
-  }
-
-  public function swapping($x, $value1, $value2) {
-    while($value1 !== $this->_i[$x] && $value2 !== $this->_i[$x] && $x !== count($this->_i)) {
-      $x++;
-    }
-
-    if($value1 === $this->_i[$x]) {
-      $this->_i[$x] = $value2;
-    } else {
-      $this->_i[$x] = $value1;
-    }
-
-    return $x;
   }
 
   public function _swap($value1, $value2) {
@@ -139,15 +152,6 @@ class Arr {
   public function _dump() {
     var_dump($this->_i);
   }
-
-  public function __toString() {
-    $stringify = '';
-    foreach ($this->_i as $key => $val) {
-      $stringify .= "[" . $key . "] = " . $val . "\n";
-    }
-    return $stringify;
-  }
-
   public function getKey() {
     return $this->_i;
   }
@@ -158,15 +162,6 @@ class Arr {
 
   public function _shuffle() {
     shuffle($this->_i);
-  }
-
-  public function __set($arguments, $value) {
-    if ($arguments == "this") {
-        echo "been here @line(" . __LINE__ . ") Bar::__set('$name', '$value') <br/>";
-        $result = $this->property2 = $value;
-        return $result;
-    }
-    return;
   }
 }
 
@@ -180,7 +175,7 @@ class Misc {
   }
 }
 
-$Arr = new Arr();
+$Arr = new Action();
 $Misc = new Misc();
 
 $Arr->_add('hello', 'hi', 'hai', 'hey');
@@ -210,13 +205,13 @@ $Misc->_double_space();
 $Arr->_sentence();
 
 $Misc->_double_space();
-$Arr2 = new Arr('This', 'is', 'the', 'second', 'array');
+$Arr2 = new Action('This', 'is', 'the', 'second', 'array');
 $Misc->_double_space();
 $Arr2->_sentence();
 
 $Misc->_double_space();
 
-$Arr3 = new Arr();
+$Arr3 = new Action();
 $Arr3->_break_characters($Arr3, 'This is a third sentence.', ' ');
 
 $Misc->_double_space();
