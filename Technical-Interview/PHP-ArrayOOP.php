@@ -69,6 +69,14 @@ class Arr {
 
     return $x;
   }
+  public function _time ($time) {
+    if($time = 0) {
+      return date('h:i:s');
+    } else {
+      $timeTaken = $time - date('h:i:s');
+      echo "\n" . $timeTaken . ' seconds';
+    }
+  }
 }
 
 class Action extends Arr {
@@ -80,11 +88,13 @@ class Action extends Arr {
   }
 
   public function _remove($comparison) {
+    $startTime = $this->_time(0);
     foreach ($this->_i as $key => $val) {
       if ($comparison == $val) {
         unset($this->_i[$key]);
       }
     }
+    echo $this->_time($startTime);
   }
 
   public function _break_characters(...$arguments) {
