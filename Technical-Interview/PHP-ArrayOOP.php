@@ -97,10 +97,9 @@ class Arr {
   // if the end of function, insert time to get time function took
   public function _time ($time) {
     if($time == 0) {
-      return date('s');
+      return microtime(TRUE);
     } else {
-      $timeTaken = $time - date('s');
-      echo "\n" . $timeTaken . ' seconds';
+      echo "\n" . (microtime(TRUE)-$time). ' seconds';
     }
   }
 }
