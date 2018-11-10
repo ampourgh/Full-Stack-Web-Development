@@ -2,6 +2,7 @@
 class Arr {
   public $_i = [];
 
+  // when a new class is called, all the parameters are inserted into the array
   public function __construct(...$key) {
 
     echo 'New array has been created.';
@@ -21,6 +22,7 @@ class Arr {
     }
   }
 
+  // function called by _break_characters()
   public function _delete_mark($value) {
     if (strpos($value, '.') !== true) {
       $value = trim($value, '.');
@@ -33,6 +35,7 @@ class Arr {
     return $pieces;
   }
 
+  // alternative method to _values() is to just call the Class alone
   public function __toString() {
     $stringify = '';
     foreach ($this->_i as $key => $val) {
@@ -41,6 +44,7 @@ class Arr {
     return $stringify;
   }
 
+  // function shared between _place_before() and _place_after()
   public function _place($data, $ab, $placement) {
     $x = 0;
 
@@ -56,6 +60,7 @@ class Arr {
     }
   }
 
+  // _swap() calls swapping function twice for each value being changed
   public function swapping($x, $value1, $value2) {
     while($value1 !== $this->_i[$x] && $value2 !== $this->_i[$x] && $x !== count($this->_i)) {
       $x++;
@@ -69,6 +74,9 @@ class Arr {
 
     return $x;
   }
+
+  // account for the time, if beginning of function, then put 0
+  // if the end of function, insert time to get time function took
   public function _time ($time) {
     if($time = 0) {
       return date('h:i:s');
@@ -81,12 +89,14 @@ class Arr {
 
 class Action extends Arr {
 
+  // add a value into the array
   public function _add(...$key) {
     foreach ($key as &$value) {
       array_push($this->_i, $value);
     }
   }
 
+  // remove a value in an array
   public function _remove($comparison) {
     $startTime = $this->_time(0);
     foreach ($this->_i as $key => $val) {
@@ -97,6 +107,8 @@ class Action extends Arr {
     echo $this->_time($startTime);
   }
 
+  // break a string down based on the value in the third arg
+  // if the third arg is left blank, then assume a space
   public function _break_characters(...$arguments) {
 
     [$arrayName, $sentence] = [$arguments[0], $arguments[1]];
@@ -118,16 +130,19 @@ class Action extends Arr {
 
   }
 
+  // place a value before a value in the array
   public function _place_before($data, $before) {
     $placement = 'before';
     $this->_place($data, $before, $placement);
   }
 
+  // place a value after a value in the array
   public function _place_after($data, $after) {
     $placement = 'after';
     $this->_place($data, $after, $placement);
   }
 
+  // swap two existing values in the array
   public function _swap($value1, $value2) {
     $x = 0;
     $x = $this->swapping($x, $value1, $value2);
@@ -135,12 +150,14 @@ class Action extends Arr {
     $this->swapping($x, $value1, $value2);
   }
 
+  // showcase a [key] = value pair
   public function _values() {
     foreach ($this->_i as $key => $val) {
       echo "[" . $key . "] = " . $val . "\n";
     }
   }
 
+  // echo the array as a sentence
   public function _sentence() {
     for ($i = 0; $i < count($this->_i); $i++) {
 
@@ -159,27 +176,30 @@ class Action extends Arr {
     }
   }
 
+  // array dump
   public function _dump() {
     var_dump($this->_i);
   }
-  public function getKey() {
-    return $this->_i;
-  }
 
+  // sort the array
   public function _alphabatize() {
     sort($this->_i);
   }
 
+  // shuffle the array
   public function _shuffle() {
     shuffle($this->_i);
   }
 }
 
 class Misc {
+
+  // single space
   public function _space() {
     echo "\n";
   }
 
+  // double space
   public function _double_space() {
     echo "\n\n";
   }
@@ -233,5 +253,5 @@ $Arr3->_sentence();
 $Misc->_double_space();
 echo $Arr3->_values();
 
-echo $Arr3; 
+echo $Arr3;
  ?>
