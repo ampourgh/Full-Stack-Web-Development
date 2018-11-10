@@ -17,11 +17,13 @@ _shuffle()
 
 class Arr {
   public $_i = [];
+  public static $unique_id = 1;
 
   // when a new class is called, all the parameters are inserted into the array
   public function __construct(...$key) {
 
     echo 'New array has been created.';
+    Arr::$unique_id++;
 
     foreach ($key as &$value) {
       if (strpos($value, ' ') !== false) {
@@ -94,10 +96,10 @@ class Arr {
   // account for the time, if beginning of function, then put 0
   // if the end of function, insert time to get time function took
   public function _time ($time) {
-    if($time = 0) {
-      return date('h:i:s');
+    if($time == 0) {
+      return date('s');
     } else {
-      $timeTaken = $time - date('h:i:s');
+      $timeTaken = $time - date('s');
       echo "\n" . $timeTaken . ' seconds';
     }
   }
@@ -115,12 +117,13 @@ class Action extends Arr {
   // remove a value in an array
   public function _remove($comparison) {
     $startTime = $this->_time(0);
+
     foreach ($this->_i as $key => $val) {
       if ($comparison == $val) {
         unset($this->_i[$key]);
       }
     }
-    echo $this->_time($startTime);
+    $this->_time($startTime);
   }
 
   // remove value base on key in an array
@@ -275,4 +278,6 @@ $Misc->_double_space();
 echo $Arr3->_values();
 
 echo $Arr3;
+
+echo "\n# of Values: " . Arr::$unique_id;
  ?>
