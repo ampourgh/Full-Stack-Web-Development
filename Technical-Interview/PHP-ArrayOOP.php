@@ -1,4 +1,20 @@
 <?php
+/*
+Actions:
+_add(...$key)
+_remove($comparison)
+_remove_key($key)
+_break_characters(...$arguments)
+_place_before($data, $before)
+_place_after($data, $after)
+_swap($value1, $value2)
+_values()
+_sentence()
+_dump()
+_alphabatize()
+_shuffle()
+*/
+
 class Arr {
   public $_i = [];
 
@@ -105,6 +121,11 @@ class Action extends Arr {
       }
     }
     echo $this->_time($startTime);
+  }
+
+  // remove value base on key in an array
+  public function _remove_key($key) {
+    unset($this->_i[$key]);
   }
 
   // break a string down based on the value in the third arg
