@@ -172,6 +172,17 @@ class Action extends Arr {
     unset($this->_i[$key]);
   }
 
+  public function _show_certain($comparison, $indexu, $numberOfVals) {
+    $tentArr = [];
+    foreach ($this->_i as $key => $val) {
+      if ($comparison == substr($val, $indexu, $numberOfVals)) {
+        echo "[" . $key . "] = " . $val . "\n";
+        array_push($tentArr, $val);
+      }
+    }
+    return $tentArr;
+  }
+
   // break a string down based on the value in the third arg
   // if the third arg is left blank, then assume a space
   public function _break_characters(...$arguments) {
@@ -329,6 +340,11 @@ $Arr->_sort();
 
 $Misc->_double_space();
 $Arr->_sentence();
+$Misc->_double_space();
+
+$showCertain = $Arr->_show_certain('sa', 0, 2);
+var_dump($showCertain);
+echo $showCertain[0];
 
 $Misc->_double_space();
 $Arr2 = new Action('This', 'is', 'the', 'second', 'array');
@@ -352,4 +368,13 @@ echo $Arr3->_values();
 echo $Arr3;
 
 echo "\n# of Values: " . Arr::$unique_id;
- ?>
+
+echo "\n";
+$rest = substr("abcdef", 0, 1);
+echo $rest;
+
+echo $Arr3;
+
+echo "\n# of Values: " . Arr::$unique_id;
+
+?>
