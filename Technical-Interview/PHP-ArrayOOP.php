@@ -11,13 +11,14 @@ _swap($value1, $value2)
 _values()
 _sentence()
 _dump()
-_alphabatize()
 _shuffle()
+_sort()
+_quicksort($low, $high)
 */
 
 class Arr {
   public $_i = [];
-  public static $unique_id = 1;
+  public static $unique_id = 0;
 
   // when a new class is called, all the parameters are inserted into the array
   public function __construct(...$key) {
@@ -103,58 +104,45 @@ class Arr {
     }
   }
 
-  public function _execute_quicksort($low, $high) {
-
-      if($low===null || $high===null){
-          return false;
-      }
-
-      if($low < $high) {
-          $pi = $this->_quicksort_partition($low, $high);
-          $this->_execute_quicksort($low, $pi - 1);
-          $this->_execute_quicksort($pi + 1, $high);
-      }
-  }
-
   public function _quicksort_partition($low, $high) {
 
-      if($low===null || $high===null){
-          return false;
+    if($low===null || $high===null){
+      return false;
+    }
+
+    $pivot = $this->_i[$high];
+
+    $index = $low - 1;
+
+    for($incrementingVal = $low; $incrementingVal <= $high-1; $incrementingVal++) {
+      if($this->_i[$incrementingVal] <= $pivot) {
+        $index++;
+        $this->_quicksort_swap($index, $incrementingVal);
       }
+    }
 
-      $pivot = $this->arr[$high];
+    $this->_quicksort_swap($index+1,$high);
 
-      $index = $low - 1;
-
-      for($incrementingVal = $low; $incrementingVal <= $high-1; $incrementingVal++) {
-          if($this->arr[$incrementingVal] <= $pivot) {
-              $index++;
-              $this->_quicksort_swap($index, $incrementingVal);
-          }
-      }
-
-      $this->_quicksort_swap($index+1,$high);
-
-      return $index + 1;
+    return $index + 1;
   }
 
   public function _quicksort_swap($index, $incrementingVal) {
-      $p=$this->arr[$index];
-      $q=$this->arr[$incrementingVal];
-      $this->arr[$index]=$q;
-      $this->arr[$incrementingVal]=$p;
+    $p=$this->_i[$index];
+    $q=$this->_i[$incrementingVal];
+    $this->_i[$index]=$q;
+    $this->_i[$incrementingVal]=$p;
   }
 
   public function _quicksort_check_budget($arr, $budget) {
-      $newArr = [];
-      for($i = 0; $i <= count($arr); $i++) {
-          if($budget - $arr[$i] >= 0) {
-            $budget = $budget - $arr[$i];
-            array_push($newArr, $arr[$i]);
-          } else {
-            return $newArr;
-          }
+    $newArr = [];
+    for($i = 0; $i <= count($arr); $i++) {
+      if($budget - $arr[$i] >= 0) {
+        $budget = $budget - $arr[$i];
+        array_push($newArr, $arr[$i]);
+      } else {
+        return $newArr;
       }
+    }
   }
 }
 
@@ -258,14 +246,39 @@ class Action extends Arr {
     var_dump($this->_i);
   }
 
-  // sort the array
-  public function _alphabatize() {
-    sort($this->_i);
-  }
-
   // shuffle the array
   public function _shuffle() {
+
+    $startTime = $this->_time(0);
     shuffle($this->_i);
+    echo "\nShuffle: ";
+    $this->_time($startTime);
+
+  }
+
+  // sort the array
+  public function _sort() {
+
+    $startTime = $this->_time(0);
+    shuffle($this->_i);
+    sort($this->_i);
+    $this->_time($startTime);
+
+  }
+
+  // quicksort the array
+  public function _quicksort($low, $high) {
+
+    if($low===null || $high===null){
+      return false;
+    }
+
+    if($low < $high) {
+      $pi = $this->_quicksort_partition($low, $high);
+      $this->_quicksort($low, $pi - 1);
+      $this->_quicksort($pi + 1, $high);
+    }
+
   }
 }
 
@@ -301,13 +314,18 @@ $Arr->_remove('hello');
 $Arr->_remove('hi');
 $Arr->_remove('greetings');
 
-$Arr->_alphabatize();
+$Arr->_sort();
 
 $Misc->_space();
 echo $Arr->_values();
 $Misc->_space();
 $Arr->_sentence();
-$Arr->_execute_quicksort(0, 6);
+
+// $startTime = $Arr->_time(0);
+// $Arr->_quicksort(0, 3);
+// echo "\nQuicksort: ";
+// $Arr->_time($startTime);
+$Arr->_sort();
 
 $Misc->_double_space();
 $Arr->_sentence();
