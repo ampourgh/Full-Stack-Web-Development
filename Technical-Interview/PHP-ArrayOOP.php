@@ -56,11 +56,14 @@ class Arr {
 
   // alternative method to _values() is to just call the Class alone
   public function __toString() {
-    $stringify = '';
-    foreach ($this->_i as $key => $val) {
-      $stringify .= "[" . $key . "] = " . $val . "\n";
-    }
-    return $stringify;
+
+    return $this->_i;
+
+    // $stringify = '';
+    // foreach ($this->_i as $key => $val) {
+    //   $stringify .= "[" . $key . "] = " . $val . "\n";
+    // }
+    // return $stringify;
   }
 
   // function shared between _place_before() and _place_after()
@@ -304,8 +307,31 @@ class Misc {
   public function _double_space() {
     echo "\n\n";
   }
+
 }
 
+$ArrKeys = new Action('sky', 'grass', 'purple');
+$ArrValues = new Action('blue', 'green', 'hills');
+
+$arr = [];
+
+foreach ($ArrKeys as $key => $val) {
+  array_push($arr, $val);
+}
+
+$arr2 = [];
+
+foreach ($ArrValues as $key => $val) {
+  array_push($arr2, $val);
+}
+
+print_r($arr);
+print_r($arr2);
+
+$array = array_combine($arr, $arr2);
+print_r($array);
+
+/*
 $Arr = new Action();
 $Misc = new Misc();
 
@@ -372,9 +398,6 @@ echo "\n# of Values: " . Arr::$unique_id;
 echo "\n";
 $rest = substr("abcdef", 0, 1);
 echo $rest;
-
-echo $Arr3;
-
-echo "\n# of Values: " . Arr::$unique_id;
+*/
 
 ?>
