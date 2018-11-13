@@ -70,7 +70,7 @@ class Arr {
     $arr = [];
 
     foreach ($this->_i as $key => $val) {
-      array_push($arr, $val);
+      $arr[$key] = $val;
     }
 
     return $arr;
@@ -78,7 +78,15 @@ class Arr {
   }
 
   public function _array_combine($arr1, $arr2) {
-    array_push($this->_i, array_combine($arr1, $arr2));
+
+    // array_push($this->_i, array_combine($arr1, $arr2));
+
+    for ($x = 0; $x < count($arr1); $x++) {
+
+      $this->_i[$arr1[$x]] = $arr2[$x];
+
+    }
+
   }
 
   // function shared between _place_before() and _place_after()
@@ -325,12 +333,12 @@ class Misc {
 
 }
 
-$ArrKeys = new Action('sky', 'grass', 'purple');
-$ArrValues = new Action('blue', 'green', 'hills');
+$ArrKeys = new Action('sky', 'grass', 'hills');
+$ArrValues = new Action('blue', 'green', 'purple');
 $Arr = new Action();
+
 $Misc = new Misc();
 $Misc->_double_space();
-$Arr->_array_combine($ArrKeys->_array(), $ArrValues->_array());
 $Arr->_array_combine($ArrKeys->_array(), $ArrValues->_array());
 print_r($Arr->_array());
 
@@ -402,5 +410,4 @@ echo "\n";
 $rest = substr("abcdef", 0, 1);
 echo $rest;
 */
-
 ?>
