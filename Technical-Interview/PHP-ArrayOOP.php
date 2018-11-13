@@ -81,11 +81,16 @@ class Arr {
 
     // array_push($this->_i, array_combine($arr1, $arr2));
 
-    for ($x = 0; $x < count($arr1); $x++) {
+    if(is_array($arr1)) {
+      for ($x = 0; $x < count($arr1); $x++) {
 
-      $this->_i[$arr1[$x]] = $arr2[$x];
+        $this->_i[$arr1[$x]] = $arr2[$x];
 
+      }
+    } else {
+      $this->_i[$arr1] = $arr2;
     }
+
 
   }
 
@@ -340,6 +345,8 @@ $Arr = new Action();
 $Misc = new Misc();
 $Misc->_double_space();
 $Arr->_array_combine($ArrKeys->_array(), $ArrValues->_array());
+$Arr->_array_combine('desktop', 'turquois');
+$Arr->_array_combine('terminal', 'black');
 print_r($Arr->_array());
 
 /*
