@@ -57,13 +57,28 @@ class Arr {
   // alternative method to _values() is to just call the Class alone
   public function __toString() {
 
-    return $this->_i;
+    $stringify = '';
+    foreach ($this->_i as $key => $val) {
+      $stringify .= "[" . $key . "] = " . $val . "\n";
+    }
+    return $stringify;
 
-    // $stringify = '';
-    // foreach ($this->_i as $key => $val) {
-    //   $stringify .= "[" . $key . "] = " . $val . "\n";
-    // }
-    // return $stringify;
+  }
+
+  public function _array() {
+
+    $arr = [];
+
+    foreach ($this->_i as $key => $val) {
+      array_push($arr, $val);
+    }
+
+    return $arr;
+
+  }
+
+  public function _array_combine($arr1, $arr2) {
+    array_push($this->_i, array_combine($arr1, $arr2));
   }
 
   // function shared between _place_before() and _place_after()
@@ -312,24 +327,12 @@ class Misc {
 
 $ArrKeys = new Action('sky', 'grass', 'purple');
 $ArrValues = new Action('blue', 'green', 'hills');
-
-$arr = [];
-
-foreach ($ArrKeys as $key => $val) {
-  array_push($arr, $val);
-}
-
-$arr2 = [];
-
-foreach ($ArrValues as $key => $val) {
-  array_push($arr2, $val);
-}
-
-print_r($arr);
-print_r($arr2);
-
-$array = array_combine($arr, $arr2);
-print_r($array);
+$Arr = new Action();
+$Misc = new Misc();
+$Misc->_double_space();
+$Arr->_array_combine($ArrKeys->_array(), $ArrValues->_array());
+$Arr->_array_combine($ArrKeys->_array(), $ArrValues->_array());
+print_r($Arr->_array());
 
 /*
 $Arr = new Action();
