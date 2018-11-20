@@ -58,9 +58,17 @@ public class Main {
       System.out.println("-1 HP");
     }
 
+    try {
+      cat.heal(20);
+      System.out.println("Overdose will not work.");
+    } catch(IllegalArgumentException iae) {
+
+      System.out.printf("ERROR: %s", iae.getMessage());
+
+    }
+
   }
 }
-
 
 // Feline.java
 class Feline {
@@ -101,8 +109,13 @@ class Feline {
   }
 
   public void heal(int healthPot) {
+    int newHP = HealthPoints + healthPot;
+    if (newHP > MAX_HEALTH) {
+      throw new IllegalArgumentException("Preventing an overdose on nutrients.");
+    }
 
-    HealthPoints += healthPot;
+    HealthPoints = healthPot;
+
   }
 
   public boolean decline() {
@@ -119,3 +132,63 @@ class Feline {
 /*
   ---------------------------------------------------------------
 */
+
+// Main.java
+public class Main {
+  public static void main(String[] args) {
+    Game game = new Game("legends");
+    Prompter prompter = new Prompter(game);
+    boolean isHit = prompter.prompterForGuess();
+
+    if (isHit) {
+      System.out.println("hit");
+    } else {
+      System.out.println("missed");
+    }
+  }
+}
+
+// Game.java
+class Game {
+
+  private String answer;
+  private String hits;
+  private String misses;
+
+  public Game(String answer) {
+    this.answer = answer;
+    hits = "";
+    misses = "";
+  }
+
+  public boolean applyGuess(char letter) {
+    boolean isHit = answer.indexOf(letter) != -1;
+    if (isHit) {
+      hits += letter;
+    } else {
+      misses += letter;
+    }
+    return isHit;
+  }
+
+}
+
+// Prompter.java
+import java.util.Scanner;
+
+class Prompter {
+  private Game game;
+
+  public Prompter(Game game) {
+    this.game = game;
+  }
+
+  public boolean prompterForGuess() {
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Enter letter: ");
+    String guessInput = scanner.nextLine();
+    char guess = guessInput.charAt(0);
+    return game.applyGuess(guess);
+  }
+
+}
