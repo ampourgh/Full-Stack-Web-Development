@@ -139,10 +139,11 @@ public class Main {
     Game game = new Game("legends");
 
     Prompter prompter = new Prompter(game);
-    while(game.getRemainingTries() > 0) {
+    while(game.getRemainingTries() > 0 && !game.isWon()) {
       prompter.displayProgress();
       prompter.prompterForGuess();
     }
+    prompter.displayOutcome();
 
     /*
     if (isHit) {
@@ -166,19 +167,53 @@ class Game {
   private String misses;
 
   public Game(String answer) {
-    this.answer = answer;
+    this.answer = answer.toLowerCase();
     hits = "";
     misses = "";
   }
 
+  public String getAnswer() {
+    return answer;
+  }
+
+  private char normalizeGuess(char letter) {
+    if(! Character.isLetter(letter)) {
+      throw new IllegalArgumentException("A letter is required");
+    }
+
+    letter = Character.toLowerCase(letter);
+
+    if (misses.indexOf(letter) != -1 || hits.indexOf(letter) != -1) {
+      throw new IllegalArgumentException(letter + " has already been guessed");
+    }
+
+    return letter;
+
+  }
+
+  public boolean applyGuess(String letters) {
+    if (letters.length() == 0) {
+
+      throw new IllegalArgumentException("No letter found.");
+
+    }
+    return applyGuess(letters.charAt(0));
+  }
+
   public boolean applyGuess(char letter) {
+
+    letter = normalizeGuess(letter);
+
     boolean isHit = answer.indexOf(letter) != -1;
+
     if (isHit) {
       hits += letter;
     } else {
       misses += letter;
     }
+
     return isHit;
+
   }
 
   public int getRemainingTries() {
@@ -198,8 +233,11 @@ class Game {
     return progress;
   }
 
-}
+  public boolean isWon() {
+    return getCurrentProgress().indexOf('-') == -1;
+  }
 
+}
 // Prompter.java
 import java.util.Scanner;
 
@@ -212,14 +250,37 @@ class Prompter {
 
   public boolean prompterForGuess() {
     Scanner scanner = new Scanner(System.in);
-    System.out.print("Enter letter: ");
-    String guessInput = scanner.nextLine();
-    char guess = guessInput.charAt(0);
-    return game.applyGuess(guess);
+    boolean isHit = false;
+    boolean isAcceptable = false;
+
+    do {
+
+      System.out.print("Enter letter: ");
+      String guessInput = scanner.nextLine();
+
+      try {
+        // cannot having var called in the inner scope and then executed in the outer
+        isHit = game.applyGuess(guessInput);
+        isAcceptable = true;
+      } catch(IllegalArgumentException iae) {
+        System.out.printf("%s. Please try again! %n", iae.getMessage());
+      }
+    } while (! isAcceptable);
+
+    return isHit;
+
   }
 
   public void displayProgress() {
     System.out.printf("%d attempts left to solve %s%n", game.getRemainingTries(),game.getCurrentProgress());
+  }
+
+  public void displayOutcome() {
+    if(game.isWon()) {
+      System.out.printf("Congratulations! You won with %d tries remaining! %n", game.getRemainingTries());
+    } else {
+      System.out.printf("The word was %s. %n", game.getAnswer());
+    }
   }
 
 }
