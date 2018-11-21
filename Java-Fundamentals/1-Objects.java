@@ -137,20 +137,30 @@ class Feline {
 public class Main {
   public static void main(String[] args) {
     Game game = new Game("legends");
-    Prompter prompter = new Prompter(game);
-    boolean isHit = prompter.prompterForGuess();
 
+    Prompter prompter = new Prompter(game);
+    while(game.getRemainingTries() > 0) {
+      prompter.displayProgress();
+      prompter.prompterForGuess();
+    }
+
+    /*
     if (isHit) {
       System.out.println("hit");
     } else {
       System.out.println("missed");
     }
+
+    prompter.displayProgress();
+    */
   }
+
 }
 
 // Game.java
 class Game {
 
+  public static final int MAX_MISSES = 7;
   private String answer;
   private String hits;
   private String misses;
@@ -171,6 +181,23 @@ class Game {
     return isHit;
   }
 
+  public int getRemainingTries() {
+    return MAX_MISSES - misses.length();
+  }
+
+  public String getCurrentProgress(){
+    String progress = "";
+    for(char letter : answer.toCharArray()) {
+      char display = '-';
+      if(hits.indexOf(letter) != -1) {
+        display = letter;
+      }
+      progress += display;
+    }
+
+    return progress;
+  }
+
 }
 
 // Prompter.java
@@ -189,6 +216,10 @@ class Prompter {
     String guessInput = scanner.nextLine();
     char guess = guessInput.charAt(0);
     return game.applyGuess(guess);
+  }
+
+  public void displayProgress() {
+    System.out.printf("%d attempts left to solve %s%n", game.getRemainingTries(),game.getCurrentProgress());
   }
 
 }
