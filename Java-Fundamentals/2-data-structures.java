@@ -20,38 +20,31 @@ arr1[2] = 3;
 // ./Main.java
 import java.util.Arrays;
 import java.util.Date;
+
 import com.team.Comment;
 
 public class Main {
 
   public static void main(String[] args) {
-
     Comment comment = new Comment(
-      "Emerson Pourghaed",
-      "Comment inserted here.",
-      new Date(620024400L)
+      "craigsdennis",
+      "Want to be famous? Simply tweet about Java and use " +
+      "the hashtag #comment. I'll use your tweet in a new " +
+      "@treehouse course about data structures.",
+      new Date(1421849732000L)
     );
-
-    Comment comment2 = new Comment(
-      "Emerson Pourghaed",
-      "Second comment inserted here.",
-      new Date(620024400L)
+    Comment secondComment = new Comment(
+      "journeytocode",
+      "@treehouse makes learning Java sooooo fun! #comment",
+      new Date(1421878767000L)
     );
-
-    System.out.printf("NEW: %s %n", comment);
-
-    System.out.println("The words are: ");
-
+    System.out.printf("This is a new Comment:  %s %n", comment);
+    System.out.println("The words are:");
     for (String word: comment.getWords()) {
-      System.out.println("word");
+      System.out.println(word);
     }
-
-    Comment[] comments = {
-      comment, comment2
-    };
-
+    Comment[] comments = {secondComment, comment};
     Arrays.sort(comments);
-
     for (Comment exampleComment : comments) {
       System.out.println(exampleComment);
     }
@@ -59,12 +52,14 @@ public class Main {
 
 }
 
+
 // ./com/team/Comment.java
+
 package com.team;
 
 import java.util.Date;
 
-public class Comment {
+public class Comment implements Comparable {
   private String mAuthor;
   private String mDescription;
   private Date mCreationDate;
@@ -75,29 +70,22 @@ public class Comment {
     mCreationDate = creationDate;
   }
 
-  // if method name changed:
-  // error: method does not override or implement a method from a supertype
   @Override
   public String toString() {
-    return String.format(
-      "Comment \"%s\" by %s on %s",
-      mDescription, mAuthor, mCreationDate);
+    return String.format("Comment:  \"%s\" by %s on %s",
+                         mDescription, mAuthor, mCreationDate);
   }
 
   @Override
   public int compareTo(Object obj) {
     Comment other = (Comment) obj;
-
-    if(equals(other)) {
+    if (equals(other)) {
       return 0;
     }
-
     int dateCmp = mCreationDate.compareTo(other.mCreationDate);
-
     if (dateCmp == 0) {
       return mDescription.compareTo(other.mDescription);
     }
-
     return dateCmp;
   }
 
@@ -114,6 +102,8 @@ public class Comment {
   }
 
   public String[] getWords() {
-    return mDescription.toLowerCase().split("[^\\w#@']+");
+   return mDescription.toLowerCase().split("[^\\w#@']+");
+
   }
+
 }
