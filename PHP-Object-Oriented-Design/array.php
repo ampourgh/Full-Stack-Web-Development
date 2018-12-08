@@ -1,9 +1,13 @@
 <?php
 /*
 Actions:
+_arr()
+_combine()
+_flip()
 _add(...$key)
 _remove($comparison)
 _remove_key($key)
+_JSON()
 _break_characters(...$arguments)
 _place_before($data, $before)
 _place_after($data, $after)
@@ -14,6 +18,9 @@ _dump()
 _shuffle()
 _sort()
 _quicksort($low, $high)
+
+TempArr (extends Actions)
+__Deconstuct()
 */
 
 class Arr {
@@ -39,6 +46,7 @@ class Arr {
         array_push($this->_i, $value);
       }
     }
+
   }
 
   // function called by _break_characters()
@@ -62,35 +70,6 @@ class Arr {
       $stringify .= "[" . $key . "] = " . $val . "\n";
     }
     return $stringify;
-
-  }
-
-  public function _array() {
-
-    $arr = [];
-
-    foreach ($this->_i as $key => $val) {
-      $arr[$key] = $val;
-    }
-
-    return $arr;
-
-  }
-
-  public function _array_combine($arr1, $arr2) {
-
-    // array_push($this->_i, array_combine($arr1, $arr2));
-
-    if(is_array($arr1)) {
-      for ($x = 0; $x < count($arr1); $x++) {
-
-        $this->_i[$arr1[$x]] = $arr2[$x];
-
-      }
-    } else {
-      $this->_i[$arr1] = $arr2;
-    }
-
 
   }
 
@@ -179,6 +158,48 @@ class Arr {
 
 class Action extends Arr {
 
+  public function _array() {
+
+    $arr = [];
+
+    foreach ($this->_i as $key => $val) {
+      $arr[$key] = $val;
+    }
+
+    return $arr;
+
+  }
+
+  public function _capitalize() {
+
+    $capitalArr = array_map(function($capit) {
+        return strtoupper($capit);
+        //return ucwords($capit);
+    }, $this->_i);
+
+    print_r($capitalArr);
+  }
+
+  public function _combine($arr1, $arr2) {
+
+    // array_push($this->_i, array_combine($arr1, $arr2));
+
+    if(is_array($arr1)) {
+      for ($x = 0; $x < count($arr1); $x++) {
+
+        $this->_i[$arr1[$x]] = $arr2[$x];
+
+      }
+    } else {
+      $this->_i[$arr1] = $arr2;
+    }
+
+  }
+
+  public function _flip() {
+    array_flip($this->_i);
+  }
+
   // add a value into the array
   public function _add(...$key) {
     foreach ($key as &$value) {
@@ -201,6 +222,26 @@ class Action extends Arr {
   // remove value base on key in an array
   public function _remove_key($key) {
     unset($this->_i[$key]);
+  }
+
+  // JSON encoding and parse through
+  public function _JSON() {
+
+    $data = json_encode($this->_i);
+    echo $data . "\n\n";
+
+    $myArray = explode('"', $data);
+
+    for ($x = 1; $x <= sizeof($myArray) - 2; $x++) {
+
+      if ($x % 4 != 0 ) {
+        echo "\n" . $myArray[$x];
+        $x++;
+        $x++;
+        echo ' -> '. $myArray[$x];
+      }
+
+    }
   }
 
   public function _show_certain($comparison, $indexu, $numberOfVals) {
@@ -324,6 +365,33 @@ class Action extends Arr {
   }
 }
 
+class TempArr extends Action {
+  public function __construct(...$key) {
+
+    echo 'New temporary array has been created.';
+    Arr::$unique_id++;
+
+    foreach ($key as &$value) {
+      if (strpos($value, ' ') !== false) {
+
+        $pieces = $this->_delete_mark($value);
+
+        foreach ($pieces as $val) {
+          array_push($this->_i, $val);
+        }
+
+      } else {
+        array_push($this->_i, $value);
+      }
+    }
+
+  }
+
+  public function __destruct() {
+      echo 'The array "', __CLASS__, '" was destroyed.<br />';
+  }
+}
+
 class Misc {
 
   // single space
@@ -344,10 +412,24 @@ $Arr = new Action();
 
 $Misc = new Misc();
 $Misc->_double_space();
-$Arr->_array_combine($ArrKeys->_array(), $ArrValues->_array());
-$Arr->_array_combine('desktop', 'turquois');
-$Arr->_array_combine('terminal', 'black');
+
+$Arr->_combine($ArrKeys->_array(), $ArrValues->_array());
+$Arr->_combine('desktop', 'turquois');
+$Arr->_combine('terminal', 'black');
 print_r($Arr->_array());
+$Misc->_double_space();
+$Arr->_values();
+$Misc->_double_space();
+$Arr->_flip();
+print_r($Arr->_array());
+$Arr->_capitalize();
+$Arr->_JSON();
+
+$Misc->_double_space();
+$tempArr = new TempArr();
+$tempArr->_combine($ArrKeys->_array(), $ArrValues->_array());
+print_r($tempArr->_array());
+$tempArr->__destruct();
 
 /*
 $Arr = new Action();
