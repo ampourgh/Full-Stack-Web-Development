@@ -2,15 +2,16 @@
 'use strict';
 
 // Best practice to name the variable after the module
-var gulp = require('gulp'),
- 		concat = require('gulp-concat'),
-		uglify = require('gulp-uglify'),
-		rename = require('gulp-rename'),
- 		sass = require('gulp-sass'),
- 		sourcemaps = require('gulp-sourcemaps'),
- 		autoprefixer = require('gulp-autoprefixer'),
- 		imagemin = require('gulp-imagemin'),
- 		browserSync = require('browser-sync').create();
+var gulp = require('gulp');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
+var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
+var autoprefixer = require('gulp-autoprefixer');
+var imagemin = require('gulp-imagemin');
+var browserSync = require('browser-sync').create();
+
 
 /*
 
@@ -23,38 +24,22 @@ gulp.task('name', function() {
     .pipe(gulp.dest('destination-folder'))
 })
 
+SYNTATICAL DECREMENTATION FROM GULP v<4.0 to v4
+
+v<4.0:
+gulp.task('a', ['b', 'c'], function () { // do something })
+
+v4.0
+var a = function () { // do some stuff }
+gulp.task('a', gulp.series(gulp.parallel(b, c), a))
 */
 
-// Gulp's default does not require a parameter in Git
-// follow up line is an array of dependencies that the function will process
-// the function itself has no parameters
-gulp.task('default', ['browserSync', 'css'], function(){
-	gulp.watch('src/sass/**/*.scss', ['css']);
-	gulp.watch('src/**/*.+(html|js)', ['copy']);
-});
-
-// Suggested on JavaScript imports for reducing time in Production
-// replace imported js scripts with the following: <script src="js/app.js"></script>
-gulp.task("concatScripts", function() {
-
-	gulp.src([
-		'js/zepto.min.js',
-		'js/main.js'
-	])
-	.pipe(concat('app.js'))
-	.pipe(gulp.dest("js"));
-
-});
-
-gulp.task("minifyScripts", function() {
-
-	gulp.src([
-		'js/apps.js',
-	])
-	.pipe(uglify())
-	.pipe(rename('app.min.js'))
-	.pipe(gulp.dest("js"));
-
+gulp.task('browserSync', function() {
+	browserSync.init({
+		server: {
+			baseDir: 'dist'
+		},
+	})
 });
 
 gulp.task('css', function() {
@@ -72,6 +57,41 @@ gulp.task('css', function() {
 		.pipe(browserSync.stream())
 });
 
+// Gulp's default does not require a parameter in Git
+// follow up line is an array of dependencies that the function will process
+// the function itself has no parameters
+
+var defaultFucntion = function() {
+	gulp.watch('src/sass/**/*.scss', ['css']);
+	gulp.watch('src/**/*.+(html|js)', ['copy']);
+}
+
+gulp.task('default', gulp.series(gulp.parallel('browserSync', 'css'), defaultFucntion));
+
+// Suggested on JavaScript imports for reducing time in Production
+// replace imported js scripts with the following: <script src="js/app.js"></script>
+gulp.task("concatScripts", function() {
+
+	gulp.src([
+		'js/zepto.min.js',
+		'js/main.js'
+	])
+	.pipe(concat('app.js'))
+	.pipe(gulp.dest("js"));
+
+})
+
+gulp.task("minifyScripts", function() {
+
+	gulp.src([
+		'js/apps.js',
+	])
+	.pipe(uglify())
+	.pipe(rename('app.min.js'))
+	.pipe(gulp.dest("js"));
+
+});
+
 gulp.task('images', function(){
 	return gulp.src('src/images/*')
 		.pipe(imagemin())
@@ -82,12 +102,4 @@ gulp.task('copy', function() {
 	return gulp.src('src/**/*.+(html|js)')
 		.pipe(gulp.dest('dist'))
 		.pipe(browserSync.stream())
-});
-
-gulp.task('browserSync', function() {
-	browserSync.init({
-		server: {
-			baseDir: 'dist'
-		},
-	})
 });
