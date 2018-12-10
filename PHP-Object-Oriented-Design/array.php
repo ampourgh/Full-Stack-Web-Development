@@ -1,36 +1,44 @@
 <?php
+
+date_default_timezone_set("America/Chicago");
+
 /*
 Actions:
-_arr()
-_combine()
-_flip()
-_add(...$key)
-_remove($comparison)
-_remove_key($key)
-_JSON()
-_break_characters(...$arguments)
-_place_before($data, $before)
-_place_after($data, $after)
-_swap($value1, $value2)
-_values()
-_sentence()
-_dump()
-_shuffle()
-_sort()
-_quicksort($low, $high)
+  _arr()
+  _combine()
+  _flip()
+  _add(...$key)
+  _remove($comparison)
+  _remove_key($key)
+  _fixer
+  _JSON()
+  _break_characters(...$arguments)
+  _place_before($data, $before)
+  _place_after($data, $after)
+  _swap($value1, $value2)
+  _values()
+  _sentence()
+  _dump()
+  _shuffle()
+  _sort()
+  _quicksort($low, $high)
 
 TempArr (extends Actions)
-__Deconstuct()
+  __Deconstuct()
 */
 
 class Arr {
+
   public $_i = [];
   public static $unique_id = 0;
+  public static $lastUpdated;
 
   // when a new class is called, all the parameters are inserted into the array
   public function __construct(...$key) {
 
-    echo 'New array has been created.';
+    echo "\n" . 'New array has been created.';
+
+    $this::updateTime();
     Arr::$unique_id++;
 
     foreach ($key as &$value) {
@@ -47,6 +55,11 @@ class Arr {
       }
     }
 
+  }
+
+  // Every change to the array changes the string
+  public static function updateTime() {
+    Arr::$lastUpdated = date('h:i:s A -- F jS, Y', time());
   }
 
   // function called by _break_characters()
@@ -160,6 +173,8 @@ class Action extends Arr {
 
   public function _array() {
 
+    $this::updateTime();
+
     $arr = [];
 
     foreach ($this->_i as $key => $val) {
@@ -182,6 +197,8 @@ class Action extends Arr {
 
   public function _combine($arr1, $arr2) {
 
+    $this::updateTime();
+
     // array_push($this->_i, array_combine($arr1, $arr2));
 
     if(is_array($arr1)) {
@@ -202,6 +219,9 @@ class Action extends Arr {
 
   // add a value into the array
   public function _add(...$key) {
+
+    $this::updateTime();
+
     foreach ($key as &$value) {
       array_push($this->_i, $value);
     }
@@ -209,6 +229,8 @@ class Action extends Arr {
 
   // remove a value in an array
   public function _remove($comparison) {
+
+    $this::updateTime();
     $startTime = $this->_time(0);
 
     foreach ($this->_i as $key => $val) {
@@ -221,7 +243,42 @@ class Action extends Arr {
 
   // remove value base on key in an array
   public function _remove_key($key) {
+    $this::updateTime();
     unset($this->_i[$key]);
+  }
+
+  // first param: 0 = both prefix & suffix, 1 = just prefix, 2 = just suffix
+  // second param = prefix, third  = suffix
+  public function _fixer($choice, $prefixValue, $suffixValue, $indexChoice) {
+
+    $newArr = [];
+
+    switch ($choice) {
+    case 0:
+        break;
+    case 1:
+        $suffixValue = "";
+        break;
+    case 2:
+        $prefixValue = "";
+        break;
+    }
+
+    for($i = 0; $i < count($this->_i); $i++) {
+      if ($indexChoice == null || $i == $indexChoice) {
+        $pushThis = $prefixValue . $this->_i[$i] . $suffixValue;
+
+        echo "\n" . $pushThis;
+
+        array_push($newArr, $pushThis);
+      }
+    }
+
+    echo "\n";
+
+    $this->_i = $newArr;
+    // var_dump($this->_i);
+
   }
 
   // JSON encoding and parse through
@@ -259,6 +316,8 @@ class Action extends Arr {
   // if the third arg is left blank, then assume a space
   public function _break_characters(...$arguments) {
 
+    $this::updateTime();
+
     [$arrayName, $sentence] = [$arguments[0], $arguments[1]];
 
     if(isset($arguments[2])) {
@@ -280,18 +339,21 @@ class Action extends Arr {
 
   // place a value before a value in the array
   public function _place_before($data, $before) {
+    $this::updateTime();
     $placement = 'before';
     $this->_place($data, $before, $placement);
   }
 
   // place a value after a value in the array
   public function _place_after($data, $after) {
+    $this::updateTime();
     $placement = 'after';
     $this->_place($data, $after, $placement);
   }
 
   // swap two existing values in the array
   public function _swap($value1, $value2) {
+    $this::updateTime();
     $x = 0;
     $x = $this->swapping($x, $value1, $value2);
     $x++;
@@ -369,6 +431,8 @@ class TempArr extends Action {
   public function __construct(...$key) {
 
     echo 'New temporary array has been created.';
+
+    $this::updateTime();
     Arr::$unique_id++;
 
     foreach ($key as &$value) {
@@ -388,7 +452,7 @@ class TempArr extends Action {
   }
 
   public function __destruct() {
-      echo 'The array "', __CLASS__, '" was destroyed.<br />';
+      echo 'The array "', __CLASS__, '" was destroyed.';
   }
 }
 
@@ -405,6 +469,9 @@ class Misc {
   }
 
 }
+
+$prefixer = new Action('first', 'second');
+$prefixer->_fixer(2, 'Array - ', ' - ?', 0);
 
 $ArrKeys = new Action('sky', 'grass', 'hills');
 $ArrValues = new Action('blue', 'green', 'purple');
@@ -430,6 +497,10 @@ $tempArr = new TempArr();
 $tempArr->_combine($ArrKeys->_array(), $ArrValues->_array());
 print_r($tempArr->_array());
 $tempArr->__destruct();
+
+$Misc->_double_space();
+echo "# of Values: " . Arr::$unique_id;
+echo "\nLast updated: " . Arr::$lastUpdated;
 
 /*
 $Arr = new Action();
@@ -493,10 +564,7 @@ echo $Arr3->_values();
 
 echo $Arr3;
 
-echo "\n# of Values: " . Arr::$unique_id;
-
 echo "\n";
 $rest = substr("abcdef", 0, 1);
 echo $rest;
 */
-?>
