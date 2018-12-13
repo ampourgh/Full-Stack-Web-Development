@@ -8,37 +8,102 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/solid.css" integrity="sha384-aj0h5DVQ8jfwc8DA7JiM+Dysv7z+qYrFYZR+Qd/TwnmpDI6UaB3GJRRTdY8jYGS4" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/fontawesome.css" integrity="sha384-WK8BzK0mpgOdhCxq86nInFqSWLzR5UAsNg0MGX9aDaIIrFWQ38dGdhwnNCAoXFxL" crossorigin="anonymous"></head>
 <body>
 
+  <nav id="cool-nav" class="navbar navbar-expand-md navbar-dark bg-dark fixed-top"> <a class="navbar-brand" href="#">Emerson's Corner</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active"> <a class="nav-link" href="#1"><i class="fas fa-home"></i><span class="sr-only">(current)</span></a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#2"><i class="fas fa-table"></i></a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#3"><i class="fas fa-image"></i></a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#4"><i class="fas fa-calendar-times"></i></a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#5"><i class="fas fa-headset"></i></a> </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="email" placeholder="USERNAME" aria-label="Email">
+        <input class="form-control mr-sm-2" type="password" placeholder="PASSWORD" aria-label="Password">
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Submit</button>
+      </form>
+    </div>
+  </nav>
+
+
   <div class="container">
+
+    <div id="1"></div>
+    <div style="margin: 10%;"></div>
+
     <h1 class="display-1">Emerson's Corner</h1>
     <p>Just want everyone to know I was here at one point in time typing this.</p>
 
     <!-- 1 ROW with 5 COLUMNS -->
     <div class="row align-items-center">
       <div class="col-sm">
-        <h1>1</h1>
+        <h1><a href="#1">1</a></h1>
       </div>
       <div class="col-sm">
-        <h1>2</h1>
+        <h1><a href="#2">2</a></h1>
       </div>
       <div class="col-sm">
-        <h1>3</h1>
+        <h1><a href="#3">3</a></h1>
       </div>
       <div class="col-sm">
-        <h1>4</h1>
+        <h1><a href="#4">4</a></h1>
       </div>
       <div class="col-sm">
-        <h1>5</h1>
+        <h1><a href="#5">5</a></h1>
       </div>
     </div>
+
+    <div id="2"></div>
+    <div style="margin: 10%;"></div>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Language</th>
+          <th scope="col">Framework</th>
+          <th scope="col">Database</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>PHP</td>
+          <td>Laraval</td>
+          <td>MySQL, SQL Server</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Python</td>
+          <td>Flask</td>
+          <td>PostgreSQL, SQLite</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>JavaScript</td>
+          <td>Jquery, React, Vue.js</td>
+          <td>JSON(?)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div id="3"></div>
+    <div style="margin: 10%;"></div>
+
+    ​<picture>
+      <source srcset="./img/earth.svg" type="image/svg+xml">
+      <img src="./img/earth.svg" class="rounded mx-auto d-block" alt="EARTH">
+    </picture>
   </div>
 
-  ​<picture>
-    <source srcset="./img/earth.svg" type="image/svg+xml">
-    <img src="./img/earth.svg" class="rounded mx-auto d-block" alt="EARTH">
-  </picture>
+
 
 </body>
   <!-- Scripts: jQuery, Popper.js, Bootstrap JS -->
