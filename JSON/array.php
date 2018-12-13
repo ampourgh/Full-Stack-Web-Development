@@ -23,7 +23,9 @@ $func = function($value) {
    return $value[0];
 };
 
-$records = array_unique(array_map($func, $recordsOriginal));
+$records = array_values(array_unique(array_map($func, $recordsOriginal)));
+
+print_r($records);
 
 $func = function($value) {
    return pathinfo($value, PATHINFO_FILENAME);
@@ -44,12 +46,13 @@ for ($x = 0; $x < count($files_arr); $x++) {
     if($files_arr[$x] == $records[$r]) {
       array_push($archival, $record);
       $r = count($records);
-      $archival = [];
     }
+
+    echo ' - ' . $r;
   }
 
   if (empty($archival)) {
-    array_push($removalArr, $record);
+    array_push($removalArr, $files_arr[$x]);
   }
   $archival = [];
 
