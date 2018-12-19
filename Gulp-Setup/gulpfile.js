@@ -24,7 +24,7 @@ gulp.task('name', function() {
     .pipe(gulp.dest('destination-folder'))
 })
 
-SYNTATICAL DECREMENTATION FROM GULP v<4.0 to v4
+SYNTACTICAL DECREMENTATION FROM GULP v<4.0 to v4
 
 v<4.0:
 gulp.task('a', ['b', 'c'], function () { // do something })
@@ -34,6 +34,7 @@ var a = function () { // do some stuff }
 gulp.task('a', gulp.series(gulp.parallel(b, c), a))
 */
 
+// No need to F5
 gulp.task('browserSync', function() {
 	browserSync.init({
 		server: {
@@ -42,6 +43,7 @@ gulp.task('browserSync', function() {
 	})
 });
 
+// SCSS to CSS converter
 gulp.task('css', function() {
   // the asterisk to the extension is called gulp's glob method
   // the first 2 asterisks are there for initialization
@@ -60,7 +62,6 @@ gulp.task('css', function() {
 // Gulp's default does not require a parameter in Git
 // follow up line is an array of dependencies that the function will process
 // the function itself has no parameters
-
 var defaultFucntion = function() {
 	gulp.watch('src/sass/**/*.scss', ['css']);
 	gulp.watch('src/**/*.+(html|js)', ['copy']);
@@ -92,12 +93,14 @@ gulp.task("minifyScripts", function() {
 
 });
 
+// pushing images from src to dist
 gulp.task('images', function(){
 	return gulp.src('src/images/*')
 		.pipe(imagemin())
 		.pipe(gulp.dest('dist/images'))
 });
 
+// wildcard source copy
 gulp.task('copy', function() {
 	return gulp.src('src/**/*.+(html|js)')
 		.pipe(gulp.dest('dist'))
