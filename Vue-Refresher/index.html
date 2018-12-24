@@ -17,9 +17,28 @@
     <h2>{{ description }}</h2>
     <!-- v-bind directive tells vue.js to bind this data -->
     <!-- can be simplified to :href -->
-    <a v-bind:href="url">URL</a>
+    <a v-on:click.prevent="click" v-bind:href="url">URL</a>
     <input type="text" v-bind:value="name">
+    <p v-on:click.prevent="click" v-html="webTag"></p>
+
+    <!-- Below can also be written as @click -->
+    <button v-on:click.once="add(1)" type="button" name="button">+</button>
+    <button v-on:click="subtract(1)" type="button" name="button">-</button>
+    <button v-on:dblclick="add(2)" type="button" name="button">++</button>
+    <button v-on:dblclick="subtract(2)" type="button" name="button">--</button>
+    <p>Age: {{ age }}</p>
+    <div id="canvas" v-on:mousemove="updateXY" style="padding: 10%; border: 10px solid #000; width: 20%;">[{{ x }}, {{ y }}]</div>
   </div>
+
+  <div id="vue-second">
+    <label for="">Name:</label>
+    <input type="text" v-model="name" />
+    <span>{{ name }}</span>
+    <label for="">Age:</label>
+    <input type="text" v-on:keyup.enter="logAge" />
+    <span>{{ age }}</span>
+  </div>
+
 
   <script src="./app/app.js"></script>
 </body>
