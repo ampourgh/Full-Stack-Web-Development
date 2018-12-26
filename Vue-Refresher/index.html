@@ -39,6 +39,22 @@
     <span>{{ age }}</span>
   </div>
 
+  <div id="vue-computed">
+    <h1>COMPUTER PROPS: </h1>
+    <button v-on:click="a++" type="button" name="button">a++;</button>
+    <button v-on:click="b++" type="button" name="button">b++;</button>
+    <p>A == {{ a }}, B == {{ b }}</p>
+    <p>AGE + A == {{ addToA }}, AGE + B == {{ addToB }}</p>
+  </div>
+
+  <div id="vue-css">
+    <button v-on:click="block = !block">Toggle nearby</button>
+    <button v-on:click="block2 = !block2">Toggle nearby</button>
+    <button v-on:click="available = !available">Toggle available</button>
+    <div v-bind:class="compClasses">
+        <span>INPUT</span>
+    </div>
+  </div>
 
   <script src="./app/app.js"></script>
 </body>

@@ -44,11 +44,56 @@ new Vue({
   },
   methods: {
     logName: function() {
-      
+
     },
 
     logAge: function() {
       console.log('You entered your age');
     }
   }
+});
+
+
+// Single Vue Instance
+new Vue({
+  el: '#vue-computed',
+  data: {
+    age: 1000,
+    a: 0,
+    b: 0
+  },
+  // computed propert only runs a single one of the methods,
+  // not both like methods does
+  computed: {
+    addToA: function() {
+      console.log('addToA');
+      return this.a + this.age;
+    },
+    addToB: function() {
+      console.log('addToB');
+      return this.b + this.age;
+    }
+  }
+});
+
+
+new Vue({
+    el: '#vue-css',
+    data: {
+        available: false,
+        block: false,
+        block2: false
+    },
+    methods: {
+
+    },
+    computed: {
+        compClasses: function(){
+            return{
+                available: this.available,
+                block: this.block,
+                block2: this.block2,
+            }
+        }
+    }
 });
