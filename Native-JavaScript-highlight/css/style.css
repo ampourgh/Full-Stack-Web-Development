@@ -1,0 +1,39 @@
+* {
+  color: #fff;
+}
+
+.spacing {
+  height: 100vh;
+}
+
+.aboutMe, .portfolio, .contact {}
+
+body{
+  background: #AFBCC4;
+}
+
+p{
+  font-size:150%;
+}
+input[type='submit']{
+  background:#198c8c;
+}
+
+@media screen and (max-width: 640px) {
+  p {
+    font-size:75%;
+  }
+}
+
+.navbar-style-over {
+  color: #fff;
+  background: rgba(0, 0, 0, 1);
+  font-family: 'Quattrocento Sans', sans-serif;
+  border: none;
+}
+
+.custom-active {
+  color: #fff;
+  background: #AFBCC4;
+  border-radius: 10px 10px 0 0;
+}
