@@ -8,7 +8,18 @@ class App extends React.Component {
   // state is set to null
   state = { lat: null, errorMessage: '' };
 
+  /*
+  // Equivalent to the above would be calling a constructor, like so:
 
+  constructor(props) {
+    super(props);
+
+    this.state = { lat: null, errorMessage: '' };
+  }
+  */
+
+  // This function gets automatically called once
+  // Best practice to put all data loading code in here insetad of Constructor
   componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
       position => this.setState({ lat: position.coords.latitude }),
@@ -27,7 +38,7 @@ class App extends React.Component {
     }
 
     return <Spinner message="Please accept location request" />;
-    
+
   }
 
   // render has a callback to renderCases()

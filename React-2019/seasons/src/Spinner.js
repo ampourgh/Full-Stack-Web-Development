@@ -8,8 +8,9 @@ const Spinner = props => {
   );
 };
 
+// If "Please accept location request", then it'll
 Spinner.defaultProps = {
-  message: 'Loading...'
+  message: 'Default loading message.'
 };
 
 export default Spinner;
