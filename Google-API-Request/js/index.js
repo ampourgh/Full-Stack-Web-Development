@@ -7,7 +7,7 @@ function geoFindMe() {
   }
 
   function success(position) {
-
+    
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
 
@@ -18,9 +18,9 @@ function geoFindMe() {
 
     output.appendChild(img);
 
-    var citySearch = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&sensor=false&key=AIzaSyD5Ppf6iBwfPB6w6baG4sUSJAtIF4GMhQw";
+    var smething = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&sensor=false&key=AIzaSyD5Ppf6iBwfPB6w6baG4sUSJAtIF4GMhQw";
 
-    output.appendChild(citySearch);
+    console.log(smething);
 
   }
 
