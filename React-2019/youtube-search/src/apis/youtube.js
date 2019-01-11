@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+// JSON GET REQUEST
+
 const KEY = 'AIzaSyBXAyimeyDQaq0xckMpjEG4NzYGJR_XTbg';
 
 // Network request to YouTube API

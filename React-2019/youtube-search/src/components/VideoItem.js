@@ -1,8 +1,13 @@
 import './VideoItem.css';
 import React from 'react';
 
-const VideoItem = ({ video, onVideoSelect }) => {
+// passed from the VideoList component
+const VideoItem = ({ video, onVideoSelect,x }) => {
+
+  console.log("Video " + x + ": " + video.snippet.title);
+
   return (
+    // basic JSON wrapped around JSX and CSS (./VideoItem.css)
     <div onClick={() => onVideoSelect(video)} className="video-item item">
       <img
         alt={video.snippet.title}

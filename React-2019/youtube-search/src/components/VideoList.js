@@ -1,13 +1,17 @@
 import React from 'react';
 import VideoItem from './VideoItem';
 
-const VideoList = ({ videos, onVideoSelect }) => {
+// passed from the App component
+const VideoList = ({ videos, onVideoSelect, x }) => {
+
   const renderedList = videos.map(video => {
+    x++;
     return (
       <VideoItem
         key={video.id.videoId}
         onVideoSelect={onVideoSelect}
         video={video}
+        x={x}
       />
     );
   });
