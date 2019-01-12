@@ -33,8 +33,12 @@ class App extends React.Component {
     });
   };
 
+  // video is the object fetched from the YouTube API
   onVideoSelect = video => {
+
+    console.log("A new video has been selected: " + video);
     this.setState({ selectedVideo: video });
+    
   };
 
   render() {
@@ -44,14 +48,14 @@ class App extends React.Component {
         <div className="ui grid">
           <div className="ui row">
 
-            // selected video in the center of the page
+            {/* selected video in the center of the page */}
             <div className="eleven wide column">
               <VideoDetail video={this.state.selectedVideo} />
             </div>
 
             <div className="five wide column">
 
-              // being sent to VideoList so that the JSX for it can be rendered
+              {/* being sent to VideoList so that the JSX for it can be rendered */}
               <VideoList
                 onVideoSelect={this.onVideoSelect}
                 videos={this.state.videos}
