@@ -21,7 +21,7 @@ console.clear();
 
 // Action Creator - People dropping off a form
 const createPolicy = (name, amount) => {
-  return { // Action: a form in analogy 
+  return { // Action: a form in analogy
     type: 'CREATE_POLICY',
     payload: {
       name: name,
@@ -118,3 +118,9 @@ store.dispatch(deletePolicy('Lee'));
 
 console.log(store.getState());
 ```
+
+## SONGS FLOWCHART
+
+![Songs Flowchart](./songsFlowchart.png)
+
+![Songs Organization](./songsOrganization.png)
