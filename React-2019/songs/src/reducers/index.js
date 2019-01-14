@@ -2,10 +2,10 @@ import { combineReducers } from 'redux';
 
 const songsReducer = () => {
   return [
-    { title: 'Blue (Da Be Dee)', duration: '3:39' },
-    { title: 'Macarena', duration: '2:30' },
-    { title: 'Barbie Girl', duration: '3:21' },
-    { title: 'I Want it That Way', duration: '1:45' }
+    { title: 'Blue (Da Be Dee)', artist: 'Eiffle 65', duration: '3:39' },
+    { title: 'Macarena', artist: 'Los Del Rio', duration: '2:30' },
+    { title: 'Barbie Girl', artist: 'Aqua', duration: '3:21' },
+    { title: 'I Want it That Way', artist: 'Backstreet Boys', duration: '1:45' }
   ];
 };
 

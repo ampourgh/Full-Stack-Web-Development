@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const SongDetail = ({ song }) => {
+
+  console.log(song);
   if (!song) {
     return <div>Select a song</div>;
   }
@@ -10,9 +12,11 @@ const SongDetail = ({ song }) => {
     <div>
       <h3>Details for:</h3>
       <p>
-        Title: {song.title}
+        <b>Title:</b> {song.title}
         <br />
-        Duration: {song.duration}
+        <b>Artist:</b> {song.artist}
+        <br />
+        <b>Duration:</b> {song.duration}
       </p>
     </div>
   );

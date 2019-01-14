@@ -6,6 +6,7 @@ import { selectSong } from '../actions';
 
 class SongList extends Component {
   renderList() {
+    {/* Takes each JSX song and maps it out into JSX */}
     return this.props.songs.map(song => {
       return (
         <div className="item" key={song.title}>
@@ -24,16 +25,36 @@ class SongList extends Component {
   }
 
   render() {
+    console.log(this.props);
     return <div className="ui divided list">{this.renderList()}</div>;
   }
 }
 
+// Going to get the data in Redux store, and do some calculations
+// Usually a design practice to call it mapStateToProps (or something fairly similar)
 const mapStateToProps = state => {
+  console.log(state.songs);
+
+  // returning an object of the state's songs
   return { songs: state.songs };
 };
 
 // This piece of syntax comes from react-redux's connect import
+// mapStateToProps takes Redux information and sends it off to SongList
 export default connect(
   mapStateToProps,
   { selectSong }
 )(SongList);
+
+/*
+The above syntax is the equivalent of the following JavaScript function
+
+function connect() {
+  return function() {
+    return "Greetings & Salutation!";
+  }
+}
+
+The second parenthesis is for the return function
+connect()();
+*/
