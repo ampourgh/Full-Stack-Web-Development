@@ -1,6 +1,10 @@
 import _ from 'lodash';
 import jsonPlaceholder from '../apis/jsonPlaceholder';
 
+
+// dispatch is for getting unlimited power to make changes to the data on the redux side of the app - CHANGE
+// can get called on a redux store, to return all the state/data inside the redux store - ACCESS
+// The async function return was refactored, with the curly braces and return 
 export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   await dispatch(fetchPosts());
 
