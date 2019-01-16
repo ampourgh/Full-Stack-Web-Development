@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+// reminder that the actions folder has index.js
 import { fetchPostsAndUsers } from '../actions';
 import UserHeader from './UserHeader';
 
 class PostList extends React.Component {
   componentDidMount() {
+    {/* Calls on the action creator in actions/index.js */}
     this.props.fetchPostsAndUsers();
   }
 
@@ -34,6 +37,8 @@ const mapStateToProps = state => {
   return { posts: state.posts };
 };
 
+// Initially put as null because there wasn't a props to put in the component
+// fetchPostsAndUsers: fetchPostsAndUsers
 export default connect(
   mapStateToProps,
   { fetchPostsAndUsers }

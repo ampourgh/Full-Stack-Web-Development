@@ -11,6 +11,9 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
     .value();
 };
 
+// async call with the async and await syntax
+// can't export without the dispatch syntax
+// action creator is not a plain javascript function with the async -- translate to babel to see what's going on underneath the hood
 export const fetchPosts = () => async dispatch => {
   const response = await jsonPlaceholder.get('/posts');
 
