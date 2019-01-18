@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  font-family: 'Open Sans', serif;
+}
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #FFF;
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+body {
+  position: relative;
+  height: 100vh;
+}
+
+canvas {
+  display: block;
+  vertical-align: bottom;
+}
+
+#bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #fff;
+}
+
+section {
+  margin: auto;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  width: 100%;
+  text-align: center;
+}
+
+.text {
+  text-align: left;
+  display: inline-block;
+  padding: 10px;
+  max-width: 300px;
+  margin: 10px;
+  background: rgba(260, 100, 0, .9);
+  /*border: 2px solid tomato; */
+  opacity: 0.9;
+  line-height: 1.5em;
+}
+
+.text h1 {
+  font-size: 1.4em;
+  margin-bottom: 8px;
+  color: #fff;
+}
+.text p { 
+  font-size: 1.05em; 
+  color: #fff;
+}

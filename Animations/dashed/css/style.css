@@ -1,0 +1,36 @@
+* {
+  background: #FFDD75;
+}
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ece9e6;
+  background: linear-gradient(to right, #fff, #ece9e6);
+  margin: 0;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+}
+.f {
+  position: fixed;
+  bottom: 5px;
+  right: 15px;
+  font-family: 'Arial';
+  font-size: 0.7rem;
+  color: #05668d;
+  text-align: center;
+}
+.f a {
+  font-size: 0.8rem;
+  color: #ef476f;
+}
+.message {
+  position: absolute;
+  color: #ef476f;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  bottom: 20%;
+  pointer-events: none;
+  opacity: 0.8;
+}
