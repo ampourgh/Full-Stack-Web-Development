@@ -1,14 +1,14 @@
 * {
   margin: 0;
-  font-family: 'Open Sans', serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #particles-js {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #FFF;
-  background-image: url("");
+  background-color: #fff;
+  background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
@@ -22,6 +22,8 @@ body {
 canvas {
   display: block;
   vertical-align: bottom;
+  /* background-image: linear-gradient(to right, rgba(100,260,0,1), rgba(120,100,60,1)); */
+  background-image: radial-gradient(rgba(120,260,50,1), rgba(120,100,60,1));
 }
 
 #bg {
@@ -46,20 +48,20 @@ section {
   text-align: left;
   display: inline-block;
   padding: 10px;
-  max-width: 300px;
+  max-width: 500px;
   margin: 10px;
-  background: rgba(260, 100, 0, .9);
+  /* background: rgba(260, 100, 0, .9); */
   /*border: 2px solid tomato; */
   opacity: 0.9;
-  line-height: 1.5em;
 }
 
 .text h1 {
-  font-size: 1.4em;
+  font-size: 5em;
   margin-bottom: 8px;
   color: #fff;
 }
-.text p { 
-  font-size: 1.05em; 
+.text p {
+  font-size: 3em;
   color: #fff;
+  line-height: 1em;
 }
