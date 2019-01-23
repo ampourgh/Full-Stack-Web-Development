@@ -153,7 +153,9 @@ var COLORS = [
   '#4062BB',
   '#52489C',
   '#59C3C3',
-  '#F45B69'
+  '#F45B69',
+  '#000000',
+  '#cccccc'
 ];
 
 var WindLine = function (_Mesh) {
