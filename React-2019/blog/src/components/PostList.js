@@ -14,9 +14,11 @@ class PostList extends React.Component {
   renderList() {
 
     let counter = 0;
+    const notFinite = 999;
+    
     return this.props.posts.map(post => {
 
-      if (counter < 5) {
+      if (counter < notFinite) {
         counter += 1;
         return (
           <div className="item" key={post.id}>
@@ -26,12 +28,13 @@ class PostList extends React.Component {
           <h2>{counter}.) {post.title}</h2>
           <p>{post.body}</p>
           </div>
+          {/* User ID from UserHeader to retrieve Username */}
           <UserHeader userId={post.userId} />
           </div>
           </div>
         );
       }
-      
+
     });
   }
 

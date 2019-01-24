@@ -13,7 +13,15 @@ class UserHeader extends React.Component {
   }
 }
 
+// ownProps <-- is a copy of the props that will be sent to the userHeader
 const mapStateToProps = (state, ownProps) => {
+
+  console.log('STATE PROPS: ');
+  console.log(state.users);
+  console.log('OWN PROPS: ');
+  console.log(ownProps);
+
+  // ownProps was previously in this.props.userId(?)
   return { user: state.users.find(user => user.id === ownProps.userId) };
 };
 
