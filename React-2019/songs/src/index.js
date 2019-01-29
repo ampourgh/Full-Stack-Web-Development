@@ -12,3 +12,9 @@ ReactDOM.render(
   </Provider>,
   document.querySelector('#root')
 );
+
+/*
+
+In Terminal: 
+create-react-app songs
+npm install --save redux react-redux
