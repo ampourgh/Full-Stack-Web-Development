@@ -15,6 +15,8 @@ ReactDOM.render(
 
 /*
 
-In Terminal: 
+In Terminal:
 create-react-app songs
 npm install --save redux react-redux
+
+*/

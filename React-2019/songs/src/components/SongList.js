@@ -6,8 +6,11 @@ import { selectSong } from '../actions';
 
 class SongList extends Component {
   renderList() {
+
     {/* Takes each JSX song and maps it out into JSX */}
+
     return this.props.songs.map(song => {
+      console.log('track: ' + song.title);
       return (
         <div className="item" key={song.title}>
           <div className="right floated content">
@@ -15,13 +18,13 @@ class SongList extends Component {
               className="ui button primary"
               onClick={() => this.props.selectSong(song)}
             >
-              Select
+              <div className="content">{song.title}</div>
             </button>
           </div>
-          <div className="content">{song.title}</div>
         </div>
       );
     });
+
   }
 
   render() {
@@ -33,6 +36,7 @@ class SongList extends Component {
 // Going to get the data in Redux store, and do some calculations
 // Usually a design practice to call it mapStateToProps (or something fairly similar)
 const mapStateToProps = state => {
+  // line 1 of console
   console.log(state.songs);
 
   // returning an object of the state's songs
@@ -41,6 +45,8 @@ const mapStateToProps = state => {
 
 // This piece of syntax comes from react-redux's connect import
 // mapStateToProps takes Redux information and sends it off to SongList
+
+// @XXX export default connect( PROP-MAPPER(), { ACTION } )( CLASS );
 export default connect(
   mapStateToProps,
   { selectSong }

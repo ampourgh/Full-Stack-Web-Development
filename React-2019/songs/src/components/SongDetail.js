@@ -14,7 +14,7 @@ const SongDetail = ({ song }) => {
       <p>
         <b>Title:</b> {song.title}
         <br />
-        <b>Artist:</b> {song.artist}
+        <b>Description:</b> {song.artist}
         <br />
         <b>Duration:</b> {song.duration}
       </p>
