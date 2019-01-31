@@ -2,23 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Need curly braces because of how the functon is individually exported
-import { selectSong } from '../actions';
+import { actionSelectSong } from '../actions';
 
-class SongList extends Component {
+class ClassSongList extends Component {
   renderList() {
 
     {/* Takes each JSX song and maps it out into JSX */}
 
-    return this.props.songs.map(song => {
-      console.log('track: ' + song.title);
+    return this.props.songsListClassPropsSongs.map(individualSong => {
+      console.log('track: ' + individualSong.title);
       return (
-        <div className="item" key={song.title}>
+        <div className="item" key={individualSong.title}>
           <div className="right floated content">
             <button
               className="ui button primary"
-              onClick={() => this.props.selectSong(song)}
+              onClick={() => this.props.actionSelectSong(individualSong)}
             >
-              <div className="content">{song.title}</div>
+              <div className="content">{individualSong.title}</div>
             </button>
           </div>
         </div>
@@ -37,20 +37,20 @@ class SongList extends Component {
 // Usually a design practice to call it mapStateToProps (or something fairly similar)
 const mapStateToProps = state => {
   // line 1 of console
-  console.log(state.songs);
+  console.log(state.reducerStateSongsList);
 
   // returning an object of the state's songs
-  return { songs: state.songs };
+  return { songsListClassPropsSongs: state.reducerStateSongsList };
 };
 
 // This piece of syntax comes from react-redux's connect import
-// mapStateToProps takes Redux information and sends it off to SongList
+// mapStateToProps takes Redux information and sends it off to ClassSongList
 
 // @XXX export default connect( PROP-MAPPER(), { ACTION } )( CLASS );
 export default connect(
   mapStateToProps,
-  { selectSong }
-)(SongList);
+  { actionSelectSong }
+)(ClassSongList);
 
 /*
 The above syntax is the equivalent of the following JavaScript function

@@ -35,7 +35,6 @@ NOTE - IN TERMINAL
 // XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
 // NOTE - src/index.js
 
-// putting a bit of boilerplate
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -53,12 +52,11 @@ ReactDOM.render(
 // XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
 // NOTE - src/actions/index.js
 
-// Action creator
-export const actionSelectSong = song => {
+export const actionSelectSong = classSongListClickedIndividualSong => {
   // Return an action
   return {
     type: 'SONG_SELECTED',
-    payload: song
+    payload: classSongListClickedIndividualSong
   };
 };
 
@@ -66,20 +64,18 @@ export const actionSelectSong = song => {
 // NOTE - src/components/App.js
 
 import React from 'react';
-import SongList from './SongList';
-import SongDetail from './SongDetail';
+import ClassSongList from './SongList';
+import ClassSongDetail from './SongDetail';
 
 const App = () => {
   return (
     <div className="ui container grid">
       <div className="ui row">
         <div className="column eight wide">
-          {/* imported content from SongList.js */}
-          <SongList />
+          <ClassSongList />
         </div>
         <div className="column eight wide">
-        {/* imported content from SongDetail.js */}
-          <SongDetail />
+          <ClassSongDetail />
         </div>
       </div>
     </div>
@@ -94,32 +90,32 @@ export default App;
 import React from 'react';
 import { connect } from 'react-redux';
 
-const SongDetail = ({ song }) => {
+const ClassSongDetail = ({ classPropsChosenSong }) => {
 
-  console.log(song);
-  if (!song) {
-    return <div>Select a song</div>;
+  console.log(classPropsChosenSong);
+  if (!classPropsChosenSong) {
+    return <div>Select a classPropsChosenSong</div>;
   }
 
   return (
     <div>
       <h3>Details for:</h3>
       <p>
-        <b>Title:</b> {song.title}
+        <b>Title:</b> {classPropsChosenSong.title}
         <br />
-        <b>Description:</b> {song.artist}
+        <b>Description:</b> {classPropsChosenSong.artist}
         <br />
-        <b>Duration:</b> {song.duration}
+        <b>Duration:</b> {classPropsChosenSong.duration}
       </p>
     </div>
   );
 };
 
 const mapStateToProps = state => {
-  return { song: state.reducerSongSelected };
+  return { classPropsChosenSong: state.reducerStateSelectedSong };
 };
 
-export default connect(mapStateToProps)(SongDetail);
+export default connect(mapStateToProps)(ClassSongDetail);
 
 // XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
 // NOTE - src/components/SongList.js
@@ -127,24 +123,21 @@ export default connect(mapStateToProps)(SongDetail);
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-// Need curly braces because of how the functon is individually exported
 import { actionSelectSong } from '../actions';
 
-class SongList extends Component {
+class ClassSongList extends Component {
   renderList() {
 
-    {/* Takes each JSX song and maps it out into JSX */}
-
-    return this.props.reducerSongsList.map(song => {
-      console.log('track: ' + song.title);
+    return this.props.songsListClassPropsSongs.map(individualSong => {
+      console.log('track: ' + individualSong.title);
       return (
-        <div className="item" key={song.title}>
+        <div className="item" key={individualSong.title}>
           <div className="right floated content">
             <button
               className="ui button primary"
-              onClick={() => this.props.actionSelectSong(song)}
+              onClick={() => this.props.actionSelectSong(individualSong)}
             >
-              <div className="content">{song.title}</div>
+              <div className="content">{individualSong.title}</div>
             </button>
           </div>
         </div>
@@ -159,37 +152,17 @@ class SongList extends Component {
   }
 }
 
-// Going to get the data in Redux store, and do some calculations
-// Usually a design practice to call it mapStateToProps (or something fairly similar)
 const mapStateToProps = state => {
-  // line 1 of console
-  console.log(state.reducerSongsList);
 
-  // returning an object of the state's songs
-  return { reducerSongsList: state.reducerSongsList };
+  return { songsListClassPropsSongs: state.reducerStateSongsList };
+
 };
-
-// This piece of syntax comes from react-redux's connect import
-// mapStateToProps takes Redux information and sends it off to SongList
 
 // @XXX export default connect( PROP-MAPPER(), { ACTION } )( CLASS );
 export default connect(
   mapStateToProps,
   { actionSelectSong }
-)(SongList);
-
-/*
-The above syntax is the equivalent of the following JavaScript function
-
-function connect() {
-  return function() {
-    return "Greetings & Salutation!";
-  }
-}
-
-The second parenthesis is for the return function
-connect()();
-*/
+)(ClassSongList);
 
 // XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
 // NOTE - src/reducers/index.js
@@ -199,38 +172,29 @@ import selectedSongReducer from './selectedSongReducer';
 import songsReducer from './songsReducer';
 
 export default combineReducers({
-  reducerSongsList: songsReducer,
-  reducerSongSelected: selectedSongReducer
+  reducerStateSongsList: songsReducer,
+  reducerStateSelectedSong: selectedSongReducer
 });
+
 
 // XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
 // NOTE - src/reducers/selectedSongReducer.js
-// the commented out sections are the parts that were edited out pre-import
 
-export default (reducerSongSelected = null, action) => {
-// const selectedSongReducer = (reducerSongSelected = null, action) => {
+export default (actionSelectedSong = null, action) => {
 
   switch (action.type) {
     case 'SONG_SELECTED':
       return action.payload;
     default:
-      return reducerSongSelected;
+      return actionSelectedSong;
   }
 
-  /*
-  if (action.type === 'SONG_SELECTED') {
-    return action.payload;
-  }
-
-  return reducerSongSelected;
-  */
 };
 
 // XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX XXX
 // NOTE - src/reducers/songsReducers.js
 
 export default () => {
-// const songsReducer = () => {
   return [
     { title: 'Musical Track 1', artist: 'author goes here', duration: 'insert here' },
     { title: 'Musical Track 2', artist: 'author goes here', duration: 'insert here' },

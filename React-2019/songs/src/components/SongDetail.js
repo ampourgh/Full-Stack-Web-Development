@@ -1,29 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const SongDetail = ({ song }) => {
+const ClassSongDetail = ({ classPropsChosenSong }) => {
 
-  console.log(song);
-  if (!song) {
-    return <div>Select a song</div>;
+  console.log(classPropsChosenSong);
+  if (!classPropsChosenSong) {
+    return <div>Select a classPropsChosenSong</div>;
   }
 
   return (
     <div>
       <h3>Details for:</h3>
       <p>
-        <b>Title:</b> {song.title}
+        <b>Title:</b> {classPropsChosenSong.title}
         <br />
-        <b>Description:</b> {song.artist}
+        <b>Description:</b> {classPropsChosenSong.artist}
         <br />
-        <b>Duration:</b> {song.duration}
+        <b>Duration:</b> {classPropsChosenSong.duration}
       </p>
     </div>
   );
 };
 
 const mapStateToProps = state => {
-  return { song: state.selectedSong };
+  return { classPropsChosenSong: state.reducerStateSelectedSong };
 };
 
-export default connect(mapStateToProps)(SongDetail);
+export default connect(mapStateToProps)(ClassSongDetail);

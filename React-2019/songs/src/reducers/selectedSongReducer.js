@@ -1,13 +1,13 @@
 // the commented out sections are the parts that were edited out pre-import
 
-export default (selectedSong = null, action) => {
-// const selectedSongReducer = (selectedSong = null, action) => {
+export default (actionSelectedSong = null, action) => {
+// const selectedSongReducer = (actionSelectedSong = null, action) => {
 
   switch (action.type) {
     case 'SONG_SELECTED':
       return action.payload;
     default:
-      return selectedSong;
+      return actionSelectedSong;
   }
 
   /*

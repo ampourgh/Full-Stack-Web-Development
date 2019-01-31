@@ -3,6 +3,6 @@ import selectedSongReducer from './selectedSongReducer';
 import songsReducer from './songsReducer';
 
 export default combineReducers({
-  songs: songsReducer,
-  selectedSong: selectedSongReducer
+  reducerStateSongsList: songsReducer,
+  reducerStateSelectedSong: selectedSongReducer
 });

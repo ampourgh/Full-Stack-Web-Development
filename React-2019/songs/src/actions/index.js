@@ -3,11 +3,11 @@
 // import actions from './actions';
 
 // Action creator
-export const selectSong = song => {
+export const actionSelectSong = classSongListClickedIndividualSong => {
   // Return an action
   return {
     type: 'SONG_SELECTED',
-    payload: song
+    payload: classSongListClickedIndividualSong
   };
 };
 
