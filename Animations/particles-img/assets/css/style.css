@@ -1,0 +1,14 @@
+/* Custom styling */
+
+/* Gradient backgroud */
+.bg-blue-gradient {
+    color: white;
+    background: #a5fffc;
+    background: -moz-radial-gradient(#FFAF00 0%, #FF3B3F 100%);
+    background: -webkit-gradient(color-stop(0%, #FFAF00), color-stop(100%, #FF3B3F));
+    background: -webkit-radial-gradient(#FFAF00 0%, #FF3B3F 100%);
+    background: -o-radial-gradient(#FFAF00 0%, #FF3B3F 100%);
+    background: -ms-radial-gradient(#FFAF00 0%, #FF3B3F 100%);
+    background: radial-gradient(#FFAF00 0%, #FF3B3F 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFAF00', endColorstr='#FF3B3F', GradientType=1);
+}
