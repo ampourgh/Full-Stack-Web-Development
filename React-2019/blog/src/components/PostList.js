@@ -15,8 +15,8 @@ class PostList extends React.Component {
 
     let counter = 0;
     const notFinite = 999;
-    
-    return this.props.posts.map(post => {
+
+    return this.props.classPost.map(post => {
 
       if (counter < notFinite) {
         counter += 1;
@@ -44,7 +44,7 @@ class PostList extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { posts: state.posts };
+  return { classPost: state.reducerPosts };
 };
 
 // Initially put as null because there wasn't a props to put in the component

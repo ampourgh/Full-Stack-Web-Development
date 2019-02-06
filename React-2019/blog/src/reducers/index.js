@@ -5,8 +5,8 @@ import usersReducer from './usersReducer';
 // When calling on the child reducers, they should always have a return
 // a return of undefined is not allowed, will give an error
 export default combineReducers({
-  posts: postsReducer,
-  users: usersReducer
+  reducerPosts: postsReducer,
+  reducerUsers: usersReducer
 });
 
 // A rule on reducers, it's sole purpose is to:

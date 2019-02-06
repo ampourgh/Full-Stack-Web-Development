@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import jsonPlaceholder from '../apis/jsonPlaceholder';
+import axiosApiJsonPlaceholder from '../apis/jsonPlaceholder';
 
 
 // dispatch is for getting unlimited power to make changes to the data on the redux side of the app - CHANGE
@@ -16,7 +16,7 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
 
   // _.chain -- special function in lodash that allows us to chain on
   // params of one is passed to the next
-  _.chain(getState().posts)
+  _.chain(getState().reducerPosts)
     .map('userId')
     .uniq()
     .forEach(id => dispatch(fetchUser(id)))
@@ -36,13 +36,13 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
 // can't export without the dispatch syntax
 // action creator is not a plain javascript function with the async -- translate to babel to see what's going on underneath the hood
 export const fetchPosts = () => async dispatch => {
-  const response = await jsonPlaceholder.get('/posts');
+  const response = await axiosApiJsonPlaceholder.get('/posts');
 
   dispatch({ type: 'FETCH_POSTS', payload: response.data });
 };
 
 export const fetchUser = id => async dispatch => {
-  const response = await jsonPlaceholder.get(`/users/${id}`);
+  const response = await axiosApiJsonPlaceholder.get(`/users/${id}`);
 
   // singular USER because we're fetching a single user at a time
   dispatch({ type: 'FETCH_USER', payload: response.data });

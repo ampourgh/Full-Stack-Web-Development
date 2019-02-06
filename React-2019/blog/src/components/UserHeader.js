@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 
 class UserHeader extends React.Component {
   render() {
-    const { user } = this.props;
+    const { classUser } = this.props;
 
-    if (!user) {
+    if (!classUser) {
       return null;
     }
 
-    return <div className="header">{user.name}</div>;
+    return <div className="header">{classUser.name}</div>;
   }
 }
 
@@ -17,12 +17,12 @@ class UserHeader extends React.Component {
 const mapStateToProps = (state, ownProps) => {
 
   console.log('STATE PROPS: ');
-  console.log(state.users);
+  console.log(state.reducerUsers);
   console.log('OWN PROPS: ');
   console.log(ownProps);
 
   // ownProps was previously in this.props.userId(?)
-  return { user: state.users.find(user => user.id === ownProps.userId) };
+  return { classUser: state.reducerUsers.find(user => user.id === ownProps.userId) }; // TODO: figure out the parenthesis
 };
 
 export default connect(mapStateToProps)(UserHeader);
