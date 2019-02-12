@@ -56,6 +56,36 @@
     </div>
   </div>
 
+  <div id="vue-conditionals">
+
+    <h1>Conditionals</h1>
+
+    <button v-on:click="error = !error">Error</button>
+    <button v-on:click="success = !success">Success</button>
+
+    <p v-show="error" class="error">Error Occured!</p>
+    <p v-show="success" class="success">Successfully done!</p>
+
+  </div>
+
+  <div id="vue-loops">
+    <h1>Loops</h1>
+    <ul>
+        <li v-for="character in characters">{{ character }}</li>
+    </ul>
+    <ul>
+        <li v-for="(random, index) in rng">{{ index }} . {{ rng.name }} - {{ rng.age }}</li>
+    </ul>
+
+    <template v-for="random in rng">
+        <div v-for="(val, key) in random">
+            <p>{{key}} - {{ val }}</p>
+        </div>
+        <hr />
+    </template>
+  </div>
+
+
   <script src="./app/app.js"></script>
 </body>
 </html>

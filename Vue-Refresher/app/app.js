@@ -97,3 +97,36 @@ new Vue({
         }
     }
 });
+
+new Vue({
+    el: '#vue-conditionals',
+    data: {
+        error: false,
+        success: false
+    },
+    methods: {
+
+    },
+    computed: {
+
+    }
+});
+
+
+new Vue({
+    el: '#vue-loops',
+    data: {
+        characters: ['A', 'B', 'C', 'D', 'E', 'F'],
+        rng: [
+            { alias: 'dino', age: 25 },
+            { alias: 'shade', age: 35 },
+            { alias: 'vault', age: 55 }
+        ]
+    },
+    methods: {
+
+    },
+    computed: {
+
+    }
+});
