@@ -35,10 +35,10 @@ switch (moonPhase) {
   case 'mostly full':
     console.log('Arms and legs are getting hairier');
     break;
-  case 'mostly new': 
+  case 'mostly new':
     console.log('Back on two feet');
     break;
-  default: 
+  default:
     console.log('Invalid moon phase');
     break;
 }
@@ -91,7 +91,7 @@ takeOrder('mushroom', 'thin crust');
 takeOrder('bacon', 'cheese crust');
 takeOrder('extra cheese', 'thin crust');
 
-getTax(getSubTotal(orderCount)); 
+getTax(getSubTotal(orderCount));
 
 /* ---------------------------------- */
 
@@ -114,7 +114,7 @@ const visibleLightWaves = () => {
   let region = 'The Arctic';
     if (region === 'The Arctic') {
       let lightWaves = 'Northern Lights';
-      console.log(lightWaves);  
+      console.log(lightWaves);
     }
   console.log(lightWaves);
 };
@@ -131,19 +131,19 @@ const starCount = () => {
   let i = 5;
   console.log(i);
   for (let i = 0; i < 12; i++) {
-    console.log(i);  
+    console.log(i);
   }
 };
 
 starCount();
-console.log(i); 
-// console.log(i); 
+console.log(i);
+// console.log(i);
 
 
 /* ---------------------------------- */
 
 let vacationSpots = ['Mozambique', 'Thailand', 'Bolivia'];
-for(let vacationSpotIndex = 0; vacationSpotIndex < vacationSpots.length; vacationSpotIndex++){	console.log(`I would love to visit ${vacationSpots[vacationSpotIndex]}`);  
+for(let vacationSpotIndex = 0; vacationSpotIndex < vacationSpots.length; vacationSpotIndex++){	console.log(`I would love to visit ${vacationSpots[vacationSpotIndex]}`);
 };
 
 /* ---------------------------------- */
@@ -264,7 +264,7 @@ console.log(surgeonCurry.remainingVacationDays);
 let person = {
   _name: 'Lu Xun',
   _age: 137,
-  
+
   set age(ageIn) {
     if (typeof ageIn === 'number') {
       this._age = ageIn;
@@ -274,7 +274,7 @@ let person = {
       return 'Invalid input';
     }
   },
-  
+
   get age() {
     console.log(`${this._name} is ${this._age} years old.`);
     return this._age;
@@ -294,20 +294,20 @@ class HospitalEmployee {
     this._name = name;
     this._remainingVacationDays = 20;
   }
-  
+
   static generatePassword() {
     const randomNumber = Math.floor(Math.random()*10000);
     return randomNumber;
   }
-  
+
   get name() {
     return this._name;
   }
-  
+
   get remainingVacationDays() {
     return this._remainingVacationDays;
   }
-  
+
   takeVacationDays(daysOff) {
     this._remainingVacationDays -= daysOff;
   }
@@ -317,12 +317,12 @@ class Nurse extends HospitalEmployee {
   constructor(name, certifications) {
     super(name);
     this._certifications = certifications;
-  } 
-  
+  }
+
   get certifications() {
     return this._certifications;
   }
-  
+
   addCertification(newCertification) {
     this.certifications.push(newCertification);
   }
@@ -341,7 +341,7 @@ let Airplane = {};
 
 Airplane.myAirplane = "StarJet";
 
-module.exports = Airplane; 
+module.exports = Airplane;
 
 // 1-missionControl.js
 const Airplane = require('./1-airplane.js');
@@ -361,7 +361,7 @@ module.exports = {
   myAirplane: "CloudJet",
   displayAirplane: function() {
     return this.myAirplane;
-  } 
+  }
 };
 
 // 2-missionControl.js
@@ -371,3 +371,46 @@ console.log(Airplane.displayAirplane());
 
 /* ---------------------------------- */
 
+class Rectangle {
+
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+
+  // Getter
+  get area() {
+    return this.calcArea();
+  }
+
+  // Method
+  calcArea() {
+    return this.height * this.width;
+  }
+
+  get awaitFunct() {
+    let h = this.height;
+    let w = this.width;
+
+    onBeforeFirstShow: function() {
+        // Some codes
+    }.bind(this)
+
+    function hello() {
+      this.max = h * w;
+    }.bind(this);
+  }
+
+  get awaitMax() {
+    return this.max;
+  }
+
+}
+
+const square = new Rectangle(10, 10);
+
+console.log(square.area); // 100
+
+console.log(square.awaitFunct);
+
+console.log(square.awaitMax);
