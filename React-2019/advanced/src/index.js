@@ -9,12 +9,13 @@ import Root from 'Root';
 // imported from components/App - which has CommentBox/List.js
 import App from 'components/App';
 
+{/* places content into public/index.html's div with root id */}
+
 ReactDOM.render(
   <Root>
     <BrowserRouter>
       <Route path="/" component={App} />
     </BrowserRouter>
   </Root>,
-  {/* places content into public/index.html's div with root id */}
   document.querySelector('#root')
 );
