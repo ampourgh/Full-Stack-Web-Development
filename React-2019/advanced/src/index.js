@@ -1,12 +1,20 @@
 import React from 'react';
+
+// for rendering the DOM
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { BrowserRouter, Route } from 'react-router-dom';
+import Root from 'Root';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// imported from components/App - which has CommentBox/List.js
+import App from 'components/App';
+
+ReactDOM.render(
+  <Root>
+    <BrowserRouter>
+      <Route path="/" component={App} />
+    </BrowserRouter>
+  </Root>,
+  {/* places content into public/index.html's div with root id */}
+  document.querySelector('#root')
+);
