@@ -153,3 +153,34 @@ A single value, not an object
 NOTE: OPERATORS
 
 Operator is basically like the arithmetic symbols, which are in actuality diguised functions
+
+There's pre-fix and post-fix, and in JavaScipt we primarily work in in-fix notation
+
+NOTE: Operator Precedence + Operator Associativity
+
+Basic mathematical concept you learned in high school
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+
+console.log(3 + 4 * 5); // 3 + 20
+>>> expected output: 23
+
+console.log(4 * 3 ** 2); // 4 * 9
+>>> expected output: 36
+
+var a;
+var b;
+
+console.log(a = b = 5);
+>>> expected output: 5;
+
+Associativity example:
+
+var a = 1, b = 2, c = 3;
+
+a = b = c;
+
+console.log( a + b + c ) <-- which would translate to 4 + 4 + 4
+>>> 12
+
+Right to left assciativity 
