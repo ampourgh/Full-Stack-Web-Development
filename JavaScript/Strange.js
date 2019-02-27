@@ -125,4 +125,31 @@ var myVar = 10
 console.log after a() (at the end of the script) will be 1
 if myVar is = 10 without a var declaration, the console.log will be 10
 
-SCOPE CHAIN: b() -> a() -> global 
+SCOPE CHAIN: b() -> a() -> global
+
+
+NOTE: ASYNCRONOUS REQUESTS
+
+Such as the engines that JavaScipt interacts with, such as the renderer and HTTP request
+
+
+
+NOTE: TYPES OF DATA
+
+Dynamic typing: engine figures out what kind of data your variable is holding
+Static typing: other programming languages (such as Java or C), will need specification during declaration
+
+
+NOTE: Primitive Type
+
+A single value, not an object
+- undefined: lack of existence
+- null: you can define this lack of existence
+- boolean
+- number (only one type in JS, instead of there being an int or float)
+- string
+- symbol: in ES6, not supported in all the browser, and introduced in ESC6
+
+NOTE: OPERATORS
+
+Operator is basically like the arithmetic symbols, which are in actuality diguised functions
