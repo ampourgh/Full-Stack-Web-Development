@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JSON LOADERS</title>
+</head>
+<body>
+
+  <script>
+
+    async function getJSON(path, callback) {
+      return callback(await fetch(path).then(r => r.json()));
+    }
+
+    getJSON('config.json', info =>
+      console.log(info["array"][0].order.first)
+    );
+
+    /*
+    // return json data from any file path (asynchronous)
+    function getJSON(path) {
+        return fetch(path).then(response => response.json());
+    }
+
+    // load json data; then proceed
+    getJSON('config.json').then(info => {
+        // get title property and log it to the console
+        var title = info;
+        console.log(title["array"][0].order.second);
+    });
+
+    */
+
+    var module = {
+      x: 42,
+      getX: function() {
+        return this.x;
+      }
+    }
+
+    var boundGetX = module.getX.bind(module);
+    console.log('THIS: ' + boundGetX());
+    // expected output: 42
+
+
+
+
+    class Rectangle {
+      constructor() {
+
+        var requestURL = 'config.json';
+        var request = new XMLHttpRequest();
+        request.open('GET', requestURL);
+        request.responseType = 'json';
+        request.send();
+
+        request.onload = ( function() {
+          this.nameInput = request.response;
+          console.log(this.nameInput["array"][0].order.third)
+        }).bind(this);
+
+      }
+      // Getter
+      get area() {
+        return this.calcArea();
+      }
+      // Method
+      calcArea() {
+        // return this.nameInput;
+        return this.nameInput["array"][0].order.third;
+      }
+    }
+
+    const square = new Rectangle();
+
+    function sleep(delay) {
+      var start = new Date().getTime();
+      while (new Date().getTime() < start + delay);
+    }
+
+    sleep(1000);
+
+    console.log(square.area);
+
+  </script>
+</body>
+</html>

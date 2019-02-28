@@ -1,0 +1,11 @@
+{
+  "array": [
+    {
+      "order": {
+        "first": "This is the first statement.",
+        "second": "This is the second statement.",
+        "third": "This is the third statement."
+      }
+    }
+  ]
+}
