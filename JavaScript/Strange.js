@@ -158,9 +158,7 @@ There's pre-fix and post-fix, and in JavaScipt we primarily work in in-fix notat
 
 NOTE: Operator Precedence + Operator Associativity
 
-Basic mathematical concept you learned in high school
-
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+Similar to math concepts
 
 console.log(3 + 4 * 5); // 3 + 20
 >>> expected output: 23
@@ -183,4 +181,44 @@ a = b = c;
 console.log( a + b + c ) <-- which would translate to 4 + 4 + 4
 >>> 12
 
-Right to left assciativity 
+Right to left assciativity
+
+The highest to lowest precedence can be found on MDN:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+
+NOTE: COERCION
+
+Converting a value to one type to another.
+
+Example:
+
+var a = 1 + 2;
+>>> 3
+
+var a = 'hello ' + ' world';
+>>> 'hello world'
+
+var a = 1 + '2';
+>>> 12
+
+JavaScript has a it's own logic under the hood that translates the string into an int
+
+NOTE: COMPARISON OPERTATORS
+
+console.log(1 < 2 < 3);
+>>> True
+
+console.log(3 < 2 < 1);
+>>> True
+
+The reason for the above is because it goes left to right; 3 < 2 is false, and 1 is greater than false (0)
+
+Some of the negatives of JS is that null and undefined do not == 0, but are < 1
+
+"" == 0;
+>>> True
+
+Use strict equality and inequality when doing comparisons,
+and only use non-strict when you know the implicatiosn of the outcome
+
+MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness
