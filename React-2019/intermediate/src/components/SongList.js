@@ -4,18 +4,18 @@ import { selectSong } from '../actions';
 
 class SongList extends Component {
   renderList() {
-    return this.props.songs.map(song => {
+    return this.props.songsListsClassPropsSongs.map(individualSong => {
       return (
-        <div className="item" key={song.title}>
+        <div className="item" key={individualSong.title}>
           <div className="right floated content">
             <button
               className="ui button primary"
-              onClick={() => this.props.selectSong(song)}
+              onClick={() => this.props.selectSong(individualSong)}
             >
               Select
             </button>
           </div>
-          <div className="content">{song.title}</div>
+          <div className="content">{individualSong.title}</div>
         </div>
       );
     });
@@ -27,7 +27,7 @@ class SongList extends Component {
 }
 
 const mapStateToProps = state => {
-  return { songs: state.songs };
+  return { songsListsClassPropsSongs: state.reducerStateSongsList };
 };
 
 export default connect(

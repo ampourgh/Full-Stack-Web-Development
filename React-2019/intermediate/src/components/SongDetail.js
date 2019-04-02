@@ -1,25 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import '../App.css';
 
-const SongDetail = ({ song }) => {
-  if (!song) {
-    return <div>Select a song</div>;
+// <video class="video-container video-container-overlay" autoplay="" loop="" muted="" data-reactid=".0.1.0.0">
+//   <source src="{classPropsChosenSong.video}" type="video/mp4"/>
+// </video>
+
+const SongDetail = ({ classPropsChosenSong }) => {
+  if (!classPropsChosenSong) {
+    return <div>Select a classPropsChosenSong</div>;
   }
 
   return (
     <div>
       <h3>Details for:</h3>
       <p>
-        Title: {song.title}
+        Title: {classPropsChosenSong.title}
         <br />
-        Duration: {song.duration}
+        Duration: {classPropsChosenSong.duration}
+        <br />
+        <img src ={classPropsChosenSong.img} />
       </p>
     </div>
   );
 };
 
 const mapStateToProps = state => {
-  return { song: state.selectedSong };
+  return { classPropsChosenSong: state.reducerStateSelectedSong };
 };
 
 export default connect(mapStateToProps)(SongDetail);
