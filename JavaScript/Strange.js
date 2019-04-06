@@ -222,3 +222,14 @@ Use strict equality and inequality when doing comparisons,
 and only use non-strict when you know the implicatiosn of the outcome
 
 MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness
+
+
+NOTE: DEFAULT VALUES
+
+function greet(name) {
+  name = name || '<your name here>';
+  console.log('Hello ' + name);
+}
+
+greet();
+>>> Hello <your name here>
