@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>on-click dark mode</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <button onclick="myFunction()">Click me</button>
+  <script src="js/index.js"></script>
+</body>
+</html>
+
+<?php isset($_SESSION["mode"] == "dark")? "dark" : "light"; ?>
+
+<?php
+ if (isset($_POST["toggle"])) {
+   if ($_SESSION["mode"] == undefine || $_SESSION["toggle"] == 'light') {
+     $_SESSION["toggle"] = "dark";
+   } else {
+     $_SESSION["toggle"] = "light";
+   }
+ }
+?>
+
+<form action="index.php" method="get">
+  <input type="toggle" type="submit">
+</form>
