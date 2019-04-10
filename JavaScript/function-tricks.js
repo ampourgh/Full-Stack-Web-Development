@@ -122,3 +122,64 @@ console.log(ids.next().value);
 // 1
 console.log(ids.next().value);
 // 2
+
+/* FUNCTIONS PRATICE */
+
+// return int array
+filter_list = (array) => {
+  return array.filter(positiveInt = (val) => {
+    return typeof val == 'number';
+  });
+}
+
+console.log(filter_list([1,2,'a','b']));
+console.log(filter_list([1,'a','b',0,15]));
+console.log(filter_list([1,2,'aasf','1','123',123]));
+
+/*
+return number of time letter occurs & number of letters that duplicated
+
+"abcde" -> 0  no characters repeats more than once
+"aabbcde" -> 2 # 'a' and 'b'
+"aabBcde" -> 2 # 'a' occurs twice and 'b' twice (`b` and `B`)
+"indivisibility" -> 1 # 'i' occurs six times
+"Indivisibilities" -> 2 # 'i' occurs seven times and 's' occurs twice
+"aA11" -> 2 # 'a' and '1'
+"ABBA" -> 2 # 'A' and 'B' each occur twice
+*/
+
+function duplicateCount(text){
+  text = { ...text.split('').sort() }
+  console.log(text);
+  var count = 0;
+  var lastDiffIndex, lastText, stopPoint;
+
+  for (var index in text) {
+
+    if (text[index] == lastText) {
+      lastText = text[index];
+    } else {
+
+      stopPoint = index - lastDiffIndex;
+
+      if (stopPoint > 1) {
+        console.log(lastText + ' happened ' + stringth(stopPoint) + '.');
+        count += 1;
+      }
+
+      lastDiffIndex = index
+      lastText = text[index];
+    }
+  }
+
+  console.log(count);
+}
+
+stringth = (num) => {
+  var stringthArr = ['once', 'twice', 'thrice', 'four times', 'five times', 'more than six times'];
+
+  return num < 5 ? stringthArr[num - 1] : stringthArr[5];
+}
+
+duplicateCount("aabbcde");
+duplicateCount("Indivisibilities");
