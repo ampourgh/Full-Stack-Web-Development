@@ -137,8 +137,6 @@ console.log(filter_list([1,'a','b',0,15]));
 console.log(filter_list([1,2,'aasf','1','123',123]));
 
 /*
-return number of time letter occurs & number of letters that duplicated
-
 "abcde" -> 0  no characters repeats more than once
 "aabbcde" -> 2 # 'a' and 'b'
 "aabBcde" -> 2 # 'a' occurs twice and 'b' twice (`b` and `B`)
@@ -149,14 +147,20 @@ return number of time letter occurs & number of letters that duplicated
 */
 
 function duplicateCount(text){
-  text = { ...text.split('').sort() }
+  var textLen = text.length;
+  text = { ...text.toLowerCase().split('').sort() }
   console.log(text);
   var count = 0;
   var lastDiffIndex, lastText, stopPoint;
 
+
   for (var index in text) {
 
     if (text[index] == lastText) {
+
+      if (index == textLen - 1) {
+        count += 1;
+      }
       lastText = text[index];
     } else {
 
@@ -183,3 +187,29 @@ stringth = (num) => {
 
 duplicateCount("aabbcde");
 duplicateCount("Indivisibilities");
+
+/*
+
+Filter callback is invoked with three arguments:
+
+the value of the element
+the index of the element
+the Array object being traversed
+
+*/
+
+function duplicateCountSolution(text) {
+  // lowercased text is split into an array
+  return text.toLowerCase().split('').filter(function(value, index, array) {
+
+    // return where
+    // the current value doesn't equal the last instance AND
+    // the previous value equals index
+    return array.indexOf(value) !== index && array.lastIndexOf(value) === index;
+
+  // return length of array that meets the criteria
+  }).length;
+}
+
+console.log(duplicateCountSolution("aabbcde"));
+console.log(duplicateCountSolution("Indivisibilities"));
