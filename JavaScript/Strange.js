@@ -233,3 +233,44 @@ function greet(name) {
 
 greet();
 >>> Hello <your name here>
+
+NOTE: NAME SPACE
+
+Use object literal to do the same idea as other languages:
+
+spanish = {};
+english = {
+  greetings: {
+    basic: 'hello'
+  }
+};
+
+spanish.greet = "hola";
+console.log(english);
+
+NOTE: Object Literal vs JSON
+
+var objectLiteral = {
+  firstName: "Emerson",
+  isProgrammer: true
+}
+
+console.log(json.stringify(objectLiteral));
+
+var jsonValue = json.parse('{
+  "firstName": "Emerson",
+  "isProgrammer": true
+}');
+
+
+NOTE: IMMEDIATELY INVOKED FUNCTION EXPRESSIONS
+
+functions can be passed around by other functions,
+should be treated like object
+
+greet = () => {
+  console.log('hi');
+}
+
+greet.language = 'english';
+console.log(greet.language);
