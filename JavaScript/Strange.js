@@ -274,3 +274,47 @@ greet = () => {
 
 greet.language = 'english';
 console.log(greet.language);
+
+
+The function below wont get hoisted like a typical function would,
+because the global scope wont identify the functon; it only hoisted the variable
+it needs to put the object into the variable, an extra step
+
+var anonymousGreet = function() {
+  console.log('something');
+}
+
+anonymousGreet();
+
+Sending a function as an object into another function:
+This is what's typically called functional programming (??)
+
+function log(a) {
+  a();
+}
+
+log(function() {
+  console.log('response');
+});
+
+
+NOTE: BY VALUE VS BY REFERENCE
+
+
+Mutate: to be able to change
+Immutable: would be the opposite
+
+var c = hi,
+    d = c;
+d = c;
+c.greeting = 'hello';
+
+Both c & d will be 'hello' since it's a mutable object that will change.
+As in the object in itself will change.
+
+Mutated the value in memory space by reference.
+
+If:
+
+c = { greeting: 'hola' }
+The above will no longer share the same object in memory space. 
