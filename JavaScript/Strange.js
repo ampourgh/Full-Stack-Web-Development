@@ -317,4 +317,48 @@ Mutated the value in memory space by reference.
 If:
 
 c = { greeting: 'hola' }
-The above will no longer share the same object in memory space. 
+The above will no longer share the same object in memory space.
+
+
+NOTE: OBJECTS, FUNCTIONS & THIS
+
+Variable env
+This
+Outer env
+
+function a() {
+  console.log(this);
+}
+
+a();
+
+
+var b = function() {
+  console.log(this);
+}
+
+b();
+
+var c = {
+  name : 'the object c'
+  log : function() {
+
+    // this is currently pointing to the whole object; c
+    var self = this;
+
+    console.log(this);
+
+    var setName = function(newName) {
+      self.name = newName;
+    }
+
+    setName('The c object has been updated again!');
+
+    console.log(self);
+  }
+}
+
+c.log();
+
+When the above is attached to a method object, it brings back the object.
+This is unlike examples a() & b() which return the global object
